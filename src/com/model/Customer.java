@@ -1,8 +1,8 @@
 package com.model;
 
 public class Customer {
-    private String username;
-    private String password;
+    private String username;//µÇÂ¼Ãû
+    private String password;//ÃÜÂë
     public Customer(){}
     public Customer(String username,String password){
         this.username = username;

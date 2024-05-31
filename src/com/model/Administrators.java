@@ -1,12 +1,12 @@
 package com.model;
 
 public class Administrators {
-    int adminID;
-    String name;
-    String username;
-    String password;
-    int departmentID;
-    String phonenumber;
+    int adminID;//管理员编号
+    String name;//姓名
+    String username;//登录名
+    String password;//密码
+    int departmentID;//所在部门编号
+    String phonenumber;//联系电话
 
     public Administrators(){}
     public Administrators(int adminID, String name, String username, String password, int departmentID, String phonenumber) {
