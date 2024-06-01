@@ -1,21 +1,24 @@
 package com.model;
 
 public class Administrators {
-    int adminID;//¹ÜÀíÔ±±àºÅ
-    String name;//ĞÕÃû
-    String username;//µÇÂ¼Ãû
-    String password;//ÃÜÂë
-    int departmentID;//ËùÔÚ²¿ÃÅ±àºÅ
-    String phonenumber;//ÁªÏµµç»°
+    int adminID;//ç®¡ç†å‘˜ç¼–å·
+    String name;//å§“å
+    String username;//ç™»å½•å
+    String password;//å¯†ç 
+    int departmentID;//æ‰€åœ¨éƒ¨é—¨ç¼–å·
+    String phone;//è”ç³»ç”µè¯
+    String role;//ç®¡ç†å‘˜ç§ç±»
 
     public Administrators(){}
-    public Administrators(int adminID, String name, String username, String password, int departmentID, String phonenumber) {
+
+    public Administrators(int adminID, String name, String username, String password, int departmentID, String phone, String role) {
         this.adminID = adminID;
         this.name = name;
         this.username = username;
         this.password = password;
         this.departmentID = departmentID;
-        this.phonenumber = phonenumber;
+        this.phone = phone;
+        this.role = role;
     }
 
     public int getAdminID() {
@@ -58,11 +61,19 @@ public class Administrators {
         this.departmentID = departmentID;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhonen() {
+        return phone;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
