@@ -1,6 +1,8 @@
 package com.model;
 
-public class Reservation extends Person{
+import java.io.Serializable;
+
+public class Reservation extends Person implements Serializable {
     //记住还有父类的成员变量作为预约人信息！name perid phoneNumber
     private String serid; //记录号
     private String applytime;//申请时间
@@ -13,10 +15,11 @@ public class Reservation extends Person{
     private String vname;//车牌号
     private Person friend;//同行者
     //同行者的信息 Fri_name Fri_perid Fri_phoneNumber
+    private String qrcode;//二维码地址
     public Reservation(){
     }
 
-    public Reservation(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend) {
+    public Reservation(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend, String qrcode) {
         super(name, perid, phoneNumber);
         this.serid = serid;
         this.applytime = applytime;
@@ -27,6 +30,15 @@ public class Reservation extends Person{
         this.vehicle = vehicle;
         this.vname = vname;
         this.friend = friend;
+        this.qrcode = qrcode;
+    }
+
+    public String getQrcode() {
+        return qrcode;
+    }
+
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
     }
 
     public String getSerid() {

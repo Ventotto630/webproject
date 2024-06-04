@@ -1,6 +1,8 @@
 package com.model;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     private String name;//姓名
     private String perid;//身份证号
     private String phoneNumber;//手机号码

@@ -1,6 +1,8 @@
 package com.model;
 
-public class Administrators {
+import java.io.Serializable;
+
+public class Administrators implements Serializable {
     int adminID;//管理员编号
     String name;//姓名
     String username;//登录名

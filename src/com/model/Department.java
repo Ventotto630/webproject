@@ -1,6 +1,8 @@
 package com.model;
 
-public class Department {
+import java.io.Serializable;
+
+public class Department implements Serializable {
     private int denum;//部门编号
     private String detype;//部门类型
     private String dename;//部门名称

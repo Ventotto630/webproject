@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.model.Person;
+import com.model.Reservation;
 import com.model.Reservation_public;
 
 import java.sql.Connection;
@@ -9,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RezvtionpublicDao implements Basedao{
-    public boolean addRezvtion(Reservation_public reservation) throws DaoException{
-        String sql ="insert into Rezvtionpub values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+public class RezvtionDao implements Basedao{
+    public boolean addRezvtion(Reservation reservation) throws DaoException{
+        String sql ="insert into Rezvtion values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try(Connection dbconn = getConnection();
             PreparedStatement pstmt = dbconn.prepareStatement(sql)){
             pstmt.setString(1,reservation.getName());
@@ -28,11 +29,7 @@ public class RezvtionpublicDao implements Basedao{
             pstmt.setString(12,reservation.getFriend().getName());
             pstmt.setString(13,reservation.getFriend().getPerid());
             pstmt.setString(14,reservation.getFriend().getPhoneNumber());
-            pstmt.setString(15,reservation.getVisitunit());
-            pstmt.setString(16,reservation.getReceptionist());
-            pstmt.setString(17,reservation.getReason());
-            pstmt.setString(18,reservation.getStatus());
-            pstmt.setString(19,reservation.getQrcode());
+            pstmt.setString(15,reservation.getQrcode());
             pstmt.executeUpdate();
             return true;
         }catch (SQLException ne){
@@ -40,10 +37,10 @@ public class RezvtionpublicDao implements Basedao{
             return false;
         }
     }
-    public ArrayList<Reservation_public> find(Reservation_public reservation) throws DaoException{
+    public ArrayList<Reservation> find(Reservation reservation) throws DaoException{
         String sql="select * "
-                +"from Rezvtionpub where  1=1";
-        ArrayList<Reservation_public> rezvlist = new ArrayList<Reservation_public>();
+                +"from Rezvtion where  1=1";
+        ArrayList<Reservation> rezvlist = new ArrayList<Reservation>();
 
         if(!reservation.getName().equals("null"))
             sql+="and name like ?" ;
@@ -73,14 +70,7 @@ public class RezvtionpublicDao implements Basedao{
             sql+="and Fri_perid like ?" ;
         if(!reservation.getFriend().getPhoneNumber().equals("null"))
             sql+="and Fri_phoneNumber like ?" ;
-        if(!reservation.getVisitunit().equals("null"))
-            sql+="and visitunit like ?" ;
-        if(!reservation.getReceptionist().equals("null"))
-            sql+="and receptionist like ?" ;
-        if(!reservation.getReason().equals("null"))
-            sql+="and reason like ?" ;
-        if(!reservation.getStatus().equals("null"))
-            sql+="and status like ?" ;
+
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
@@ -143,26 +133,11 @@ public class RezvtionpublicDao implements Basedao{
                 t++;
                 pstmt.setString(t,"%"+reservation.getFriend().getPhoneNumber()+"%");
             }
-            if(!reservation.getVisitunit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVisitunit()+"%");
-            }
-            if(!reservation.getReceptionist().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReceptionist()+"%");
-            }
-            if(!reservation.getReason().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReason()+"%");
-            }
-            if(!reservation.getStatus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getStatus()+"%");
-            }
+
 
             try(ResultSet rst = pstmt.executeQuery()){
                 while(rst.next()){
-                    Reservation_public rezv = new Reservation_public();
+                    Reservation rezv = new Reservation();
                     rezv.setName(rst.getString("name"));
                     rezv.setPerid(rst.getString("perid"));
                     rezv.setPhoneNumber(rst.getString("phoneNumber"));
@@ -178,10 +153,7 @@ public class RezvtionpublicDao implements Basedao{
                     friend.setName(rst.getString("Fri_perid"));
                     friend.setName(rst.getString("Fri_phoneNumber"));
                     rezv.setFriend(friend);
-                    rezv.setVisitunit(rst.getString("visitunit"));
-                    rezv.setReceptionist(rst.getString("receptionist"));
-                    rezv.setReason(rst.getString("reason"));
-                    rezv.setStatus(rst.getString("status"));
+
 
                     rezvlist.add(rezv);
                 }
@@ -192,10 +164,9 @@ public class RezvtionpublicDao implements Basedao{
             return null;
         }
     }
-    public int CountRezv(Reservation_public reservation) throws DaoException{
-        String sql="select count (*) "
-                +"from Rezvtionpub where  1=1";
-
+    public int CountRezv(Reservation reservation) throws DaoException{
+        String sql="select count (*) AS total "
+                +"from Rezvtion where  1=1";
 
         if(!reservation.getName().equals("null"))
             sql+="and name like ?" ;
@@ -225,14 +196,7 @@ public class RezvtionpublicDao implements Basedao{
             sql+="and Fri_perid like ?" ;
         if(!reservation.getFriend().getPhoneNumber().equals("null"))
             sql+="and Fri_phoneNumber like ?" ;
-        if(!reservation.getVisitunit().equals("null"))
-            sql+="and visitunit like ?" ;
-        if(!reservation.getReceptionist().equals("null"))
-            sql+="and receptionist like ?" ;
-        if(!reservation.getReason().equals("null"))
-            sql+="and reason like ?" ;
-        if(!reservation.getStatus().equals("null"))
-            sql+="and status like ?" ;
+
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
@@ -295,24 +259,7 @@ public class RezvtionpublicDao implements Basedao{
                 t++;
                 pstmt.setString(t,"%"+reservation.getFriend().getPhoneNumber()+"%");
             }
-            if(!reservation.getVisitunit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVisitunit()+"%");
-            }
-            if(!reservation.getReceptionist().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReceptionist()+"%");
-            }
-            if(!reservation.getReason().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReason()+"%");
-            }
-            if(!reservation.getStatus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getStatus()+"%");
-            }
-
-            int count =0;
+            int count = 0;
 
             try(ResultSet rst = pstmt.executeQuery()){
                 if(rst.next()){
@@ -325,10 +272,9 @@ public class RezvtionpublicDao implements Basedao{
             return -1;
         }
     }
-    public int CountPeople(Reservation_public reservation) throws DaoException{
-        String sql="select count (*) "
-                +"from Rezvtionpub where  1=1 and Fri_name!='null' ";
-
+    public int CountPeople(Reservation reservation) throws DaoException{ //只是随行人员的查询
+        String sql="select count (*) AS total "
+                +"from Rezvtion where  1=1 and Fri_name!='null' ";
 
         if(!reservation.getName().equals("null"))
             sql+="and name like ?" ;
@@ -358,14 +304,7 @@ public class RezvtionpublicDao implements Basedao{
             sql+="and Fri_perid like ?" ;
         if(!reservation.getFriend().getPhoneNumber().equals("null"))
             sql+="and Fri_phoneNumber like ?" ;
-        if(!reservation.getVisitunit().equals("null"))
-            sql+="and visitunit like ?" ;
-        if(!reservation.getReceptionist().equals("null"))
-            sql+="and receptionist like ?" ;
-        if(!reservation.getReason().equals("null"))
-            sql+="and reason like ?" ;
-        if(!reservation.getStatus().equals("null"))
-            sql+="and status like ?" ;
+
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
@@ -428,24 +367,7 @@ public class RezvtionpublicDao implements Basedao{
                 t++;
                 pstmt.setString(t,"%"+reservation.getFriend().getPhoneNumber()+"%");
             }
-            if(!reservation.getVisitunit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVisitunit()+"%");
-            }
-            if(!reservation.getReceptionist().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReceptionist()+"%");
-            }
-            if(!reservation.getReason().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReason()+"%");
-            }
-            if(!reservation.getStatus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getStatus()+"%");
-            }
-
-            int count =0;
+            int count = 0;
 
             try(ResultSet rst = pstmt.executeQuery()){
                 if(rst.next()){
@@ -458,15 +380,15 @@ public class RezvtionpublicDao implements Basedao{
             return -1;
         }
     }
-    public  ArrayList<Reservation_public>findAllrezv()throws DaoException{
+    public  ArrayList<Reservation>findAllrezv()throws DaoException{
         String sql="select * "
-                +"from Rezvtionpub ";
-        ArrayList<Reservation_public> rezvlist = new ArrayList<Reservation_public>();
+                +"from Rezvtion ";
+        ArrayList<Reservation> rezvlist = new ArrayList<Reservation>();
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql);
              ResultSet rst = pstmt.executeQuery()){
             while(rst.next()){
-                Reservation_public rezv = new Reservation_public();
+                Reservation rezv = new Reservation();
                 rezv.setName(rst.getString("name"));
                 rezv.setPerid(rst.getString("perid"));
                 rezv.setPhoneNumber(rst.getString("phoneNumber"));
@@ -482,10 +404,7 @@ public class RezvtionpublicDao implements Basedao{
                 friend.setName(rst.getString("Fri_perid"));
                 friend.setName(rst.getString("Fri_phoneNumber"));
                 rezv.setFriend(friend);
-                rezv.setVisitunit(rst.getString("visitunit"));
-                rezv.setReceptionist(rst.getString("receptionist"));
-                rezv.setReason(rst.getString("reason"));
-                rezv.setStatus(rst.getString("status"));
+
 
                 rezvlist.add(rezv);
             }
@@ -495,60 +414,9 @@ public class RezvtionpublicDao implements Basedao{
             return null;
         }
     }
-    public boolean updateStatus(String status,String serid) throws DaoException{
-        String sql ="update Rezvtionpub set status=? where serid=?";
-        try(Connection dbconn = getConnection();
-            PreparedStatement pstmt = dbconn.prepareStatement(sql)){
-            pstmt.setString(1,status);
-            pstmt.setString(2,serid);
-            pstmt.executeUpdate();
-            return true;
-        }catch (SQLException ne){
-            ne.printStackTrace();
-            return false;
-        }
-    } //审核
-    public Reservation_public findByserid(String serid) throws  DaoException{
-        String sql="select * "
-                +"from Rezvtionpub where serid = ?";
-        Reservation_public rezv = new Reservation_public();
-        try( Connection dbconn =getConnection();
-             PreparedStatement pstmt = dbconn.prepareStatement(sql);){
-            pstmt.setString(1,serid);
-            ResultSet rst = pstmt.executeQuery();
-            while(rst.next()){
 
-                rezv.setName(rst.getString("name"));
-                rezv.setPerid(rst.getString("perid"));
-                rezv.setPhoneNumber(rst.getString("phoneNumber"));
-                rezv.setSerid(rst.getString("serid"));
-                rezv.setApplytime(rst.getString("applytime"));
-                rezv.setCampus(rst.getString("campus"));
-                rezv.setIntime(rst.getString("intime"));
-                rezv.setOuttime(rst.getString("outtime"));
-                rezv.setUnit(rst.getString("unit"));
-                rezv.setVehicle(rst.getString("vehicle"));
-                Person friend =new Person();
-                friend.setName(rst.getString("Fri_name"));
-                friend.setName(rst.getString("Fri_perid"));
-                friend.setName(rst.getString("Fri_phoneNumber"));
-                rezv.setFriend(friend);
-                rezv.setVisitunit(rst.getString("visitunit"));
-                rezv.setReceptionist(rst.getString("receptionist"));
-                rezv.setReason(rst.getString("reason"));
-                rezv.setStatus(rst.getString("status"));
-                rezv.setQrcode(rst.getString("qrcode"));
-
-            }
-            return rezv;
-        }catch (SQLException ne){
-            ne.printStackTrace();
-            return null;
-        }
-    }
-    //添加查找有最新的serid的记录的函数。根据会话里的serid 直接用这个
     public boolean updateQrcode(String qrcode,String serid) throws DaoException{
-        String sql ="update Rezvtionpub set qrcode=? where serid=?";
+        String sql ="update Rezvtion set qrcode=? where serid=?";
         try(Connection dbconn = getConnection();
             PreparedStatement pstmt = dbconn.prepareStatement(sql)){
             pstmt.setString(1,qrcode);
@@ -559,18 +427,5 @@ public class RezvtionpublicDao implements Basedao{
             ne.printStackTrace();
             return false;
         }
-    }  //审核后生成的二维码地址不变 可能这个不需要？或者再加个字段 一个二维码地址一个二维码内容。 不用加二维码内容
-    //有地址就能重新生成二维码，现在的思路是每次查看二维码都是重新生成二维码。所以这个应该是用不到
-//    public boolean deleteUser(String uname) throws DaoException{
-//        String sql ="delete from users where uname=?";
-//        try(Connection dbconn = getConnection();
-//            PreparedStatement pstmt = dbconn.prepareStatement(sql)){
-//            pstmt.setString(1,uname);
-//            pstmt.executeUpdate();
-//            return true;
-//        }catch (SQLException ne){
-//            ne.printStackTrace();
-//            return false;
-//        }
-//    }  好像不需要
+    }  //审核后生成的二维码更新进数据库 用不到
 }

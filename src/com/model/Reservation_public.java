@@ -1,6 +1,8 @@
 package com.model;
 
-public class Reservation_public extends Person{
+import java.io.Serializable;
+
+public class Reservation_public extends Person implements Serializable {
     //记住还有父类的成员变量作为预约人信息！name perid phoneNumber
     private String serid; //记录号
     private String applytime;//申请日期
@@ -18,6 +20,7 @@ public class Reservation_public extends Person{
     private String receptionist;//公务访问接待人
     private String reason;//来访事由
     private String status;//审核状态
+    private String qrcode;//二维码地址 不参与查询
     public Reservation_public() {
     }
     public String getApplytime() {
@@ -43,7 +46,7 @@ public class Reservation_public extends Person{
         this.serid = serid;
     }
 
-    public Reservation_public(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend, String visitunit, String receptionist, String reason, String status) {
+    public Reservation_public(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend, String visitunit, String receptionist, String reason, String status, String qrcode) {
         super(name, perid, phoneNumber);
         this.serid = serid;
         this.applytime = applytime;
@@ -58,6 +61,15 @@ public class Reservation_public extends Person{
         this.receptionist = receptionist;
         this.reason = reason;
         this.status = status;
+        this.qrcode = qrcode;
+    }
+
+    public String getQrcode() {
+        return qrcode;
+    }
+
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
     }
 
     public String getCampus() {
