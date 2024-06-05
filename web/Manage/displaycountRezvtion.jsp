@@ -1,0 +1,19 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Ventotto
+  Date: 2024/6/5
+  Time: 0:19
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>社会公众进校预约统计</title>
+</head>
+<body>
+<% String cishu = request.getParameter("cishu"); %>
+<% String people = request.getParameter("people"); %>
+预约次数为：<%=cishu%><br>
+预约人次为：<%=people%>
+</body>
+</html>

@@ -495,6 +495,43 @@ public class RezvtionpublicDao implements Basedao{
             return null;
         }
     }
+    public  ArrayList<Reservation_public>findBystatus()throws DaoException{
+        String sql="select * "
+                +"from Rezvtionpub where status='Œ¥…Û∫À' ";
+        ArrayList<Reservation_public> rezvlist = new ArrayList<Reservation_public>();
+        try( Connection dbconn =getConnection();
+             PreparedStatement pstmt = dbconn.prepareStatement(sql);
+             ResultSet rst = pstmt.executeQuery()){
+            while(rst.next()){
+                Reservation_public rezv = new Reservation_public();
+                rezv.setName(rst.getString("name"));
+                rezv.setPerid(rst.getString("perid"));
+                rezv.setPhoneNumber(rst.getString("phoneNumber"));
+                rezv.setSerid(rst.getString("serid"));
+                rezv.setApplytime(rst.getString("applytime"));
+                rezv.setCampus(rst.getString("campus"));
+                rezv.setIntime(rst.getString("intime"));
+                rezv.setOuttime(rst.getString("outtime"));
+                rezv.setUnit(rst.getString("unit"));
+                rezv.setVehicle(rst.getString("vehicle"));
+                Person friend =new Person();
+                friend.setName(rst.getString("Fri_name"));
+                friend.setName(rst.getString("Fri_perid"));
+                friend.setName(rst.getString("Fri_phoneNumber"));
+                rezv.setFriend(friend);
+                rezv.setVisitunit(rst.getString("visitunit"));
+                rezv.setReceptionist(rst.getString("receptionist"));
+                rezv.setReason(rst.getString("reason"));
+                rezv.setStatus(rst.getString("status"));
+
+                rezvlist.add(rezv);
+            }
+            return rezvlist;
+        }catch (SQLException ne){
+            ne.printStackTrace();
+            return null;
+        }
+    }
     public boolean updateStatus(String status,String serid) throws DaoException{
         String sql ="update Rezvtionpub set status=? where serid=?";
         try(Connection dbconn = getConnection();

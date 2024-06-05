@@ -414,7 +414,40 @@ public class RezvtionDao implements Basedao{
             return null;
         }
     }
+    public Reservation findByserid(String serid) throws  DaoException{
+        String sql="select * "
+                +"from Rezvtion where serid = ?";
+        Reservation rezv = new Reservation();
+        try( Connection dbconn =getConnection();
+             PreparedStatement pstmt = dbconn.prepareStatement(sql);){
+            pstmt.setString(1,serid);
+            ResultSet rst = pstmt.executeQuery();
+            while(rst.next()){
 
+                rezv.setName(rst.getString("name"));
+                rezv.setPerid(rst.getString("perid"));
+                rezv.setPhoneNumber(rst.getString("phoneNumber"));
+                rezv.setSerid(rst.getString("serid"));
+                rezv.setApplytime(rst.getString("applytime"));
+                rezv.setCampus(rst.getString("campus"));
+                rezv.setIntime(rst.getString("intime"));
+                rezv.setOuttime(rst.getString("outtime"));
+                rezv.setUnit(rst.getString("unit"));
+                rezv.setVehicle(rst.getString("vehicle"));
+                Person friend =new Person();
+                friend.setName(rst.getString("Fri_name"));
+                friend.setName(rst.getString("Fri_perid"));
+                friend.setName(rst.getString("Fri_phoneNumber"));
+                rezv.setFriend(friend);
+                rezv.setQrcode(rst.getString("qrcode"));
+
+            }
+            return rezv;
+        }catch (SQLException ne){
+            ne.printStackTrace();
+            return null;
+        }
+    }
     public boolean updateQrcode(String qrcode,String serid) throws DaoException{
         String sql ="update Rezvtion set qrcode=? where serid=?";
         try(Connection dbconn = getConnection();

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+<Resource
+        name="jdbc/webproject"
+        type="javax.sql.DataSource"
+        maxActive="4"
+        maxIdle="2"
+        driverClassName="org.postgresql.Driver"
+        url="jdbc:postgresql://192.168.88.128:26000/Web?useSSL=true"
+        username="JiangYao"
+        password="JiangYao@123"
+        maxWaitMillis="5000"/>
+</Context>

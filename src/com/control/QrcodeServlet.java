@@ -49,6 +49,7 @@ public class QrcodeServlet extends HttpServlet {
             filepath_xd =qrCode.generateQRCode(data,Qrcode,"PNG",400,oncolor,0xFFFFFFFF);
             synchronized (session){
                 session.setAttribute("filepath_xd",filepath_xd);
+                //这里不用的原因是在前面的RezvServlet已经存入reservation
             }
 
             RequestDispatcher rd = request.getRequestDispatcher("/Rezvtion/displayQRCode.jsp");
