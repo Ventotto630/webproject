@@ -5,10 +5,18 @@
   Time: 16:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=GBK"%>
 <html>
 <head>
-    <title>ç™»å½•</title>
+    <title>µÇÂ¼</title>
+    <script type="text/javascript">
+        window.onload = function() {
+            var message = "${message}"; // Ê¹ÓÃEL»ñÈ¡ServletÖĞÉèÖÃµÄÌáÊ¾ĞÅÏ¢
+            if (message) {
+                alert(message); // µ¯³öÌáÊ¾¿ò
+            }
+        };
+    </script>
     <style>
         * {
             margin: 0;
@@ -19,7 +27,7 @@
         }
         body {
             height: 100%;
-            background: url(images/8.jpg) no-repeat;
+            background: url(../images/8.jpg) no-repeat;
             background-size: 100% 130%;
         }
 
@@ -85,19 +93,19 @@
 </head>
 <body>
 <div id="login_box">
-    <div class="header">æ¬¢è¿ç™»å½•æ ¡å›­é€šè¡Œç é¢„çº¦ç®¡ç†ç³»ç»Ÿ</div>
-    <form action="/login.do" method="post">
+    <div class="header">»¶Ó­µÇÂ¼Ğ£Ô°Í¨ĞĞÂëÔ¤Ô¼¹ÜÀíÏµÍ³</div>
+    <form action="../login.do" method="post">
         <div id="input_box">
-            <input type="text" name="password" placeholder="username">
+            <input type="text" name="password" placeholder="username" required>
         </div>
         <div class="input_box">
-            <input type="password" name="password" placeholder="password">
+            <input type="password" name="password" placeholder="password" required>
         </div>
-        <button>ç™»å½•</button><br>
+        <button>µÇÂ¼</button><br>
     </form>
     <div class="msg">
-        è¿˜æ²¡æœ‰è´¦å·?
-        <a href="#">æ³¨å†Œ</a>
+        »¹Ã»ÓĞÕËºÅ?
+        <a href="#">×¢²á</a>
     </div>
 </div>
 </body>

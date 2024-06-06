@@ -28,7 +28,7 @@ public class RezvServlet extends HttpServlet {
         String applytime = request.getParameter("applytime");
         String campus = request.getParameter("campus");
         String intime = request.getParameter("intime");
-        String outtime = request.getParameter("ouottime");
+        String outtime = request.getParameter("outtime");
         String unit = request.getParameter("unit");
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
@@ -40,6 +40,8 @@ public class RezvServlet extends HttpServlet {
 //        LocalDateTime time3= LocalDateTime.parse(outtime);
 
         //jsp传入的类型为datatime-local
+        applytime = applytime.replace("-","");
+        applytime = applytime.replace(":","");
         String serid = new String();
         byte[] sm3 = CryptoSM3.hash(name.getBytes());
         String ssm=CryptoSM3.bytesToHexString(sm3);
@@ -64,6 +66,7 @@ public class RezvServlet extends HttpServlet {
         HttpSession session = request.getSession();
         synchronized (session){
                 session.setAttribute("reservation",reservation);
+                session.setAttribute("serid",serid);
             }
 
         RequestDispatcher rd = request.getRequestDispatcher("/Rezvtion/applysuccess.jsp");

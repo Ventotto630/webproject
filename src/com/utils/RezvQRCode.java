@@ -40,7 +40,7 @@ public class RezvQRCode {
     public static void main(String[] args) {
         try {
             String qrCodeData = "https://www.example.com";
-            String filePath = "X:\\code\\java\\demo1\\webproject4\\web\\QRCode\\CustomColorQRCode.png";
+            String filePath = "X:\\code\\java\\demo1\\webproject\\QRCode\\CustomColorQRCode.png";
             int size = 250; // 二维码的尺寸
             int onColor = 0xFF2E7D32; // 二维码颜色（绿色）
             int offColor = 0xFFFFAB91; // 背景颜色（橙色）

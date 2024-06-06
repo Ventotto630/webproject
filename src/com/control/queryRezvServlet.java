@@ -22,7 +22,7 @@ public class queryRezvServlet extends HttpServlet {
                 request.getSession().setAttribute("rezvlist",rezvlist);
                 response.sendRedirect("Rezvtion/displayRezvtion.jsp");
             }
-            else response.sendRedirect("Rezvtion/error.jsp"); 加
+            else response.sendRedirect("Rezvtion/error.jsp");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -37,9 +37,21 @@ public class queryRezvServlet extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String serid = request.getParameter("serid");
         String applytime = request.getParameter("applytime");
+        if (applytime == "") {
+            applytime = "null"; // 或者任何默认值
+        }
         String campus = request.getParameter("campus");
+        if (campus == null) {
+            campus = "null"; // 或者任何默认值
+        }
         String intime = request.getParameter("intime");
-        String outtime = request.getParameter("ouottime");
+        if (intime == "") {
+            intime = "null"; // 或者任何默认值
+        }
+        String outtime = request.getParameter("outtime");
+        if (outtime == "") {
+            outtime = "null"; // 或者任何默认值
+        }
         String unit = request.getParameter("unit");
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
@@ -61,7 +73,7 @@ public class queryRezvServlet extends HttpServlet {
                 request.getSession().setAttribute("rezvlist",rezvlist);
                 response.sendRedirect("Rezvtion/displayRezvtion.jsp");
             }
-            else response.sendRedirect("Rezvtion/error.jsp"); 加
+            else response.sendRedirect("Rezvtion/error.jsp");
         }catch (Exception e1){
             e1.printStackTrace();
         }

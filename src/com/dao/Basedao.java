@@ -8,7 +8,7 @@ public interface Basedao {
         DataSource dataSource = null;
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/xiangzy_db_uni");
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/webproj");
         } catch (NamingException e) {
             e.printStackTrace();
             System.out.println("“Ï≥££∫" + e);

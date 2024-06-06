@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet("/checkServlet")
-public class checkServlet extends HttpServlet {
+public class checkServlet extends HttpServlet { //显示所有可审核的记录
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RezvtionpublicDao dao =new RezvtionpublicDao();
@@ -20,7 +20,7 @@ public class checkServlet extends HttpServlet {
                 request.getSession().setAttribute("rezvlist",rezvlist);
                 response.sendRedirect("Manage/check.jsp");
             }
-            else response.sendRedirect("Rezvtion/checkdone.jsp"); 加
+            else response.sendRedirect("Manage/checkdone.jsp");
         }catch (Exception e){
             e.printStackTrace();
         }

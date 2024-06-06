@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="zxing-3.3.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../webproject4/libs/zxing-3.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/zxing-3.3.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

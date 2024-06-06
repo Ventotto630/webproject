@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Qrcodepub_check extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sid =(String) request.getAttribute("serid");
+        String sid =(String) request.getParameter("serid");
         RezvtionpublicDao dao = new RezvtionpublicDao();
         Reservation_public reservation_public = new Reservation_public();
         try {
@@ -52,7 +52,7 @@ public class Qrcodepub_check extends HttpServlet {
         String filepath_xd;
 
         int oncolor =0;
-        if(status.equals("审核未通过") || time1.isAfter(time3) || time1.isBefore(time2) ){
+        if(status.equals("未审核") || status.equals("审核未通过") || time1.isAfter(time3) || time1.isBefore(time2) ){
             oncolor=0xFF808080; //不通过就是灰色
         }
         else if(status.equals("审核通过") && time1.isBefore(time3) && time1.isAfter(time2)){
@@ -65,13 +65,15 @@ public class Qrcodepub_check extends HttpServlet {
             HttpSession session =request.getSession();
             synchronized (session){
                 session.setAttribute("filepath_xd",filepath_xd);
-                session.setAttribute("reservation_public",reservation_public);
+                session.setAttribute("reservationpub",reservation_public);
             }
 
 
             RequestDispatcher rd = request.getRequestDispatcher("/Rezvtion/displayPubQRCode.jsp"); //不改是不是也行 共用一个jsp; 不行 JavaBean不一样
             rd.forward(request,response);
-        }catch (Exception e){}
+        }catch (Exception e){
+
+        }
     }
 
     @Override

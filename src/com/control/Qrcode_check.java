@@ -1,9 +1,7 @@
 package com.control;
 
 import com.dao.RezvtionDao;
-import com.dao.RezvtionpublicDao;
 import com.model.Reservation;
-import com.model.Reservation_public;
 import com.utils.RezvQRCode;
 
 import javax.servlet.*;
@@ -16,7 +14,7 @@ import java.time.LocalDateTime;
 public class Qrcode_check extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sid =(String) request.getAttribute("serid");
+        String sid =(String) request.getParameter("serid");
         RezvtionDao dao = new RezvtionDao();
         Reservation reservation = new Reservation();
         try {
