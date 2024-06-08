@@ -3,17 +3,17 @@ package com.model;
 import java.io.Serializable;
 
 public class Administrators implements Serializable {
-    int adminID;//管理员编号
+    String adminID;//管理员编号
     String name;//姓名
     String username;//登录名
     String password;//密码
-    int departmentID;//所在部门编号
+    String departmentID;//所在部门编号
     String phone;//联系电话
     String role;//管理员种类
 
     public Administrators(){}
 
-    public Administrators(int adminID, String name, String username, String password, int departmentID, String phone, String role) {
+    public Administrators(String adminID, String name, String username, String password, String departmentID, String phone, String role) {
         this.adminID = adminID;
         this.name = name;
         this.username = username;
@@ -23,11 +23,11 @@ public class Administrators implements Serializable {
         this.role = role;
     }
 
-    public int getAdminID() {
+    public String getAdminID() {
         return adminID;
     }
 
-    public void setAdminID(int adminID) {
+    public void setAdminID(String adminID) {
         this.adminID = adminID;
     }
 
@@ -55,15 +55,15 @@ public class Administrators implements Serializable {
         this.password = password;
     }
 
-    public int getDepartmentID() {
+    public String getDepartmentID() {
         return departmentID;
     }
 
-    public void setDepartmentID(int departmentID) {
+    public void setDepartmentID(String departmentID) {
         this.departmentID = departmentID;
     }
 
-    public String getPhonen() {
+    public String getPhone() {
         return phone;
     }
 
