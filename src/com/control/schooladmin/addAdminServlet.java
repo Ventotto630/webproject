@@ -1,3 +1,5 @@
+package com.control.schooladmin;
+
 import com.dao.adminDao;
 import com.model.Administrators;
 import com.utils.CryptoSM3;
@@ -7,8 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet(name="/registerServlet",value="/register.do")
-public class registerServlet extends HttpServlet {
+@WebServlet(name="/registerServlet",value="/addDAdmin.do")
+public class addAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,6 +45,6 @@ public class registerServlet extends HttpServlet {
             message="×¢²áÊ§°Ü";
         }
         request.getSession().setAttribute("message", message);
-        response.sendRedirect("Manage/system/home.jsp");
+        response.sendRedirect("Manage/school/home.jsp");
     }
 }

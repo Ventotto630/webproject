@@ -1,15 +1,16 @@
-package com.control.systemadmin;
+package com.control.schooladmin;
 
 import com.dao.DepartDao;
-import com.model.Department;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/add_depart.do")
-public class add_depart extends HttpServlet {
+@WebServlet(name="/deleteDepartServlet",value="/deleteDepart.do")
+public class deleteDepartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request,response);
@@ -18,22 +19,17 @@ public class add_depart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        Department depart=new Department();
         DepartDao dao=new DepartDao();
         String message=null;
         try{
-            depart.setId(request.getParameter("id"));
-            depart.setType(request.getParameter("type"));
-            depart.setName(request.getParameter("name"));
-            boolean success=dao.addDepart(depart);
+            boolean success=dao.deleteDepart(request.getParameter("id"));
             if(success){
-                message="Ê∑ªÂä†ÊàêÂäüÔºÅ";
+                message="…æ≥˝≥…π¶£°";
             }else{
-                message="Ê∑ªÂä†Â§±Ë¥•";
+                message="…æ≥˝ ß∞‹!";
             }
-        }catch(Exception e){
-            message="Âá∫Áé∞ÂºÇÂ∏∏";
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         request.getSession().setAttribute("message",message);
         response.sendRedirect("Manage/school/home.jsp");

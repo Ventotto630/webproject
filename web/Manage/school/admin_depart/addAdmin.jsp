@@ -8,14 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加管理员</title>
+    <title>添加部门管理员</title>
     <script type="text/javascript">
-        window.onload = function() {
-            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
-            if (message) {
-                alert(message); // 弹出提示框
-            }
-        };
         function checkForm() {
             var password = document.getElementById("password").value;
             var phone = document.getElementById("phone").value;
@@ -120,7 +114,7 @@
 </head>
 <body>
 <div id="login_box">
-    <form action="../../addAdmin.do" method="post" onsubmit="return checkForm()">
+    <form action="../../../addDAdmin.do" method="post" onsubmit="return checkForm()">
         <div class="input_box">
             <span class="input_title">管理员编号 </span><input type="text" name="adminID" placeholder="adminID" required>
         </div>
@@ -139,14 +133,8 @@
         <div class="input_box">
             <span class="input_title">　　手机号 </span><input type="text" name="phone" id="phone" placeholder="phone" required>
         </div>
-        <div class="input_box">
-            <span class="input_title">　　　角色 </span>
-            <select name="role" id="role" required>
-                <option value="学校管理员">学校管理员</option>
-                <option value="部门管理员">部门管理员</option>
-                <option value="审计管理员">审计管理员</option>
-            </select>
-        </div>
+<%--        默认是部门管理员，学校管理员只能管理部门管理员--%>
+        <input type="text" name="role" id="role" value="部门管理员" hidden>
         <button>注册</button><br>
     </form>
 </div>

@@ -11,6 +11,11 @@
     <title>系统管理员</title>
     <link rel="stylesheet" href="sys-home.css">
     <script>
+        window.onload = function() {
+            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+            if (message) {
+            alert(message); // 弹出提示框
+        }
         function toggle_search() {
             var search = document.getElementById("search");
             var add=document.getElementById("add");
@@ -91,6 +96,7 @@
                 modify.style.display = "none";
             }
         }
+        }
     </script>
 </head>
 <body>
@@ -125,7 +131,7 @@
          </nav>
          <div>
              <div id="search" class="page">
-                 <jsp:include page="searchAdmin.jsp" flush="true" />
+                 <jsp:include page="findAdmin.jsp" flush="true" />
              </div>
              <div id="add" class="page">
                  <jsp:include page="addAdmin.jsp" flush="true" />
