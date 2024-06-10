@@ -123,7 +123,6 @@
         <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
-        <a href="#">授权</a>
         <a href="#social_find">查询</a>
         <a href="#">统计</a>
     </div>
@@ -131,11 +130,9 @@
         <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
-        <a href="#">添加</a>
-        <a href="#">查询</a>
-        <a href="#">查看</a>
-        <a href="#">修改</a>
-        <a href="#">删除</a>
+        <a href="pub_find#">查询</a>
+        <a href="pub_count#">统计</a>
+        <a href="pub_check#">审核</a>
     </div>
 </div>
 
@@ -193,6 +190,25 @@
             <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
         </div>
         <jsp:include page="rezvtion/queryRezvtion.jsp" flush="true" />
+    </div>
+
+    <div id="pub_find" class="page">
+        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
+            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
+        </div>
+        <jsp:include page="rezv_public/queryRezvtionPub.jsp" flush="true" />
+    </div>
+    <div id="pub_count" class="page">
+        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
+            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
+        </div>
+        <jsp:include page="rezv_public/countRezvtionPub.jsp" flush="true" />
+    </div>
+    <div id="pub_check" class="page">
+        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
+            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
+        </div>
+        <jsp:include page="rezv_public/checkRezvpub.jsp" flush="true" />
     </div>
 </div>
 
