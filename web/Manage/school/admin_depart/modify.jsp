@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.model.Administrators" %><%--
   Created by IntelliJ IDEA.
   User: 23994
   Date: 2024/5/25
@@ -11,10 +11,16 @@
     <title>修改部门管理员信息</title>
 </head>
 <body>
-<form action="../../../Dmodify.do" method="post">
-    请输入部门管理员id：
-    <input type="text" name="id" size="15">
-    <input type="submit" value="确定">
+<div class="title"><div class="dot"></div>修改部门管理员信息</div>
+<form action="../../Dmodify.do" method="post" style="margin-top:25px;margin-bottom:10px">
+    <span class="input_title" style="margin-left:110px;">部门管理员id：</span>
+    <input class="input2" type="text" name="id" size="15">
+    <input class="button2" type="submit" value="确定">
+    <input class="button2" type="reset" value="重置">
 </form>
+<% Administrators admin= (Administrators) session.getAttribute("admin");
+    if(admin != null){%>
+<jsp:include page="modifyAdmin.jsp" flush="true" />
+<%}%>
 </body>
 </html>

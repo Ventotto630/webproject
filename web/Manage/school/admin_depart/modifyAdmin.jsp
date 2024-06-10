@@ -28,25 +28,40 @@
     </script>
 </head>
 <body>
-<p>修改部门管理员信息</p>
-<form action="../../../modifyDAdmin.do" method="post" onsubmit="return checkForm()">
-    <table>
-        <tr><td>管理员编号：</td><td><input type="text" name="adminid"
-                                   value=${adminid}></td></tr>
-        <tr><td>姓名：</td><td><input type="text" name="name"
-                                   value=${name}></td></tr>
-        <tr><td>用户名：</td><td><input type="text" name="username"
-                                   value=${username}></td></tr>
-        <tr><td>密码：</td><td><input type="password" name="password" id="password"
-                                      value=${password}></td></tr>
-        <tr><td>部门编号：</td><td><input type="text" name="departmentid"
-                                   value=${departmentid}></td></tr>
-        <tr><td>电话号码：</td><td><input type="text" name="phone" id="phone"
-                                     value=${phone}></td></tr>
-        <tr><td><input type="submit" value="确定"></td>
-            <td><input type="reset" value="重置"></td>
-        </tr>
-    </table>
+<div class="title"><div class="dot"></div>部门管理员信息</div>
+<form action="../../modifyDAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px" onsubmit="return checkForm()">
+    <div class="input_box">
+        <span class="input_title">管理员编号：</span>
+        <input class="input" type="text" name="adminid"
+                                   value=${admin.getAdminID()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">姓名：</span>
+        <input class="input" type="text" name="name"
+                                   value=${admin.getName()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">用户名：</span>
+        <input class="input" type="text" name="username"
+                                   value=${admin.getUsername()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">密码：</span>
+        <input class="input" type="password" name="password" id="password"
+                                      value=${admin.getPassword()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">部门编号：</span>
+        <input class="input" type="text" name="departmentid"
+                                   value=${admin.getDepartmentID()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">电话号码：</span>
+        <input class="input" type="text" name="phone" id="phone"
+                                     value=${admin.getPhone()}>
+    </div>
+        <input class="button" type="submit" value="确定">
+         <input class="button" style="margin-left: 10px" type="reset" value="重置">
 </form>
 </body>
 </html>

@@ -11,7 +11,7 @@
     <title>社会公众进校预约统计</title>
 </head>
 <body>
-<% String cishu = String.valueOf( (int) session.getAttribute("cishu")); %>
+<% String cishu = String.valueOf( (int)session.getAttribute("cishu")); %>
 <% String people =String.valueOf( (int)session.getAttribute("people")) ; %>
 预约次数为：<%=cishu%><br>
 预约人次为：<%=people%>

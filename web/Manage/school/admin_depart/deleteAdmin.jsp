@@ -11,10 +11,12 @@
     <title>删除部门管理员</title>
 </head>
 <body>
-<form action="../../../deleteDAdmin.do" method="post">
-    请输入部门管理员id：
-    <input type="text" name="id" required>
-    <input type="submit" value="确定">
+<div class="title"><div class="dot"></div>删除部门管理员</div>
+<form action="../../deleteDAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px">
+    <span class="input_title" style="margin-left:110px;">部门管理员id：</span>
+    <input class="input2" type="text" name="id" required>
+    <input class="button2" type="submit" value="确定">
+    <input class="button2" type="reset" value="重置">
 </form>
 </body>
 </html>

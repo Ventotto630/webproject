@@ -15,7 +15,7 @@
 <body>
 <table border="1">
     <tr><td>管理员编号</td><td>姓名</td><td>登录名</td><td>密码</td>
-        <td>部门id</td><td>手机号</td><td>修改</td><td>删除</td>
+        <td>部门id</td><td>手机号</td><td>操作</td>
     </tr>
     <% ArrayList<Administrators> adminList=
             (ArrayList<Administrators>)session.getAttribute("adminList");
@@ -27,8 +27,8 @@
         <td><%=admin.getPassword()%></td>
         <td><%=admin.getDepartmentID()%></td>
         <td><%=admin.getPhone()%></td>
-        <td><a href="../../../Dmodify.do?id=<%=admin.getAdminID()%>">修改</a></td>
-        <td><a href="../../../deleteDAdmin.do?id=<%=admin.getAdminID()%>">删除</a></td>
+        <td><a href="../../Dmodify.do?id=<%=admin.getAdminID()%>">修改</a></td>
+        <td><a href="../../deleteDAdmin.do?id=<%=admin.getAdminID()%>">删除</a></td>
     </tr>
     <%}%>
 </table>

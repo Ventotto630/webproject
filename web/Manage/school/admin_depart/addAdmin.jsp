@@ -27,115 +27,41 @@
         }
     </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        html {
-            height: 100%;
-        }
-        body {
-            height: 100%;
-            background-size: 100% 130%;
-        }
 
-        #login_box {
-            width: 400px;
-            height: 700px;
-            background-color: rgba(255, 255, 255,0.8);
-            text-align: center;
-            border-radius: 8px;
-            padding: 0 50px;
-            position: relative;
-            left:200px;
-        }
-        span {
-            color: #fff;
-        }
-        input {
-            border: 0;
-            height:40px;
-            width: 75%;
-            font-size: 15px;
-            color: rgb(80, 80, 80);
-            background: transparent;
-            border-bottom: 1px solid #aeaeae;
-            padding: 5px 10px;
-            outline: none;
-            margin-top: 20px;
-        }
-
-        button {
-            margin-top: 50px;
-            width: 95%;
-            height: 40px;
-            border-radius: 10px;
-            border: 0;
-            color: #fff;
-            text-align: center;
-            line-height: 30px;
-            font-size: 15px;
-            background-image: linear-gradient(to right, #a6c1ee, #e7e7f1);
-        }
-        select{
-            width: 200px;
-            height: 30px;
-            font-size: 14px;
-            text-align: center;
-            border: 1px rgb(80, 80, 80) solid;
-            background: rgba(0,0,0,0);
-            border-radius: 3px;
-            margin-top:20px;
-            margin-left:7px;
-            margin-right:93px;
-        }
-        option{
-            color: rgb(80, 80, 80);
-            background: rgba(0,0,0,0);
-            line-height: 30px;
-        }
-        select:focus{
-            border: 2px #ddd solid;
-            box-shadow: 0 0 15px 1px #DDDDDD;
-        }
-        option:hover{
-            background: #EBCCD1;
-        }
-        a {
-            text-decoration-line: none;
-            color: rgb(111, 111, 111);
-            font-weight:700;
-        }
-        .input_title{
-            font-size:14px;
-            color:rgb(80, 80, 80);
-        }
     </style>
 </head>
 <body>
 <div id="login_box">
-    <form action="../../../addDAdmin.do" method="post" onsubmit="return checkForm()">
+    <div class="title"><div class="dot"></div>添加部门管理员</div>
+    <form action="../../addDAdmin.do" method="post" onsubmit="return checkForm()" style="margin-top:40px;">
         <div class="input_box">
-            <span class="input_title">管理员编号 </span><input type="text" name="adminID" placeholder="adminID" required>
+            <span class="input_title">管理员编号 </span>
+            <input class="input" type="text" name="adminID" placeholder="请输入部门管理员编号" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　　姓名 </span><input type="text" name="name" placeholder="name" required>
+            <span class="input_title">　　　姓名 </span>
+            <input class="input" type="text" name="name" placeholder="请输入部门管理员姓名" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　用户名 </span><input type="text" name="username" placeholder="username" required>
+            <span class="input_title">　　用户名 </span>
+            <input class="input" type="text" name="username" placeholder="请输入部门管理员用户名" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　　密码 </span><input type="password" name="password" id="password" placeholder="password" required>
+            <span class="input_title">　　　密码 </span>
+            <input class="input" type="password" name="password" id="password"
+                   placeholder="请输入部门管理员密码（至少8位，包含数字、大小字母、特殊字符等混合组合）" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　部门编号 </span><input type="text" name="depart" placeholder="depart" required>
+            <span class="input_title">　部门编号 </span>
+            <input class="input" type="text" name="depart" placeholder="请输入所属部门编号" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　手机号 </span><input type="text" name="phone" id="phone" placeholder="phone" required>
+            <span class="input_title">　　手机号 </span>
+            <input class="input" type="text" name="phone" id="phone" placeholder="请输入手机号" required>
         </div>
 <%--        默认是部门管理员，学校管理员只能管理部门管理员--%>
         <input type="text" name="role" id="role" value="部门管理员" hidden>
-        <button>注册</button><br>
+        <button class="button">注册</button><br>
     </form>
 </div>
 </body>

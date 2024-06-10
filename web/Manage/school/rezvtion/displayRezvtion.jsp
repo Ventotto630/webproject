@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../Rezvtion/styles3.css">
 </head>
 <body>
+<div class="title"><div class="dot"></div>查询结果</div>
 <div class="container">
     <div class="booking-list" id="bookingList">
 
@@ -45,7 +46,6 @@
             <p>交通工具: <%=rezvtion.getVehicle()%></p>
             <p>车牌号: <%=rezvtion.getVname()%></p>
             <p>同行人员: <%=rezvtion.getFriend().getName()%></p>
-            <p><a href="../Qrcode_check?serid=<%=rezvtion.getSerid()%>" >点此获取出行二维码</a></p>
         </div>
 
         <% } %>
