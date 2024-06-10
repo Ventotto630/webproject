@@ -12,19 +12,6 @@
 <head>
     <title>管理员信息</title>
     <style>
-        table{
-            border-collapse: collapse;
-            color: rgb(75, 75, 75);
-            font-size:15px;
-        }
-        th,td{
-            border-bottom: 1px solid #d3d3d3;
-            text-align: center;
-            height:45px;
-        }
-        table tbody tr:nth-child(1){
-            background-color: #f5f5f5;
-        }
         table tbody td:nth-child(1){
             width:150px;
         }
@@ -45,30 +32,6 @@
         }
         table tbody td:nth-child(7){
             width:290px;
-        }
-        .pos{
-            margin-top:50px;
-            margin-left:50px;
-        }
-        .abtn{
-            text-decoration: none;
-            background-color: #469aff;
-            border: none;
-            color: white;
-            padding: 3px 8px;
-            text-align: center;
-            font-size: 14px;
-            border-radius: 4px;
-        }
-        .abtn:hover{
-            box-shadow: 2px 2px #dddddd;
-        }
-        .add{
-            font-size: 14px;
-            margin-left:80px;
-            padding: 3px 10px;
-            margin-top:30px;
-            margin-bottom:-20px;
         }
     </style>
 </head>

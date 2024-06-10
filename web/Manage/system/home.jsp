@@ -34,13 +34,12 @@
         }
 
         .sidenav a {
-            padding: 8px 8px 8px 25px;
+            padding: 6px 8px 6px 16px;
             text-decoration: none;
             font-size: 18px;
             color: #b9b9b9;
             display: block;
             transition: 0.3s;
-            line-height:45px;
         }
 
         .sidenav a:hover {
@@ -49,7 +48,7 @@
 
         .sidenav .closebtn {
             position: absolute;
-            top: 10px;
+            top: 19px;
             bottom:10px;
             right: 20px;
             font-size: 20px;

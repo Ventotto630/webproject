@@ -10,31 +10,6 @@
 <html>
 <head>
     <title>查询管理员</title>
-    <style>
-        .input2{
-            height:30px;
-            width:20%;
-            padding: 12px;
-            border: 1px solid #d9d9d9;
-            border-radius: 2px;
-            outline: none;
-            color: rgb(66, 66, 66);
-        }
-        .button2{
-            background-color: #eeeeee;
-            border: none;
-            color: #6b6b6b;
-            padding: 6px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 15px;
-            border-radius: 4px;
-        }
-        .button2:hover{
-            box-shadow: 1px 1px #dddddd;
-        }
-    </style>
 </head>
 <body>
 <div class="title"><div class="dot"></div>查询管理员</div>

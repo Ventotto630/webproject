@@ -41,3 +41,116 @@ body {
     margin-top:5px;
     margin-right:10px;
 }
+.input_box{
+    height:70px;
+    margin-left:80px;
+}
+.input {
+    height:40px;
+    width:80%;
+    padding: 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    outline: none;
+    color: rgb(66, 66, 66);
+}
+.input:invalid {
+    animation: justshake 0.3s forwards;
+    color: #806565;
+}
+.input_title{
+    font-size:15px;
+    color: rgb(56, 56, 56);
+    margin-right:10px;
+}
+.select{
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    color: #575757;
+}
+option{
+    color: rgb(80, 80, 80);
+}
+select:focus{
+    border: 2px #ddd solid;
+    box-shadow: 0 0 15px 1px #DDDDDD;
+}
+.button {
+    background-color: #469aff;
+    border: none;
+    color: white;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 4px;
+    margin-left:188px;
+}
+.button:hover{
+    box-shadow: 1px 1px #dddddd;
+}
+.input2{
+    height:30px;
+    width:20%;
+    padding: 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    outline: none;
+    color: rgb(66, 66, 66);
+}
+.button2{
+    background-color: #eeeeee;
+    border: none;
+    color: #6b6b6b;
+    padding: 6px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 4px;
+}
+.button2:hover{
+    box-shadow: 1px 1px #dddddd;
+}
+table{
+    border-collapse: collapse;
+    color: rgb(75, 75, 75);
+    font-size:15px;
+}
+th,td{
+    border-bottom: 1px solid #d3d3d3;
+    text-align: center;
+    height:45px;
+}
+table tbody tr:nth-child(1){
+    background-color: #f5f5f5;
+}
+.pos{
+    margin-top:50px;
+    margin-left:50px;
+}
+.abtn{
+    text-decoration: none;
+    background-color: #469aff;
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.abtn:hover{
+    box-shadow: 2px 2px #dddddd;
+}
+.add{
+    font-size: 14px;
+    margin-left:80px;
+    padding: 3px 10px;
+    margin-top:30px;
+    margin-bottom:-20px;
+}

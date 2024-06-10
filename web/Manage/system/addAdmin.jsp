@@ -10,12 +10,6 @@
 <head>
     <title>添加管理员</title>
     <script type="text/javascript">
-        window.onload = function() {
-            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
-            if (message) {
-                alert(message); // 弹出提示框
-            }
-        };
         function checkForm() {
             var password = document.getElementById("password").value;
             var phone = document.getElementById("phone").value;
@@ -37,59 +31,7 @@
             margin-top:60px;
             width:100%;
         }
-        .input_box{
-            height:70px;
-            margin-left:80px;
-        }
-        .input {
-            height:40px;
-            width:80%;
-            padding: 12px;
-            border: 1px solid #d9d9d9;
-            border-radius: 2px;
-            outline: none;
-            color: rgb(66, 66, 66);
-        }
-        .input:invalid {
-            animation: justshake 0.3s forwards;
-            color: #806565;
-        }
-        .input_title{
-            font-size:15px;
-            color: rgb(56, 56, 56);
-            margin-right:10px;
-        }
-        .select{
-            width: 200px;
-            height: 40px;
-            font-size: 14px;
-            text-align: center;
-            border: 1px solid #d9d9d9;
-            border-radius: 2px;
-            color: #575757;
-        }
-        option{
-            color: rgb(80, 80, 80);
-        }
-        select:focus{
-            border: 2px #ddd solid;
-            box-shadow: 0 0 15px 1px #DDDDDD;
-        }
-        .button {
-            background-color: #469aff;
-            border: none;
-            color: white;
-            padding: 8px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 15px;
-            border-radius: 4px;
-            margin-left:188px;
-        }
-        .button:hover{
-            box-shadow: 1px 1px #dddddd;
-        }
+
     </style>
 </head>
 <body>
