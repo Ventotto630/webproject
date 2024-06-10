@@ -21,10 +21,11 @@ public class loginServlet extends HttpServlet {
         response.setCharacterEncoding("GBK");
         adminDao dao=new adminDao();
         Administrators admin=new Administrators();
-        String message="The user name or password is incorrect";
+        String message="用户名或密码不正确";
         try{
             admin=dao.findByUsername(request.getParameter("username"));
         }catch(Exception e){
+            message="用户名或密码不正确";
             request.getSession().setAttribute("message", message);
             response.sendRedirect("Manage/login.jsp");
         }
@@ -32,7 +33,9 @@ public class loginServlet extends HttpServlet {
         byte[] sm3 = CryptoSM3.hash(password.getBytes());
         String sm= CryptoSM3.bytesToHexString(sm3);
         if(sm.equals(admin.getPassword())) {
-            request.getSession().setAttribute("admin", admin);
+            message="欢迎登录校园通行码预约管理系统";
+            request.getSession().setAttribute("message", message);
+            request.getSession().setAttribute("myadmin", admin);
             String role=admin.getRole();
             if (Objects.equals(role, "系统管理员")) {
                 response.sendRedirect("Manage/system/home.jsp");
@@ -45,6 +48,7 @@ public class loginServlet extends HttpServlet {
             }
         }
         else{
+            message="用户名或密码不正确";
             request.getSession().setAttribute("message", message);
             response.sendRedirect("Manage/login.jsp");
         }

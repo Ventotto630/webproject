@@ -1,7 +1,7 @@
 package com.control.systemadmin;
 
-import com.dao.DepartDao;
-import com.model.Department;
+import com.dao.adminDao;
+import com.model.Administrators;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="/modify",value="/modify.do")
-public class modify extends HttpServlet {
+@WebServlet("/modify.do")
+public class modifyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request,response);
@@ -21,18 +21,16 @@ public class modify extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        DepartDao dao=new DepartDao();
-        Department depart=new Department();
+        adminDao dao=new adminDao();
+        Administrators admin=new Administrators();
         String message=null;
         try{
-            depart=dao.findById(request.getParameter("id"));
+            admin=dao.findById(request.getParameter("id"));
         }catch(Exception e){
             message="出现异常";
         }
-        request.getSession().setAttribute("name",depart.getName());
-        request.getSession().setAttribute("id",depart.getId());
-        request.getSession().setAttribute("type",depart.getType());
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/depart/modifyDepart.jsp");
+        request.getSession().setAttribute("admin",admin);
+        response.sendRedirect("Manage/system/home.jsp#modify");
     }
 }

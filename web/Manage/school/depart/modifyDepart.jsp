@@ -12,7 +12,7 @@
 </head>
 <body>
 <p>修改部门信息</p>
-<form action="modifyDepart.do" method="post">
+<form action="../../../modifyDepart.do" method="post">
     <table>
         <tr><td>部门编号：</td><td><input type="text" name="id"
                                    value=${id}></td></tr>

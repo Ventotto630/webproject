@@ -1,4 +1,4 @@
-package com.control.systemadmin;
+package com.control.schooladmin;
 
 import com.dao.DepartDao;
 import com.model.Department;

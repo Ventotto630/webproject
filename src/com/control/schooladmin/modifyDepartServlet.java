@@ -1,8 +1,8 @@
-package com.control.systemadmin;
+package com.control.schooladmin;
 
 import com.dao.DepartDao;
+import com.model.Department;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,27 +10,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="/deleteDepartServlet",value="/deleteDepart.do")
-public class deleteDepartServlet extends HttpServlet {
+@WebServlet(name="/modifyDepartServlet",value="/modifyDepart.do")
+public class modifyDepartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
+        Department depart=new Department();
         DepartDao dao=new DepartDao();
         String message=null;
-        try{
-            boolean success=dao.deleteDepart(request.getParameter("id"));
+        try {
+            depart = dao.findById(request.getParameter("id"));
+            depart.setType(request.getParameter("type"));
+            depart.setName(request.getParameter("name"));
+            boolean success=dao.modifyDepart(depart);
             if(success){
-                message="Âà†Èô§ÊàêÂäüÔºÅ";
+                message="–ﬁ∏ƒ≥…π¶£°";
             }else{
-                message="Âà†Èô§Â§±Ë¥•";
+                message="–ﬁ∏ƒ ß∞‹";
             }
         } catch (Exception e) {
             e.printStackTrace();
+            message="–ﬁ∏ƒ ß∞‹";
         }
         request.getSession().setAttribute("message",message);
         response.sendRedirect("Manage/school/home.jsp");

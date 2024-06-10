@@ -28,7 +28,7 @@
         String id=depart.getId();
         String type=depart.getType();
     %>
-    <td><a href="../../../modify.do?id=<%=URLEncoder.encode(id, "UTF-8")%>
+    <td><a href="../../../modify2.do?id=<%=URLEncoder.encode(id, "UTF-8")%>
 ">修改</a></td>
     <td><a href="../../../deleteDepart.do?name=<%=depart.getId()%>">删除</a></td>
 </tr>
