@@ -30,13 +30,7 @@ public class modifyServlet extends HttpServlet {
             message="出现异常";
         }
         request.getSession().setAttribute("message",message);
-        request.getSession().setAttribute("adminid",admin.getAdminID());
-        request.getSession().setAttribute("name",admin.getName());
-        request.getSession().setAttribute("username",admin.getUsername());
-        request.getSession().setAttribute("password",admin.getPassword());
-        request.getSession().setAttribute("departmentid",admin.getDepartmentID());
-        request.getSession().setAttribute("phone",admin.getPhone());
-        request.getSession().setAttribute("role",admin.getRole());
-        response.sendRedirect("Manage/system/modifyAdmin.jsp");
+        request.getSession().setAttribute("admin",admin);
+        response.sendRedirect("Manage/system/home.jsp#modify");
     }
 }

@@ -33,121 +33,103 @@
         }
     </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        .login_box{
+            margin-top:60px;
+            width:100%;
         }
-        html {
-            height: 100%;
+        .input_box{
+            height:70px;
+            margin-left:80px;
         }
-        body {
-            height: 100%;
-            background-size: 100% 130%;
-        }
-
-        #login_box {
-            width: 400px;
-            height: 700px;
-            background-color: rgba(255, 255, 255,0.8);
-            text-align: center;
-            border-radius: 8px;
-            padding: 0 50px;
-            position: relative;
-            left:200px;
-        }
-        span {
-            color: #fff;
-        }
-        input {
-            border: 0;
+        .input {
             height:40px;
-            width: 75%;
-            font-size: 15px;
-            color: rgb(80, 80, 80);
-            background: transparent;
-            border-bottom: 1px solid #aeaeae;
-            padding: 5px 10px;
+            width:80%;
+            padding: 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 2px;
             outline: none;
-            margin-top: 20px;
+            color: rgb(66, 66, 66);
         }
-
-        button {
-            margin-top: 50px;
-            width: 95%;
-            height: 40px;
-            border-radius: 10px;
-            border: 0;
-            color: #fff;
-            text-align: center;
-            line-height: 30px;
-            font-size: 15px;
-            background-image: linear-gradient(to right, #a6c1ee, #e7e7f1);
+        .input:invalid {
+            animation: justshake 0.3s forwards;
+            color: #806565;
         }
-        select{
+        .input_title{
+            font-size:15px;
+            color: rgb(56, 56, 56);
+            margin-right:10px;
+        }
+        .select{
             width: 200px;
-            height: 30px;
+            height: 40px;
             font-size: 14px;
             text-align: center;
-            border: 1px rgb(80, 80, 80) solid;
-            background: rgba(0,0,0,0);
-            border-radius: 3px;
-            margin-top:20px;
-            margin-left:7px;
-            margin-right:93px;
+            border: 1px solid #d9d9d9;
+            border-radius: 2px;
+            color: #575757;
         }
         option{
             color: rgb(80, 80, 80);
-            background: rgba(0,0,0,0);
-            line-height: 30px;
         }
         select:focus{
             border: 2px #ddd solid;
             box-shadow: 0 0 15px 1px #DDDDDD;
         }
-        option:hover{
-            background: #EBCCD1;
+        .button {
+            background-color: #469aff;
+            border: none;
+            color: white;
+            padding: 8px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            border-radius: 4px;
+            margin-left:188px;
         }
-        a {
-            text-decoration-line: none;
-            color: rgb(111, 111, 111);
-            font-weight:700;
-        }
-        .input_title{
-            font-size:14px;
-            color:rgb(80, 80, 80);
+        .button:hover{
+            box-shadow: 1px 1px #dddddd;
         }
     </style>
 </head>
 <body>
-<div id="login_box">
+<div class="title"><div class="dot"></div>添加管理员</div>
+<div class="login_box">
     <form action="../../addAdmin.do" method="post" onsubmit="return checkForm()">
         <div class="input_box">
-            <span class="input_title">管理员编号 </span><input type="text" name="adminID" placeholder="adminID" required>
+            <span class="input_title">管理员编号 <span style="color:red">*</span></span>
+            <input class="input" type="text" name="adminID" placeholder="请输入管理员编号" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　　姓名 </span><input type="text" name="name" placeholder="name" required>
+            <span class="input_title">　　　姓名 <span style="color:red">*</span></span>
+            <input class="input" type="text" name="name" placeholder="请输入管理员姓名" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　用户名 </span><input type="text" name="username" placeholder="username" required>
+            <span class="input_title">　　用户名 <span style="color:red">*</span></span>
+            <input class="input" type="text" name="username" placeholder="请输入用户名" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　　密码 </span><input type="password" name="password" id="password" placeholder="password" required>
+            <span class="input_title">　　　密码 <span style="color:red">*</span></span>
+            <input class="input" type="password" name="password" id="password"
+                                                          placeholder="请输入密码（至少8位，包含数字、大小字母、特殊字符等混合组合）" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　部门编号 </span><input type="text" name="depart" placeholder="depart" required>
+            <span class="input_title">　部门编号 <span style="color:red">*</span></span>
+            <input class="input" type="text" name="depart" placeholder="请输入所属部门编号" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　手机号 </span><input type="text" name="phone" id="phone" placeholder="phone" required>
+            <span class="input_title">　　手机号 <span style="color:red">*</span></span>
+            <input class="input" type="text" name="phone" id="phone" placeholder="请输入电话号码" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　　角色 </span>
-            <select name="role" id="role" required>
+            <span class="input_title">　　　角色 <span style="color:red">*</span></span>
+            <select name="role" id="role" class="select" required>
                 <option value="学校管理员">学校管理员</option>
                 <option value="部门管理员">部门管理员</option>
                 <option value="审计管理员">审计管理员</option>
             </select>
         </div>
-        <button>注册</button><br>
+        <button class="button">注册</button><br>
     </form>
 </div>
 </body>

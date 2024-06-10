@@ -47,6 +47,6 @@ public class registerServlet extends HttpServlet {
             message="×¢²áÊ§°Ü";
         }
         request.getSession().setAttribute("message", message);
-        response.sendRedirect("Manage/system/home.jsp");
+        response.sendRedirect("Manage/system/home.jsp#add");
     }
 }

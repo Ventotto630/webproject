@@ -28,32 +28,47 @@
     </script>
 </head>
 <body>
-<p>修改管理员信息</p>
-<form action="../../modifyAdmin.do" method="post">
-    <table>
-        <tr><td>管理员编号：</td><td><input type="text" name="adminid"
-                                      value=${adminid}></td></tr>
-        <tr><td>姓名：</td><td><input type="text" name="name"
-                                   value=${name}></td></tr>
-        <tr><td>用户名：</td><td><input type="text" name="username"
-                                    value=${username}></td></tr>
-        <tr><td>密码：</td><td><input type="password" name="password" id="password"
-                                   value=${password}></td></tr>
-        <tr><td>部门编号：</td><td><input type="text" name="departmentid"
-                                     value=${departmentid}></td></tr>
-        <tr><td>电话号码：</td><td><input type="text" name="phone" id="phone"
-                                     value=${phone}></td></tr>
-        <tr><td>管理员类型：</td><td>
-            <select name="role" id="role">
-                <option value="学校管理员" ${role == '学校管理员' ? 'selected' : ''}>学校管理员</option>
-                <option value="部门管理员" ${role == '部门管理员' ? 'selected' : ''}>部门管理员</option>
-                <option value="审计管理员" ${role == '审计管理员' ? 'selected' : ''}>审计管理员</option>
-            </select><br>
-        </td></tr>
-        <tr><td><input type="submit" value="确定"></td>
-            <td><input type="reset" value="重置"></td>
-        </tr>
-    </table>
+<div class="title"><div class="dot"></div>管理员信息</div>
+<form action="../../modifyAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px">
+    <div class="input_box">
+        <span class="input_title">管理员编号：</span>
+                <input class="input" class="input" type="text" name="adminid" value=${admin.getAdminID()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">　　　姓名：</span>
+        <input class="input" type="text" name="name"
+                                   value=${admin.getName()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">　　用户名：</span>
+        <input class="input" type="text" name="username"
+                                    value=${admin.getUsername()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">　　　密码：</span>
+        <input class="input" type="password" name="password" id="password"
+                                   value=${admin.getPassword()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">　部门编号：</span>
+        <input class="input" type="text" name="departmentid"
+                                     value=${admin.getDepartmentID()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">　电话号码：</span>
+        <input class="input" type="text" name="phone" id="phone"
+                                     value=${admin.getPhone()}>
+    </div>
+    <div class="input_box">
+        <span class="input_title">管理员类型：</span>
+            <select name="role" id="role" class="select">
+                <option value="学校管理员" ${admin.getRole() == '学校管理员' ? 'selected' : ''}>学校管理员</option>
+                <option value="部门管理员" ${admin.getRole() == '部门管理员' ? 'selected' : ''}>部门管理员</option>
+                <option value="审计管理员" ${admin.getRole() == '审计管理员' ? 'selected' : ''}>审计管理员</option>
+            </select>
+        <input class="button" style="margin-left: 10px" type="submit" value="确定">
+        <input class="button" style="margin-left: 10px" type="reset" value="重置">
+    </div>
 </form>
 </body>
 </html>

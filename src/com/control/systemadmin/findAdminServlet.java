@@ -24,7 +24,7 @@ public class findAdminServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.getSession().setAttribute("adminList",adminList);
-        response.sendRedirect("Manage/system/displayAdmin.jsp");
+        response.sendRedirect("Manage/system/home.jsp#findall");
     }
 
     @Override
@@ -36,10 +36,10 @@ public class findAdminServlet extends HttpServlet {
         try{
             adminList=dao.findByFuzzyName(request.getParameter("name"));
         }catch(Exception e){
-            message="出现异常";
+            message="查找失败";
         }
         request.getSession().setAttribute("adminList",adminList);
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/system/displayAdmin.jsp");
+        response.sendRedirect("Manage/system/home.jsp#find");
     }
 }
