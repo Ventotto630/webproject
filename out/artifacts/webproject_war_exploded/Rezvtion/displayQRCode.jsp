@@ -11,7 +11,11 @@
 <%@ page import="java.util.Date"%>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>通行码</title>
+    <link rel="stylesheet" href="Rezvtion/styles1.css">
+
 </head>
 <body>
 <%
@@ -22,11 +26,22 @@
 // 格式化当前日期时间
     String currentTime = sdf.format(now);
 %>
-<h2>通行码</h2>
-<h3><jsp:getProperty name="reservation" property="name"/>通行码</h3>
+<div class="container">
+    <header class="header">
+        <img src="Rezvtion/img/校徽.jpg" alt="University Logo" class="logo">
+        <span class="university-name">浙江工业大学</span>
+    </header>
+    <div class="pass-info">
+        <h1><jsp:getProperty name="reservation" property="name"/>通行码</h1>
+        <p id="time" class="time"><%=currentTime%></p>
 <% String path =(String) session.getAttribute("filepath_xd"); %>
-<img src="<%= path %>"  alt="QR Code" ><br>
-<h3><%=currentTime%></h3>
-有效时间：<jsp:getProperty name="reservation" property="intime"/>  至<jsp:getProperty name="reservation" property="outtime"/><br>
+    <div class="qr-code">
+        <img src="<%= path %>"  alt="QR Code" ><br>
+    </div>
+
+        <p class="valid-time">有效时间：<jsp:getProperty name="reservation" property="intime"/>  至<jsp:getProperty name="reservation" property="outtime"/><br></p>
+        <p class="note">凭此码或身份证进校，并服从学校相关管理规定。</p>
+    </div>
+</div>
 </body>
 </html>

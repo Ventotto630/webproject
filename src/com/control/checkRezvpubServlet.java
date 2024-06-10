@@ -25,7 +25,8 @@ public class checkRezvpubServlet extends HttpServlet {
         try {
             //reservation_public = dao.findByserid(sid); //根据serid查询有最新的serid的记录;
             if(dao.updateStatus(status,sid)){
-                response.sendRedirect("Manage/check.jsp");
+                //response.sendRedirect("Manage/check.jsp");
+                response.sendRedirect("checkServlet");
             }
             //else response.sendRedirect("Rezvtion/error.jsp"); else 改
         }catch (Exception ne){}

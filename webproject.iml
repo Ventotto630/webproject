@@ -23,5 +23,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jsp-api" level="project" />
     <orderEntry type="library" name="zxing-3.3.1" level="project" />
+    <orderEntry type="library" name="taglibs-standard-impl-1.2.5" level="project" />
+    <orderEntry type="library" name="bcprov-jdk18on-1.78.1" level="project" />
   </component>
 </module>

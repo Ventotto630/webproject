@@ -1,187 +1,43 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Ventotto
-  Date: 2024/6/4
-  Time: 22:08
+  User: 69472
+  Date: 2024/5/31
+  Time: 12:10
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=GBK" language="java" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <title>ÎÒµÄÉç»á¹«ÖÚÔ¤Ô¼</title>
-    <div style="text-align:center;">
-        <h1 style="font-size: 75px">ÎÒµÄÉç»á¹«ÖÚÔ¤Ô¼</h1>
-    </div>
+    <meta charset="GBK">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>æŸ¥è¯¢é¡µé¢</title>
+    <link rel="stylesheet" href="styles2.css">
 </head>
-<style>
-    .grey1{
-        background-color: lightgrey;
-        font-size: 40px;
-    }
-    .grey2{
-        background-color: gray;
-        font-size: 40px;
-    }
-    table{
-        border: 1px solid #ddd; /* ¿ÉÒÔÌí¼Ó±ß¿òÒÔÇø·Ö±í¸ñ */
-        width: 75%;
-        border-collapse: separate;
-        font-size: 40px;
-    }
-    table td {
-        border: 1px solid #ddd; /* ¿ÉÒÔÌí¼Ó±ß¿òÒÔÇø·Öµ¥Ôª¸ñ */
-        width: 50%; /* Èç¹û±í¸ñÖ»ÓĞÒ»¸öÁĞ£¬Õâ»áÊ¹µ¥Ôª¸ñÌî³äÕû¸ö±í¸ñ¿í¶È */
-        font-size: 40px;
-    }
-    table thead {
-        background-color: gray;
-        width: 100%; /* Èç¹û±í¸ñÖ»ÓĞÒ»¸öÁĞ£¬Õâ»áÊ¹µ¥Ôª¸ñÌî³äÕû¸ö±í¸ñ¿í¶È */
-        font-size: 40px;
-    }
-    input[type="text"] {
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-        padding: 0px;
-    }
-    input[type="date"] {
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-        padding: 0px;
-    }
-    input[type="number"] {
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-        padding: 0px;
-    }
-    option{
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-    }
-    select{
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-    }
-    .friend-item {
-        margin-bottom: 10px;
-    }
-    .friend-item div {
-        margin-bottom: 5px;
-    }
-    .friend-item button {
-        display: block;
-        margin-top: 5px;
-    }
-</style>
 <body>
-<div style="text-align:center;">
-    <%-- ¶¨Òå±íµ¥Ìá½»ÓÃ»§Êı¾İ --%>
-    <center>
-<p><a href="../query-Rezv">²éÑ¯ËùÓĞÔ¤Ô¼</a> </p>
-<form action="../query-Rezv" method="post">
-    <table>
-        <thead>
-        <tr>
-            <td colspan="2" style="text-align: center">Ô¤Ô¼ĞÅÏ¢</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="grey1">Ô¤Ô¼ºÅ</td>
-            <td ><input type="text" name="serid" style="width: 98%" value="null"> </td>
-        </tr>
-        <tr>
-            <td class="grey1">ÉêÇëÈÕÆÚ</td>
-            <td ><input type="datetime-local" name="applytime" style="width: 98%" value="null"> </td>
-        </tr>
-        <tr>
-            <td class="grey1">Ô¤Ô¼Ğ£Çø</td>
-            <td>
-                <input type="checkbox" name="campus" value="³¯êÍĞ£Çø"> ³¯êÍĞ£Çø<br>
-                <input type="checkbox" name="campus" value="ÆÁ·åĞ£Çø"> ÆÁ·åĞ£Çø<br>
-                <input type="checkbox" name="campus" value="Äª¸ÉÉ½Ğ£Çø"> Äª¸ÉÉ½Ğ£Çø
-            </td>
-        </tr>
+<form action="../myRezvServlet" method="post">
+    <div class="container">
+        <header class="header">
+            <h1>æŸ¥è¯¢é¡µé¢</h1>
+        </header>
+        <div class="form-container">
+            <div class="input-group">
+                <label for="name">å§“åï¼š</label>
+                <input type="text" id="name" name="name" placeholder="è¯·è¾“å…¥å§“å">
+            </div>
+            <div class="input-group">
+                <label for="id-card">èº«ä»½è¯ï¼š</label>
+                <input type="text" id="id-card" name="perid" placeholder="è¯·è¾“å…¥èº«ä»½è¯å·ç " >
+            </div>
+            <div class="input-group">
+                <label for="phone">ç”µè¯å·ç ï¼š</label>
+                <input type="text" id="phone" name="phoneNumber" placeholder="è¯·è¾“å…¥ç”µè¯å·ç " >
+            </div>
+            <input class="btn" type="submit" value="æŸ¥è¯¢">
 
-        <tr>
-            <td rowspan="2" class="grey1">Ô¤Ô¼½øĞ£Ê±¼ä</td>
-            <td>
-                <input type="datetime-local" name="intime" style="width: 98%" value="null"><br>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="datetime-local" name="outtime" style="width: 98%" value="null">
-            </td>
-        </tr>
-        <tr>
-            <td class="grey1">ËùÔÚµ¥Î»</td>
-            <td><input type="text" name="unit" style="width: 98%" value="null"></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <table  border="1" >
-        <thead>
-        <tr>
-            <td colspan="2" style="text-align: center">·Ã¿ÍĞÅÏ¢</td>
-        </tr>
-        </thead>
-        <tbody>
-
-
-        <tr>
-            <td class="grey1">ĞÕÃû</td>
-            <td><input type="text" name="name" style="width: 98%" value="null"></td>
-        </tr>
-        <tr>
-            <td class="grey1">Éí·İÖ¤ºÅ</td>
-            <td><input type="text" name="perid" placeholder="ÇëÊäÈëÉí·İÖ¤ºÅ" style="width: 98%" value="null"></td>
-        </tr>
-        <tr>
-            <td class="grey1">ÊÖ»úºÅ</td>
-            <td><input type="text" name="phoneNumber" placeholder="ÇëÊäÈëÊÖ»úºÅ" style="width: 98%" value="null"></td>
-        </tr>
-        <tr>
-            <td class="grey1">½»Í¨·½Ê½</td>
-            <td><select name="vehicle" style="width: 100%">
-                <option value="walk"> ²½ĞĞ</option>
-                <option value="subway"> µØÌú</option>
-                <option value="bus"> ¹«½»</option>
-                <option value="car"> Æû³µ</option>
-            </select></td>
-        </tr>
-        <tr>
-            <td class="grey1">³µÅÆºÅ</td>
-            <td><input type="text" name="vname" style="width: 98%" value="null"> </td>
-        </tr>
-        <%--                <tr>--%>
-        <%--                    <td class="grey1">À´·ÃÈËÊı</td>--%>
-        <%--                    <td><input type="number" name="pnumber" style="width: 98%" value="null"> </td>--%>
-        <%--                </tr>--%>
-        <tr>
-            <td class="grey1">ÅãÍ¬ÈËÔ±</td>
-            <td>
-                <div id="friendList">
-                    <div class="friend-item">
-                        <div><input type="text" name="Fri_name" placeholder="ĞÕÃû" style="width: 98%;" value="null"></div>
-                        <div><input type="text" name="Fri_perid" placeholder="Éí·İÖ¤ºÅ" style="width: 98%;"value="null"></div>
-                        <div><input type="text" name="Fri_phoneNumber" placeholder="ÊÖ»úºÅ" style="width: 98%;"value="null"></div>
-                        <%--                                <button type="button" onclick="addFriend()">ĞÂÔö</button>--%>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <input type="submit" value="Ìá½»" style="font-size: 40px"/>
-    <input type="reset" value="ÖØÖÃ" style="font-size: 40px"/>
+            <p>${message}</p>
+        </div>
+    </div>
 </form>
-    </center>
-</div>
+
 </body>
 </html>
