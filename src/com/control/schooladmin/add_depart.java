@@ -36,6 +36,6 @@ public class add_depart extends HttpServlet {
             message="³öÏÖÒì³£";
         }
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/home.jsp");
+        response.sendRedirect("Manage/school/depart/addDepart.jsp");
     }
 }

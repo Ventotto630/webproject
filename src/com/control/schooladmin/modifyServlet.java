@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="/modifyServlet",value="/Dmodify.do")
+@WebServlet("/Dmodify.do")
 public class modifyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,23 +29,23 @@ public class modifyServlet extends HttpServlet {
         }catch(Exception e){
             message="出现异常";
             request.getSession().setAttribute("message",message);
-            response.sendRedirect("Manage/school/home.jsp");
+            response.sendRedirect("Manage/school/admin_depart/modify.jsp");
         }
-        //需要先判断是否为部门管理员，才能对管理员信息进行修改
-        if(admin.getRole().equals("部门管理员")) {
-            request.getSession().setAttribute("adminid", admin.getAdminID());
-            request.getSession().setAttribute("name", admin.getName());
-            request.getSession().setAttribute("username", admin.getUsername());
-            request.getSession().setAttribute("password", admin.getPassword());
-            request.getSession().setAttribute("departmentid", admin.getDepartmentID());
-            request.getSession().setAttribute("phone", admin.getPhone());
-            message="修改成功！";
+        if(admin==null){
+            message="管理员不存在！";
             request.getSession().setAttribute("message",message);
-            response.sendRedirect("Manage/school/admin_depart/modifyAdmin.jsp");
-        }else{
-            message="您没有权限对其进行修改！";
-            request.getSession().setAttribute("message",message);
-            response.sendRedirect("Manage/school/home.jsp");
+            response.sendRedirect("Manage/school/admin_depart/modify.jsp");
+        }
+        else{
+            //需要先判断是否为部门管理员，才能对管理员信息进行修改
+            if (admin.getRole().equals("部门管理员")) {
+                request.getSession().setAttribute("admin", admin);
+                response.sendRedirect("Manage/school/admin_depart/modifyAdmin.jsp");
+            } else {
+                message = "您没有权限对其进行修改！";
+                request.getSession().setAttribute("message", message);
+                response.sendRedirect("Manage/school/admin_depart/modify.jsp");
+            }
         }
     }
 }

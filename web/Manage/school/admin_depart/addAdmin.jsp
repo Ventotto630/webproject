@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>添加部门管理员</title>
+    <link rel="stylesheet" href="../../my.css">
     <script type="text/javascript">
         function checkForm() {
             var password = document.getElementById("password").value;
@@ -33,7 +34,7 @@
 <body>
 <div id="login_box">
     <div class="title"><div class="dot"></div>添加部门管理员</div>
-    <form action="../../addDAdmin.do" method="post" onsubmit="return checkForm()" style="margin-top:40px;">
+    <form action="../../../addDAdmin.do" method="post" onsubmit="return checkForm()" style="margin-top:40px;">
         <div class="input_box">
             <span class="input_title">管理员编号 </span>
             <input class="input" type="text" name="adminID" placeholder="请输入部门管理员编号" required>
@@ -64,5 +65,13 @@
         <button class="button">注册</button><br>
     </form>
 </div>
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>

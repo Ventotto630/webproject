@@ -10,12 +10,18 @@
 <html>
 <head>
     <title>社会预约记录查询结果</title>
+    <link rel="stylesheet" href="../../my.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Rezvtion/styles3.css">
+    <link rel="stylesheet" href="../../../Rezvtion/styles3.css">
+    <style>
+        body{
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
-<div class="title"><div class="dot"></div>查询结果</div>
+<div class="title" style="margin-bottom:20px;"><div class="dot"></div>查询结果</div>
 <div class="container">
     <div class="booking-list" id="bookingList">
 
@@ -53,6 +59,6 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../Rezvtion/scripts3.js"></script>
+<script src="../../../Rezvtion/scripts3.js"></script>
 </body>
 </html>

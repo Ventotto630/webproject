@@ -10,73 +10,29 @@
 <head>
     <title>学校管理员</title>
     <link rel="stylesheet" href="../my.css">
-    <script type="text/javascript">
-        window.onload = function() {
-            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
-            if (message) {
-                alert(message); // 弹出提示框
-            }
-        };
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "180px";
-            document.getElementById("main").style.marginLeft = "180px";
-        }
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft= "0";
-        }
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.cn/cdnjs/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* 固定 sidenav，全高 */
-        .sidenav {
-            height: 100%;
-            width: 180px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background: #37474f;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        /* 为 sidenav 链接和下拉按钮设置样式 */
-        .sidenav a, .dropdown-btn {
-            padding: 6px 8px 6px 16px;
+        .wrap a {
+            padding: 12px 8px 12px 16px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             color: #b9b9b9;
             display: block;
-            border: none;
-            background: none;
-            cursor: pointer;
-            outline: none;
-            font-weight:400;
-            margin:0px;
-            text-align: left;
+            transition: 0.3s;
         }
 
-        /* 鼠标悬停时 */
-        .sidenav a:hover, .dropdown-btn:hover {
+        .wrap a:hover {
             color: #f1f1f1;
         }
-        /* 为活动下拉按钮添加一个活动类 */
-        .active {
-            color: white;
-        }
-        /* 下拉容器（默认隐藏）。 可选：添加较浅的背景颜色和一些左侧填充以更改下拉内容的设计 */
-        .dropdown-container {
-            display: none;
-            background: #3d4b54;
-            padding-left: 8px;
-        }
-        /* 可选：向下插入符号图标样式 */
-        .fa-caret-down {
-            padding-top:5px;
-            padding-left:30px;
+
+        .wrap .closebtn {
+            position: absolute;
+            top: 19px;
+            bottom:10px;
+            right: 20px;
+            font-size: 20px;
+            margin-left: 50px;
         }
         /* 响应式的一些媒体查询 */
         @media screen and (max-height: 450px) {
@@ -86,148 +42,168 @@
         #main {
             transition: margin-left .5s;
             margin-left:180px;
+            width:87.5%;
         }
-        .sidenav .closebtn {
+
+        html,body{
+            height: 100%;
+        }
+        .wrap{
+            position: fixed;
+            width: 180px;
+            height: 100%;
+            background: #37474f;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 80px;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+        .nav{
+            width:180px;
+        }
+        .list{
+            margin-bottom: 5px;
+        }
+        .list h2{
+            position: relative;
+            padding: 15px 20px;
+            font-size: 16px;
+            color: #b9b9b9;
+            transition: .5s;
+        }
+        .list h2.on{
+            color: #fff;
+        }
+        .list i{
             position: absolute;
-            top: 18.5px;
-            bottom: 10px;
-            right: 20px;
-            font-size: 20px;
-            margin-left: 120px;
+            right: 10px;
+            top: 16px;
+            border: 8px solid transparent;
+            border-left-color: #fff;/*triangle*/
+            transform:rotate(0deg);
+            transform-origin: 1px 8px;
+            transition: .5s;
+        }
+        .list i.on{
+            transform:rotate(90deg);
+        }
+        .hide{
+            overflow: hidden;
+            height: 0;
+            transition: .5s;
+        }
+        .hide h5{
+            background: #3d4b54;
+            text-align: center;
+            color:#fff;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
+<div class="wrap" style="float:left;" id="mySidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
-    <button class="dropdown-btn">部门管理　
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="#depart_add">添加</a>
-        <a href="#depart_find">查询</a>
-        <a href="#depart_modify">修改</a>
-        <a href="#depart_delete">删除</a>
-    </div>
-    <button class="dropdown-btn">管理员管理
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="#admin_add">添加</a>
-        <a href="#admin_find">查询</a>
-        <a href="#admin_modify">修改</a>
-        <a href="#admin_delete">删除</a>
-    </div>
-    <button class="dropdown-btn">社会预约　
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="#social_find">查询</a>
-        <a href="#">统计</a>
-    </div>
-    <button class="dropdown-btn">公务预约　
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="pub_find#">查询</a>
-        <a href="pub_count#">统计</a>
-        <a href="pub_check#">审核</a>
-    </div>
-</div>
-
-<div id="main">
-    <div id="depart_add" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="depart/addDepart.jsp" flush="true" />
-    </div>
-    <div id="depart_find" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="depart/findDepart.jsp" flush="true" />
-    </div>
-    <div id="depart_modify" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="depart/modify.jsp" flush="true" />
-    </div>
-    <div id="depart_delete" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="depart/deleteDepart.jsp" flush="true" />
-    </div>
-    <div id="admin_add" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="admin_depart/addAdmin.jsp" flush="true" />
-    </div>
-    <div id="admin_find" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="admin_depart/findAdmin.jsp" flush="true" />
-    </div>
-    <div id="admin_modify" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="admin_depart/modify.jsp" flush="true" />
-    </div>
-    <div id="admin_delete" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="admin_depart/deleteAdmin.jsp" flush="true" />
-    </div>
-    <div id="social_find" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="rezvtion/queryRezvtion.jsp" flush="true" />
-    </div>
-
-    <div id="pub_find" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="rezv_public/queryRezvtionPub.jsp" flush="true" />
-    </div>
-    <div id="pub_count" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="rezv_public/countRezvtionPub.jsp" flush="true" />
-    </div>
-    <div id="pub_check" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
-        </div>
-        <jsp:include page="rezv_public/checkRezvpub.jsp" flush="true" />
+    <div class="nav">
+        <ul>
+            <li class="list">
+                <h2><i></i>部门管理</h2>
+                <div class="hide">
+                    <h5><a href="#" onclick="loadPage('depart/addDepart.jsp')">添加</a></h5>
+                    <h5><a href="#" onclick="loadPage('depart/findDepart.jsp')">查询</a></h5>
+                    <h5><a href="#" onclick="loadPage('depart/modify.jsp')">修改</a></h5>
+                    <h5><a href="#" onclick="loadPage('depart/deleteDepart.jsp')">删除</a></h5>
+                </div>
+            </li>
+            <li class="list">
+                <h2><i></i>管理员管理</h2>
+                <div class="hide">
+                    <h5><a href="#" onclick="loadPage('admin_depart/addAdmin.jsp')">添加</a></h5>
+                    <h5><a href="#" onclick="loadPage('admin_depart/findAdmin.jsp')">查询</a></h5>
+                    <h5><a href="#" onclick="loadPage('admin_depart/modify.jsp')">修改</a></h5>
+                    <h5><a href="#" onclick="loadPage('admin_depart/deleteAdmin.jsp')">删除</a></h5>
+                </div>
+            </li>
+            <li class="list">
+                <h2><i></i>社会预约</h2>
+                <div class="hide">
+                    <h5><a href="#" onclick="loadPage('rezvtion/queryRezvtion.jsp')">查询</a></h5>
+                    <h5><a href="#" onclick="loadPage('rezvtion/countRezvtion.jsp')">统计</a></h5>
+                </div>
+            </li>
+            <li class="list">
+                <h2><i></i>公务预约</h2>
+                <div class="hide">
+                    <h5><a href="#" onclick="loadPage('rezv_public/queryRezvtionPub.jsp')">查询</a></h5>
+                    <h5><a href="#" onclick="loadPage('rezv_public/countRezvtionPub.jsp')">统计</a></h5>
+                    <h5><a href="#" onclick="loadPage('rezv_public/checkrezvpub.jsp')">审核</a></h5>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
-
-</body>
 <script>
-    /* 遍历所有下拉按钮以在隐藏和显示其下拉内容之间切换 - 这允许用户拥有多个下拉列表而不会发生任何冲突 */
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
-
-    for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
-        });
+    function loadPage(page) {
+        document.getElementById('contentFrame').innerHTML = '<iframe src="' + page + '"></iframe>';
+        document.body.classList.remove('shouye'); // 移除 shouye 类
     }
 </script>
+<script>
+    (function () {
+        var oList = document.querySelectorAll('.list h2'),
+            oHide = document.querySelectorAll('.hide'),
+            oIcon = document.querySelectorAll('.list i'),
+            lastIndex = 0;
+        for(var i=0;i<oList.length;i++){
+            oList[i].index = i;//自定义属性
+            oList[i].isClick = false;
+            oList[i].initHeight = oHide[i].clientHeight;
+            oHide[i].style.height = '0';
+            oList[i].onclick = function () {
+                if(this.isClick){
+                    oHide[this.index].style.height = '0';
+                    oIcon[this.index].className = '';
+                    oList[this.index].className = '';
+                    oList[this.index].isClick = false;
+                }
+                else{
+                    oHide[lastIndex].style.height = '0';
+                    oIcon[lastIndex].className = '';
+                    oList[lastIndex].className = '';
+                    oHide[this.index].style.height = '200px';
+                    oIcon[this.index].className = 'on';
+                    oList[this.index].className = 'on';
+                    oList[lastIndex].isClick = false;
+                    oList[this.index].isClick = true;
+                    lastIndex = this.index;
+                }
+            }
+        }
+    })();
+</script>
+<div id="main" style="float:left;">
+    <div class="page">
+        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
+            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
+        </div>
+        <div class="content" id="contentFrame">
+            <!-- 默认显示内容，可根据需求修改 -->
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
+</body>
 </html>
