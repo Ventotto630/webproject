@@ -11,21 +11,48 @@
 <html>
 <head>
     <title>审核</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Rezvtion/styles3.css">
 </head>
 <body>
-<table border="1">
-    <tr><td>预约校区</td><td>预约进入时间</td><td>预约出校时间</td><td>姓名</td><td>手机号</td></tr>
+<div class="title"><div class="dot"></div>审核预约信息</div>
+<div class="container">
+    <div class="booking-list" id="bookingList">
     <% ArrayList<Reservation_public> rezvlist= (ArrayList<Reservation_public>) session.getAttribute("rezvlist");
-        for(Reservation_public reservation:rezvlist){
+        for(Reservation_public rezvtion:rezvlist){
     %>
-    <tr><td><%=reservation.getCampus()%></td>
-        <td><%=reservation.getIntime()%></td>
-        <td><%=reservation.getOuttime()%></td>
-        <td><%=reservation.getName()%></td>
-        <td><%=reservation.getPhoneNumber()%></td>
-            <td><a href="checkRezvpub.jsp?status=<%=reservation.getStatus()%>&serid=<%=reservation.getSerid()%>">审核预约信息</a></td>
-    </tr>
+        <div class="booking-item">
+            <div class="avatar"></div>
+            <div class="details">
+                <p class="name"> 姓名：<%=rezvtion.getName()%></p>
+                <p class="intime">进时间：<%=rezvtion.getIntime()%></p>
+                <p class="campus">院校：<%=rezvtion.getCampus()%></p>
+
+            </div>
+
+            <div class="arrow">&#9654;</div>
+        </div>
+
+        <div class="extra-details" style="display:none;">
+            <p>姓名: <%=rezvtion.getName()%></p>
+            <p>身份证: <%=rezvtion.getPerid()%></p>
+            <p>电话号码: <%=rezvtion.getPhoneNumber()%></p>
+            <p>校区: <%=rezvtion.getCampus()%></p>
+            <p>进入时间: <%=rezvtion.getIntime()%></p>
+            <p>离开时间: <%=rezvtion.getOuttime()%></p>
+            <p>单位: <%=rezvtion.getUnit()%></p>
+            <p>交通工具: <%=rezvtion.getVehicle()%></p>
+            <p>车牌号: <%=rezvtion.getVname()%></p>
+            <p>同行人员: <%=rezvtion.getFriend().getName()%></p>
+            <a href="checkRezvpub.jsp?status=<%=rezvtion.getStatus()%>&serid=<%=rezvtion.getSerid()%>">审核预约信息</a></td>
+
+        </div>
+
     <% } %>
-</table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="scripts3.js"></script>
 </body>
 </html>

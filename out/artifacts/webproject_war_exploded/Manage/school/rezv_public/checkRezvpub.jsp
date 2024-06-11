@@ -17,9 +17,9 @@
 <%--<% request.setAttribute("productid",id);%>--%>
 <form action="../checkRezvpubServlet" method="post">
     审核状态：
-    <input type="text" name="status" size="15" value=<%=status%>><br>
+    <input type="text" class="input2" name="status" size="15" value=<%=status%>><br>
     <input type="hidden" name="serid" value="<%=serid%>">
-    <input type="submit" value="确定">
+    <input type="submit" class="button2" value="确定">
 </form>
 
 </body>

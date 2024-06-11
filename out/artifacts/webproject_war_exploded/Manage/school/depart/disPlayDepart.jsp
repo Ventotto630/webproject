@@ -1,6 +1,6 @@
 <%@ page import="com.model.Department" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.net.URLEncoder" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: 23994
   Date: 2024/5/26
@@ -11,11 +11,27 @@
 <html>
 <head>
     <title>部门信息</title>
+    <style>
+        table tbody td:nth-child(1){
+            width:150px;
+        }
+        table tbody td:nth-child(2){
+            width:100px;
+        }
+        table tbody td:nth-child(3){
+            width:180px;
+        }
+        table tbody td:nth-child(4){
+            width:290px;
+        }
+    </style>
 </head>
 <body>
-<table border="1">
+<div class="title"><div class="dot"></div>部门信息</div>
+<button class="button add a" onclick="jump()">添加</button>
+<table class="pos" style="margin-left:110px;">
 <tr><td>部门编号</td><td>部门类型</td><td>部门名称</td>
-    <td>修改</td><td>删除</td>
+    <td>操作</td>
 </tr>
 <% ArrayList<Department> departList=
         (ArrayList<Department>)session.getAttribute("departList");
@@ -24,16 +40,15 @@
 <tr><td><%=depart.getId()%></td>
     <td><%=depart.getType()%></td>
     <td><%=depart.getName()%></td>
-    <%String name=depart.getName();
-        String id=depart.getId();
-        String type=depart.getType();
-    %>
-    <td><a href="../../../modify.do?id=<%=URLEncoder.encode(id, "UTF-8")%>
-">修改</a></td>
-    <td><a href="../../../deleteDepart.do?name=<%=depart.getId()%>">删除</a></td>
+    <td><a class="abtn" href="../../modify2.do?id=<%=depart.getId()%>">修改</a>
+       <a class="abtn" style="background-color: #ff5c5c" href="../../deleteDepart.do?id=<%=depart.getId()%>">删除</a></td>
 </tr>
 <%}%>
 </table>
-<a href="../home.jsp">返回</a>
+<script>
+    function jump(){
+        window.location.href="home.jsp#depart_add";
+    }
+</script>
 </body>
 </html>

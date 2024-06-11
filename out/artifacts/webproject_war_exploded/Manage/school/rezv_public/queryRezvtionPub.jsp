@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                     <td class="grey1">申请日期</td>
-                    <td ><input type="datetime-local" name="applytime" style="width: 98%" value="null"> </td>
+                    <td ><input type="datetime-local" name="applytime" style="width: 98%" > </td>
                 </tr>
                 <tr>
                     <td class="grey1">预约校区</td>
@@ -111,12 +111,12 @@
                 <tr>
                     <td rowspan="2" class="grey1">预约进校时间</td>
                     <td>
-                        <input type="datetime-local" name="intime" style="width: 98%" value="null"><br>
+                        <input type="datetime-local" name="intime" style="width: 98%" ><br>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="datetime-local" name="outtime" style="width: 98%" value="null">
+                        <input type="datetime-local" name="outtime" style="width: 98%" >
                     </td>
                 </tr>
                 <tr>

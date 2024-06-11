@@ -96,7 +96,7 @@
     <div class="header">欢迎登录校园通行码预约管理系统</div>
     <form action="../login.do" method="post">
         <div id="input_box">
-            <input type="text" name="password" placeholder="username" required>
+            <input type="text" name="username" placeholder="username" required>
         </div>
         <div class="input_box">
             <input type="password" name="password" placeholder="password" required>

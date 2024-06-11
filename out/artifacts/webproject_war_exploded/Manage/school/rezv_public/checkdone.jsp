@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-没有可以审核的预约记录
+<div class="title"><div class="dot"></div>没有可以审核的预约记录</div>
 </body>
 </html>

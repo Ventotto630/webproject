@@ -12,10 +12,37 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SM4 {
     public static void main(String[] args) {
+//        try {
+//            // 定义原始数据
+//            String plaintext = "Hello, World!";
+//            byte[] input = plaintext.getBytes();
+//
+//            // 生成密钥
+//            String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+//            byte[] keyData = Hex.decode(keyHex);
+//            SecretKey key = new SecretKeySpec(keyData, "SM4");
+//
+//            // 定义初始向量（IV）
+//            String ivHex = "00000000000000000000000000000000";
+//            byte[] ivData = Hex.decode(ivHex);
+//
+//            // 加密
+//            byte[] encrypted = encrypt(input, key, ivData);
+//            String encryptedHex = Hex.toHexString(encrypted);
+//            System.out.println("Encrypted: " + encryptedHex);
+//
+//            // 解密
+//            byte[] decrypted = decrypt(encrypted, key, ivData);
+//            String decryptedText = new String(decrypted);
+//            System.out.println("Decrypted: " + decryptedText);
+//        } catch (Exception e) {
+//            System.err.println("Error: " + e.getMessage());
+//        }
         try {
             // 定义原始数据
-            String plaintext = "Hello, World!";
-            byte[] input = plaintext.getBytes();
+            String perid ="360124200406300017";
+            //String plaintext = "Hello, World!";
+            byte[] input = perid.getBytes();
 
             // 生成密钥
             String keyHex = "0123456789ABCDEF0123456789ABCDEF";
@@ -27,15 +54,14 @@ public class SM4 {
             byte[] ivData = Hex.decode(ivHex);
 
             // 加密
-            byte[] encrypted = encrypt(input, key, ivData);
-            String encryptedHex = Hex.toHexString(encrypted);
-            System.out.println("Encrypted: " + encryptedHex);
-
-            // 解密
+            SM4 sm4 = new SM4();
+            byte[] encrypted = sm4.encrypt(input, key, ivData);
+            perid = Hex.toHexString(encrypted);
+             //解密
             byte[] decrypted = decrypt(encrypted, key, ivData);
             String decryptedText = new String(decrypted);
             System.out.println("Decrypted: " + decryptedText);
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
     }

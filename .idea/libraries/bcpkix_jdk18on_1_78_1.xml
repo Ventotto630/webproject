@@ -1,7 +1,9 @@
 <component name="libraryTable">
-  <library name="bcprov-jdk18on-1.78.1">
+  <library name="bcpkix-jdk18on-1.78.1">
     <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/bcpkix-jdk18on-1.78.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/bcprov-jdk18on-1.78.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/bctls-jdk18on-1.78.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

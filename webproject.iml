@@ -24,6 +24,32 @@
     <orderEntry type="library" name="jsp-api" level="project" />
     <orderEntry type="library" name="zxing-3.3.1" level="project" />
     <orderEntry type="library" name="taglibs-standard-impl-1.2.5" level="project" />
-    <orderEntry type="library" name="bcprov-jdk18on-1.78.1" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/bcpkix-jdk18on-1.78.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/bcprov-jdk18on-1.78.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/bctls-jdk18on-1.78.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
