@@ -110,3 +110,4 @@
 </div>
 </body>
 </html>
+<%session.removeAttribute("message");%>

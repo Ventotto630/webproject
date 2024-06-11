@@ -33,6 +33,6 @@ public class deleteDepartServlet extends HttpServlet {
             message="É¾³ıÊ§°Ü!";
         }
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/depart/deleteDepart.jsp");
+        response.sendRedirect("Manage/school/depart/addDepart.jsp");
     }
 }

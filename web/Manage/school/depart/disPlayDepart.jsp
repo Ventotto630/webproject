@@ -29,6 +29,8 @@
 </head>
 <body>
 <div class="title"><div class="dot"></div>部门信息</div>
+<button class="button add" onclick="jump()">添加</button>
+<button class="button add" style="background-color: #d3d3d3;margin-left:20px;" onclick="jump2()">返回</button>
 <table class="pos" style="margin-left:110px;">
 <tr><td>部门编号</td><td>部门类型</td><td>部门名称</td>
     <td>操作</td>
@@ -45,5 +47,13 @@
 </tr>
 <%}%>
 </table>
+<script>
+    function jump(){
+        window.location.href="addDepart.jsp";
+    }
+    function jump2(){
+        window.location.href="findDepart.jsp";
+    }
+</script>
 </body>
 </html>

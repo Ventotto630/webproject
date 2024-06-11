@@ -29,6 +29,8 @@ public class adminDao implements Basedao{
                     admin.setDepartmentID(rst.getString("departmentID"));
                     admin.setPhone(rst.getString("phone"));
                     admin.setRole(rst.getString("role"));
+                    admin.setSocial(rst.getString("social"));
+                    admin.setPub(rst.getString("pub"));
                 }
             }
         }catch(SQLException se){
@@ -38,7 +40,7 @@ public class adminDao implements Basedao{
     }
     //添加管理员
     public boolean addAdmin(Administrators admin) throws DaoException{
-        String sql ="insert into administrators values(?,?,?,?,?,?,?)";
+        String sql ="insert into administrators values(?,?,?,?,?,?,?,?,?)";
         try(Connection dbconn = getConnection();
             PreparedStatement pstmt = dbconn.prepareStatement(sql)){
             pstmt.setString(1,admin.getAdminID());
@@ -48,6 +50,8 @@ public class adminDao implements Basedao{
             pstmt.setString(5,admin.getDepartmentID());
             pstmt.setString(6,admin.getPhone());
             pstmt.setString(7,admin.getRole());
+            pstmt.setString(8,admin.getSocial());
+            pstmt.setString(9,admin.getPub());
             pstmt.executeUpdate();
             return true;
         }catch (SQLException ne){
@@ -89,6 +93,8 @@ public class adminDao implements Basedao{
                     admin.setDepartmentID(rst.getString("departmentid"));
                     admin.setPhone(rst.getString("phone"));
                     admin.setRole(rst.getString("role"));
+                    admin.setSocial(rst.getString("social"));
+                    admin.setPub(rst.getString("pub"));
                     adminList.add(admin);
                 }
             }
@@ -115,6 +121,8 @@ public class adminDao implements Basedao{
                 admin.setDepartmentID(rst.getString("departmentid"));
                 admin.setPhone(rst.getString("phone"));
                 admin.setRole(rst.getString("role"));
+                admin.setSocial(rst.getString("social"));
+                admin.setPub(rst.getString("pub"));
                 adminList.add(admin);
             }
             return adminList;
@@ -140,6 +148,8 @@ public class adminDao implements Basedao{
                     admin.setDepartmentID(rst.getString("departmentID"));
                     admin.setPhone(rst.getString("phone"));
                     admin.setRole(rst.getString("role"));
+                    admin.setSocial(rst.getString("social"));
+                    admin.setPub(rst.getString("pub"));
                 }
             }
         }catch(SQLException se){
@@ -151,7 +161,8 @@ public class adminDao implements Basedao{
     public boolean modifyAdmin(Administrators admin){
         String sql="UPDATE administrators SET name=?," +
                 "username=?,password=?," +
-                "departmentid=?,phone=?,role=? WHERE adminid=?;";
+                "departmentid=?,phone=?,role=?" +
+                "WHERE adminid=?;";
         try(
                 Connection conn=getConnection();
                 PreparedStatement pstmt=conn.prepareStatement(sql)
@@ -177,7 +188,7 @@ public class adminDao implements Basedao{
 
     //根据名字查找管理员（只有部门管理员）
     public ArrayList<Administrators> findDByFuzzyName(String name)throws Exception{
-        String sql="SELECT * FROM administrators WHERE name LIKE ?";
+        String sql="SELECT * FROM administrators WHERE name LIKE ? AND role='部门管理员'";
         ArrayList<Administrators>adminList=new ArrayList<Administrators>();
         try(
                 Connection conn=getConnection();
@@ -185,7 +196,7 @@ public class adminDao implements Basedao{
         ){
             pstmt.setString(1,"%"+name+"%");
             try(ResultSet rst=pstmt.executeQuery()){
-                while(rst.next() && rst.getString("role").equals("部门管理员")){
+                while(rst.next()){
                     Administrators admin=new Administrators();
                     admin.setAdminID(rst.getString("adminid"));
                     admin.setName(rst.getString("name"));
@@ -194,6 +205,8 @@ public class adminDao implements Basedao{
                     admin.setDepartmentID(rst.getString("departmentid"));
                     admin.setPhone(rst.getString("phone"));
                     admin.setRole(rst.getString("role"));
+                    admin.setSocial(rst.getString("social"));
+                    admin.setPub(rst.getString("pub"));
                     adminList.add(admin);
                 }
             }
@@ -221,11 +234,73 @@ public class adminDao implements Basedao{
                 admin.setDepartmentID(rst.getString("departmentid"));
                 admin.setPhone(rst.getString("phone"));
                 admin.setRole(rst.getString("role"));
+                admin.setSocial(rst.getString("social"));
+                admin.setPub(rst.getString("pub"));
                 adminList.add(admin);
             }
             return adminList;
         }catch(SQLException se){
             return null;
+        }
+    }
+    //部门管理员授权，社会预约
+    public boolean authSocialAdmin(String adminID){
+        String sql="UPDATE administrators SET social='1' WHERE adminid=?;";
+        try(
+                Connection conn=getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,adminID);
+            pstmt.executeUpdate();
+            return true;
+        }catch(SQLException se){
+            se.printStackTrace();
+            return false;
+        }
+    }
+    //部门管理员授权，公务预约（不仅可以查看自己部门，还可以查看所有）
+    public boolean authPubAdmin(String adminID){
+        String sql="UPDATE administrators SET pub='1' WHERE adminid=?;";
+        try(
+                Connection conn=getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,adminID);
+            pstmt.executeUpdate();
+            return true;
+        }catch(SQLException se){
+            se.printStackTrace();
+            return false;
+        }
+    }
+    //部门管理员授权，取消社会预约
+    public boolean noauthSocialAdmin(String adminID){
+        String sql="UPDATE administrators SET social=null WHERE adminid=?;";
+        try(
+                Connection conn=getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,adminID);
+            pstmt.executeUpdate();
+            return true;
+        }catch(SQLException se){
+            se.printStackTrace();
+            return false;
+        }
+    }
+    //部门管理员授权，取消公务预约（不仅可以查看自己部门，还可以查看所有）
+    public boolean noauthPubAdmin(String adminID){
+        String sql="UPDATE administrators SET pub=null WHERE adminid=?;";
+        try(
+                Connection conn=getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,adminID);
+            pstmt.executeUpdate();
+            return true;
+        }catch(SQLException se){
+            se.printStackTrace();
+            return false;
         }
     }
 }

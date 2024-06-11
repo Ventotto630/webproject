@@ -39,6 +39,6 @@ public class deleteAdminServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.getSession().setAttribute("message", message);
-        response.sendRedirect("Manage/school/admin_depart/deleteAdmin.jsp");
+        response.sendRedirect("Manage/school/admin_depart/addAdmin.jsp");
     }
 }

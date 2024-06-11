@@ -31,6 +31,6 @@ public class modifyServlet extends HttpServlet {
         }
         request.getSession().setAttribute("message",message);
         request.getSession().setAttribute("admin",admin);
-        response.sendRedirect("Manage/system/home.jsp#modify");
+        response.sendRedirect("Manage/system/modifyAdmin.jsp");
     }
 }

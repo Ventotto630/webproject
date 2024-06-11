@@ -28,8 +28,7 @@
 
         .wrap .closebtn {
             position: absolute;
-            top: 19px;
-            bottom:10px;
+            top: 14px;
             right: 20px;
             font-size: 20px;
             margin-left: 50px;
@@ -128,6 +127,7 @@
                     <h5><a href="#" onclick="loadPage('admin_depart/findAdmin.jsp')">查询</a></h5>
                     <h5><a href="#" onclick="loadPage('admin_depart/modify.jsp')">修改</a></h5>
                     <h5><a href="#" onclick="loadPage('admin_depart/deleteAdmin.jsp')">删除</a></h5>
+                    <h5><a href="#" onclick="loadPage('admin_depart/auth.jsp')">授权</a></h5>
                 </div>
             </li>
             <li class="list">
@@ -176,7 +176,7 @@
                     oHide[lastIndex].style.height = '0';
                     oIcon[lastIndex].className = '';
                     oList[lastIndex].className = '';
-                    oHide[this.index].style.height = '200px';
+                    oHide[this.index].style.height = '220px';
                     oIcon[this.index].className = 'on';
                     oList[this.index].className = 'on';
                     oList[lastIndex].isClick = false;
@@ -207,3 +207,4 @@
 </script>
 </body>
 </html>
+<%session.removeAttribute("message");%>

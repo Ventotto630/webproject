@@ -18,13 +18,17 @@ public class findAdminServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         adminDao dao=new adminDao();
         ArrayList<Administrators> adminList=new ArrayList<>();
+        String message=null;
         try {
             adminList=dao.findAllAdmin();
         } catch (Exception e) {
             e.printStackTrace();
+            message="查找失败";
+            response.sendRedirect("Manage/system/findAdmin.jsp");
         }
+        request.getSession().setAttribute("message",message);
         request.getSession().setAttribute("adminList",adminList);
-        response.sendRedirect("Manage/system/home.jsp#findall");
+        response.sendRedirect("Manage/system/displayAdmin.jsp");
     }
 
     @Override
@@ -37,9 +41,10 @@ public class findAdminServlet extends HttpServlet {
             adminList=dao.findByFuzzyName(request.getParameter("name"));
         }catch(Exception e){
             message="查找失败";
+            response.sendRedirect("Manage/system/findAdmin.jsp");
         }
         request.getSession().setAttribute("adminList",adminList);
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/system/home.jsp#find");
+        response.sendRedirect("Manage/system/displayAdmin.jsp");
     }
 }

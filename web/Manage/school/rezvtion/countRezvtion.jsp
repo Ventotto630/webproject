@@ -79,3 +79,4 @@
 </script>
 </body>
 </html>
+<%session.removeAttribute("message");%>

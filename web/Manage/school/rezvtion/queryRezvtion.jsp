@@ -70,5 +70,14 @@
     　<input class="button2" type="submit" value="提交"/>
     <input class="button2" type="reset" value="重置"/>
 </form>
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>
+<%session.removeAttribute("message");%>
