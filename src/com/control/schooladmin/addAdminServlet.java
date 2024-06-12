@@ -32,6 +32,8 @@ public class addAdminServlet extends HttpServlet {
         admin.setDepartmentID(request.getParameter("depart"));
         admin.setPhone(request.getParameter("phone"));
         admin.setRole(request.getParameter("role"));
+        admin.setSocial(request.getParameter("social"));
+        admin.setPub(request.getParameter("pub"));
         String message=null;
         try{
             boolean sucess=dao.addAdmin(admin);

@@ -34,6 +34,8 @@ public class registerServlet extends HttpServlet {
         admin.setDepartmentID(request.getParameter("depart"));
         admin.setPhone(request.getParameter("phone"));
         admin.setRole(request.getParameter("role"));
+        admin.setSocial(request.getParameter("social"));
+        admin.setPub(request.getParameter("pub"));
         String message=null;
         try{
             boolean sucess=dao.addAdmin(admin);
@@ -47,6 +49,6 @@ public class registerServlet extends HttpServlet {
             message="×¢²áÊ§°Ü";
         }
         request.getSession().setAttribute("message", message);
-        response.sendRedirect("Manage/system/home.jsp#add");
+        response.sendRedirect("Manage/system/addAdmin.jsp");
     }
 }

@@ -9,109 +9,178 @@
 <html>
 <head>
     <title>系统管理员</title>
-    <script>
-        window.onload = function() {
-            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
-            if (message) {
-                alert(message); // 弹出提示框
-            }
-        }
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../my.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.cn/cdnjs/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .sidenav {
-            height: 100%;
-            width: 180px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background: #37474f;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        .sidenav a {
-            padding: 6px 8px 6px 16px;
+        .wrap a {
+            padding: 12px 8px 12px 16px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             color: #b9b9b9;
             display: block;
             transition: 0.3s;
         }
 
-        .sidenav a:hover {
+        .wrap a:hover {
             color: #f1f1f1;
         }
 
-        .sidenav .closebtn {
+        .wrap .closebtn {
             position: absolute;
-            top: 19px;
-            bottom:10px;
+            top: 14px;
             right: 20px;
             font-size: 20px;
             margin-left: 50px;
         }
-
-        #main {
-            transition: margin-left .5s;
-            margin-left:180px;
-        }
-
+        /* 响应式的一些媒体查询 */
         @media screen and (max-height: 450px) {
             .sidenav {padding-top: 15px;}
             .sidenav a {font-size: 18px;}
         }
+        #main {
+            transition: margin-left .5s;
+            margin-left:180px;
+            width:87.5%;
+        }
+
+        html,body{
+            height: 100%;
+        }
+        .wrap{
+            position: fixed;
+            width: 180px;
+            height: 100%;
+            background: #37474f;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 80px;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+        .nav{
+            width:180px;
+        }
+        .list{
+            margin-bottom: 5px;
+        }
+        .list h2{
+            position: relative;
+            padding: 15px 20px;
+            font-size: 16px;
+            color: #b9b9b9;
+            transition: .5s;
+        }
+        .list h2.on{
+            color: #fff;
+        }
+        .list i{
+            position: absolute;
+            right: 10px;
+            top: 16px;
+            border: 8px solid transparent;
+            border-left-color: #fff;/*triangle*/
+            transform:rotate(0deg);
+            transform-origin: 1px 8px;
+            transition: .5s;
+        }
+        .list i.on{
+            transform:rotate(90deg);
+        }
+        .hide{
+            overflow: hidden;
+            height: 0;
+            transition: .5s;
+        }
+        .hide h5{
+            background: #3d4b54;
+            text-align: center;
+            color:#fff;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
-<div id="mySidenav" class="sidenav">
+<div class="wrap" style="float:left;" id="mySidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
-    <a href="#add">添加管理员</a>
-    <a href="#find">查询管理员</a>
-    <a href="../../findAdmin.do">查看管理员</a>
-    <a href="#modify">修改管理员</a>
-    <a href="#delete">删除管理员</a>
-    <a href="#">管理员授权</a>
+    <div class="nav">
+        <ul>
+            <li class="list">
+                <h2><i></i>管理员管理</h2>
+                <div class="hide">
+                    <h5><a href="#" onclick="loadPage('addAdmin.jsp')">添加</a></h5>
+                    <h5><a href="#" onclick="loadPage('findAdmin.jsp')">查询</a></h5>
+                    <h5><a href="#" onclick="loadPage('modify.jsp')">修改</a></h5>
+                    <h5><a href="#" onclick="loadPage('deleteAdmin.jsp')">删除</a></h5>
+                    <h5><a href="#" onclick="loadPage('../school/admin_depart/auth.jsp')">授权</a></h5>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
-
-<div id="main">
-    <div id="add" class="page">
+<script>
+    function loadPage(page) {
+        document.getElementById('contentFrame').innerHTML = '<iframe src="' + page + '"></iframe>';
+        document.body.classList.remove('shouye'); // 移除 shouye 类
+    }
+</script>
+<script>
+    (function () {
+        var oList = document.querySelectorAll('.list h2'),
+            oHide = document.querySelectorAll('.hide'),
+            oIcon = document.querySelectorAll('.list i'),
+            lastIndex = 0;
+        for(var i=0;i<oList.length;i++){
+            oList[i].index = i;//自定义属性
+            oList[i].isClick = false;
+            oList[i].initHeight = oHide[i].clientHeight;
+            oHide[i].style.height = '0';
+            oList[i].onclick = function () {
+                if(this.isClick){
+                    oHide[this.index].style.height = '0';
+                    oIcon[this.index].className = '';
+                    oList[this.index].className = '';
+                    oList[this.index].isClick = false;
+                }
+                else{
+                    oHide[lastIndex].style.height = '0';
+                    oIcon[lastIndex].className = '';
+                    oList[lastIndex].className = '';
+                    oHide[this.index].style.height = '220px';
+                    oIcon[this.index].className = 'on';
+                    oList[this.index].className = 'on';
+                    oList[lastIndex].isClick = false;
+                    oList[this.index].isClick = true;
+                    lastIndex = this.index;
+                }
+            }
+        }
+    })();
+</script>
+<div id="main" style="float:left;">
+    <div class="page">
         <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：系统管理员 / ${myadmin.getName()}</span>
+            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
         </div>
-        <jsp:include page="addAdmin.jsp" flush="true" />
-    </div>
-    <div id="find" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统</div>
-        <jsp:include page="findAdmin.jsp" flush="true" />
-    </div>
-    <div id="findall" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统</div>
-        <jsp:include page="displayAdmin.jsp" flush="true" />
-    </div>
-    <div id="modify" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统</div>
-        <jsp:include page="modify.jsp" flush="true" />
-    </div>
-    <div id="delete" class="page">
-        <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统</div>
-        <jsp:include page="deleteAdmin.jsp" flush="true" />
+        <div class="content" id="contentFrame">
+            <!-- 默认显示内容，可根据需求修改 -->
+        </div>
     </div>
 </div>
 
 <script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "180px";
-        document.getElementById("main").style.marginLeft = "180px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-    }
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
 </script>
 </body>
 </html>
+<%session.removeAttribute("message");%>

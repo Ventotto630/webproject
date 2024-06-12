@@ -38,6 +38,6 @@ public class modifyDepartServlet extends HttpServlet {
             message="ÐÞ¸ÄÊ§°Ü";
         }
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/depart/modify.jsp");
+        response.sendRedirect("Manage/school/depart/addDepart.jsp");
     }
 }
