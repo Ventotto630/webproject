@@ -35,6 +35,8 @@
 </head>
 <body>
 <div class="title"><div class="dot"></div>管理员信息</div>
+<button class="button add" onclick="jump()">添加</button>
+<button class="button add" style="background-color: #d3d3d3;margin-left:20px;" onclick="jump2()">返回</button>
 <table class="pos" style="margin-left:120px;">
     <tr><td>管理员编号</td><td>姓名</td><td>用户名</td>
         <td>部门id</td><td>手机号</td><td>操作</td>
@@ -54,5 +56,14 @@
     </tr>
     <%}%>
 </table>
+<script>
+    function jump(){
+        window.location.href="addAdmin.jsp";
+    }
+    function jump2(){
+        window.location.href="findAdmin.jsp";
+    }
+</script>
 </body>
 </html>
+<%session.removeAttribute("message");%>

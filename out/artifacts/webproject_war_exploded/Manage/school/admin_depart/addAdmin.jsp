@@ -28,7 +28,12 @@
         }
     </script>
     <style>
-
+        .ch{
+            color: rgb(106, 106, 106);
+            margin-left:10px;
+            font-size:15px;
+            margin-top:3px;
+        }
     </style>
 </head>
 <body>
@@ -62,6 +67,11 @@
         </div>
 <%--        默认是部门管理员，学校管理员只能管理部门管理员--%>
         <input type="text" name="role" id="role" value="部门管理员" hidden>
+        <div class="input_box">
+            <span class="input_title">　　　授权 </span>
+            <input type="checkbox" name="social" value="1"><span class="ch">社会预约管理</span>　　
+            <input type="checkbox" name="pub" value="1"><span class="ch">全校公务预约管理</span>
+        </div>
         <button class="button">注册</button><br>
     </form>
 </div>
@@ -75,3 +85,4 @@
 </script>
 </body>
 </html>
+<%session.removeAttribute("message");%>

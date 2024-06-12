@@ -15,7 +15,7 @@
 <% String status = request.getParameter("status"); %>
 ¿Í»§ºÅ£º<%=serid%><br>
 <%--<% request.setAttribute("productid",id);%>--%>
-<form action="../../../checkRezvpubServlet" method="post">
+<form action="../../../checkRezvpubServlet.do" method="post">
     ÉóºË×´Ì¬£º
     <input type="text" class="input2" name="status" size="15" value=<%=status%>><br>
     <input type="hidden" name="serid" value="<%=serid%>">

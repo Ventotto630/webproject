@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>添加管理员</title>
+    <link rel="stylesheet" href="../my.css">
     <script type="text/javascript">
         function checkForm() {
             var password = document.getElementById("password").value;
@@ -31,13 +32,18 @@
             margin-top:60px;
             width:100%;
         }
-
+        .ch{
+            color: rgb(106, 106, 106);
+            margin-left:10px;
+            font-size:15px;
+            margin-top:3px;
+        }
     </style>
 </head>
 <body>
 <div class="title"><div class="dot"></div>添加管理员</div>
-<div class="login_box">
-    <form action="../../addAdmin.do" method="post" onsubmit="return checkForm()">
+<div>
+    <form action="../../addAdmin.do" method="post" style="margin-top:30px;" onsubmit="return checkForm()">
         <div class="input_box">
             <span class="input_title">管理员编号 <span style="color:red">*</span></span>
             <input class="input" type="text" name="adminID" placeholder="请输入管理员编号" required>
@@ -69,10 +75,33 @@
                 <option value="学校管理员">学校管理员</option>
                 <option value="部门管理员">部门管理员</option>
                 <option value="审计管理员">审计管理员</option>
-            </select>
+            </select><span style="font-size:14px; color:rgb(106,106,106);">　　部门管理员请完成下面选项（是否对管理员进行预约管理的授权）</span>
+        </div>
+        <div class="input_box">
+            <span class="input_title">　　　授权 　</span>
+            <input type="checkbox" name="social" value="1"><span class="ch">社会预约管理</span>　　
+            <input type="checkbox" name="pub" value="1"><span class="ch">全校公务预约管理</span>
         </div>
         <button class="button">注册</button><br>
     </form>
+    <script>
+        window.onload = function() {
+            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+            if (message) {
+                alert(message); // 弹出提示框
+            }
+        };
+    </script>
 </div>
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>
+<%session.removeAttribute("message");%>
+

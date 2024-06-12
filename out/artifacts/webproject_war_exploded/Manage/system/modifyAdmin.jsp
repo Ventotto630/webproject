@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>修改管理员信息</title>
+    <link rel="stylesheet" href="../my.css">
     <script type="text/javascript">
         function checkForm() {
             var password = document.getElementById("password").value;

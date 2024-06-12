@@ -23,7 +23,7 @@
 </style>
 <body>
 <div class="title"><div class="dot"></div>公务预约记录统计</div>
-<form action="../../../count-RezvPub" method="post" style="margin:10px;line-height:48px;">
+<form action="../../../count-RezvPub.do" method="post" style="margin:10px;line-height:48px;">
     <span class="input_title" style="margin-left:10px;">　　　预约号</span>
     <input class="input2 b" type="text" name="serid" value="null">
 

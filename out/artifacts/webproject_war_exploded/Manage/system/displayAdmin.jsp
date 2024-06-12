@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>管理员信息</title>
+    <link rel="stylesheet" href="../my.css">
     <style>
         table tbody td:nth-child(1){
             width:150px;
@@ -38,6 +39,7 @@
 <body>
 <div class="title"><div class="dot"></div>管理员信息</div>
 <button class="button add" onclick="jump()">添加</button>
+<button class="button add" style="background-color: #d3d3d3;margin-left:20px;" onclick="jump2()">返回</button>
 <table class="pos">
     <tr><td>管理员编号</td><td>姓名</td><td>登录名</td><td>部门id</td>
         <td>手机号</td><td>类型</td><td>操作</td>
@@ -60,7 +62,10 @@
 </table>
 <script>
     function jump(){
-        window.location.href="home.jsp#add";
+        window.location.href="addAdmin.jsp";
+    }
+    function jump2(){
+        window.location.href="findAdmin.jsp";
     }
 </script>
 </body>

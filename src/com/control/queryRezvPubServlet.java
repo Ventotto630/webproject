@@ -16,7 +16,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 //管理员查询
-@WebServlet("/query-RezvPub")
+@WebServlet("/query-RezvPub.do")
 public class queryRezvPubServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -14,7 +14,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/count-RezvPub")
+@WebServlet("/count-RezvPub.do")
 public class countRezvPubServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
