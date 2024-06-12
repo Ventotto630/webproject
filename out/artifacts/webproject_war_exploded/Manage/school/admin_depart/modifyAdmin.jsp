@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>修改部门管理员信息</title>
+    <link rel="stylesheet" href="../../my.css">
     <script type="text/javascript">
         function checkForm() {
             var password = document.getElementById("password").value;
@@ -29,7 +30,7 @@
 </head>
 <body>
 <div class="title"><div class="dot"></div>部门管理员信息</div>
-<form action="../../modifyDAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px" onsubmit="return checkForm()">
+<form action="../../../modifyDAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px" onsubmit="return checkForm()">
     <div class="input_box">
         <span class="input_title">管理员编号：</span>
         <input class="input" type="text" name="adminid"

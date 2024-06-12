@@ -9,10 +9,11 @@
 <html>
 <head>
     <title>修改部门信息</title>
+    <link rel="stylesheet" href="../../my.css">
 </head>
 <body>
 <div class="title"><div class="dot"></div>部门信息</div>
-<form action="../../modifyDepart.do" method="post"  style="margin-top:35px;margin-bottom:10px">
+<form action="../../../modifyDepart.do" method="post"  style="margin-top:35px;margin-bottom:10px">
     <div class="input_box">
         <span class="input_title">部门编号：</span>
         <input class="input" type="text" name="id" value=${depart.getId()}>

@@ -95,6 +95,24 @@
       margin-bottom: 20px;
     }
   </style>
+  <script type="text/javascript">
+    function addFriend() {
+      var friendList = document.getElementById('friendList');
+      var newFriend = document.createElement('div');
+      newFriend.className = 'friend-item';
+      newFriend.innerHTML =
+              '<div><input type="text" name="Fri_name" placeholder="姓名" style="width: 100%;" ></div>' +
+              '<div><input type="text" name="Fri_perid" placeholder="身份证号" style="width: 100%;" ></div>' +
+              '<div><input type="text" name="Fri_phoneNumber" placeholder="手机号" style="width: 100%;" ></div>' +
+              '<button type="button" onclick="removeFriend(this)">删除</button>';
+      friendList.appendChild(newFriend);
+    }
+
+    function removeFriend(button) {
+      var friendList = document.getElementById('friendList');
+      friendList.removeChild(button.parentNode);
+    }
+  </script>
 </head>
 <body>
 <div class="container">
@@ -192,13 +210,18 @@
         <td><input type="text" name="vname" placeholder="请输入车牌号" style="width: 100%;"></td>
       </tr>
       <tr>
+        <td class="grey1">来访人数</td>
+        <td><input type="text" name="Fri_number" style="width: 100%"> </td>
+      </tr>
+      <tr>
         <td class="grey1">陪同人员</td>
         <td>
           <div id="friendList">
             <div class="friend-item">
-              <div><input type="text" name="Fri_name" placeholder="姓名" style="width: 100%;"></div>
-              <div><input type="text" name="Fri_perid" placeholder="身份证号" style="width: 100%;"></div>
-              <div><input type="text" name="Fri_phoneNumber" placeholder="手机号" style="width: 100%;"></div>
+              <div><input type="text" name="Fri_name" placeholder="姓名" style="width: 100%;margin-top: 1px;" ></div>
+              <div><input type="text" name="Fri_perid" placeholder="身份证号" style="width: 100%;" ></div>
+              <div><input type="text" name="Fri_phoneNumber" placeholder="手机号" style="width: 100%;" ></div>
+              <button type="button" onclick="addFriend()">新增</button>
             </div>
           </div>
         </td>

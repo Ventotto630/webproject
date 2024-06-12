@@ -95,16 +95,12 @@ public class countRezvServlet extends HttpServlet {
         String unit = request.getParameter("unit");
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
-        String Fri_name = "null";
-        String Fri_perid = "null";
-        String Fri_phoneNumber = "null";
 
-        Person friend = new Person();
-        friend.setName(Fri_name);
-        friend.setPerid(Fri_perid);
-        friend.setPhoneNumber(Fri_phoneNumber);
+        String Fri_number = "0";
+        ArrayList<Person> friends = new ArrayList<>();
+//随行人员不参与查询
 
-        Reservation reservation = new Reservation(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,friend,"null");
+        Reservation reservation = new Reservation(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,"null");
 
         try{
             RezvtionDao dao = new RezvtionDao();

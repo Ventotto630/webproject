@@ -18,7 +18,7 @@ public class checkServlet extends HttpServlet { //显示所有可审核的记录
             ArrayList<Reservation_public> rezvlist=dao.findBystatus();
             if(!rezvlist.isEmpty()){
                 request.getSession().setAttribute("rezvlist",rezvlist);
-                response.sendRedirect("Manage/check.jsp");
+                response.sendRedirect("Manage/school/rezv_public/check.jsp");
             }
             else response.sendRedirect("Manage/checkdone.jsp");
         }catch (Exception e){

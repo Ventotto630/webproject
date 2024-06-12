@@ -9,18 +9,11 @@
 <html>
 <head>
     <title>修改部门信息</title>
-    <script type="text/javascript">
-        window.onload = function() {
-            var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
-            if (message) {
-                alert(message); // 弹出提示框
-            }
-        };
-    </script>
+    <link rel="stylesheet" href="../../my.css">
 </head>
 <body>
 <div class="title"><div class="dot"></div>修改部门信息</div>
-<form action="../../modify2.do" method="post" style="margin-top:40px;margin-bottom:40px;">
+<form action="../../../modify2.do" method="post" style="margin-top:40px;margin-bottom:40px;">
      <span class="input_title" style="margin-left:110px;">部门ID：</span>
     <input class="input2" type="text" name="id" required>
     <input class="button2" type="submit" value="确定">
@@ -30,5 +23,13 @@
     if(depart != null){%>
 <jsp:include page="modifyDepart.jsp" flush="true" />
 <%}%>
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>

@@ -24,7 +24,7 @@ public class findDepartServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.getSession().setAttribute("departList",departList);
-        response.sendRedirect("Manage/school/depart/disPlayDepart.jsp");
+        response.sendRedirect("Manage/school/depart/displayDepart.jsp");
     }
 
     @Override
@@ -40,6 +40,6 @@ public class findDepartServlet extends HttpServlet {
         }
         request.getSession().setAttribute("message",message);
         request.getSession().setAttribute("departList",departList);
-        response.sendRedirect("Manage/school/depart/disPlayDepart.jsp");
+        response.sendRedirect("Manage/school/depart/displayDepart.jsp");
     }
 }

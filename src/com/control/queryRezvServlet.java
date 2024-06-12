@@ -20,15 +20,23 @@ public class queryRezvServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RezvtionDao dao = new RezvtionDao();
+        String message;
         try{
             ArrayList<Reservation> rezvlist=dao.findAllrezv();
             if(!rezvlist.isEmpty()){
                 request.getSession().setAttribute("rezvlist",rezvlist);
                 response.sendRedirect("Rezvtion/displayRezvtion.jsp");
             }
-            else response.sendRedirect("Rezvtion/error.jsp");
+            else {
+                message="没有相关查询记录";
+                request.getSession().setAttribute("message",message);
+                response.sendRedirect("Manage/school/rezvtion/queryRezvtion.jsp");
+            }
         }catch (Exception e){
             e.printStackTrace();
+            message="查询失败";
+            request.getSession().setAttribute("message",message);
+            response.sendRedirect("Manage/school/rezvtion/queryRezvtion.jsp");
         }
     }
 
@@ -107,16 +115,12 @@ public class queryRezvServlet extends HttpServlet {
         String unit = request.getParameter("unit");
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
-        String Fri_name = "null";
-        String Fri_perid = "null";
-        String Fri_phoneNumber = "null";
+        String Fri_number = "0";
+        ArrayList<Person> friends = new ArrayList<>();
+//随行人员不参与查询
 
-        Person friend = new Person();
-        friend.setName(Fri_name);
-        friend.setPerid(Fri_perid);
-        friend.setPhoneNumber(Fri_phoneNumber);
 
-        Reservation reservation = new Reservation(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,friend,"null");
+        Reservation reservation = new Reservation(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,"null");
 
         try{
             RezvtionDao dao = new RezvtionDao();

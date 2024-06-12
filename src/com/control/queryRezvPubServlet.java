@@ -21,15 +21,23 @@ public class queryRezvPubServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RezvtionpublicDao dao = new RezvtionpublicDao();
+        String message;
         try{
             ArrayList<Reservation_public> rezvlist=dao.findAllrezv();
             if(!rezvlist.isEmpty()){
                 request.getSession().setAttribute("rezvlist",rezvlist);
                 response.sendRedirect("Rezvtion/displayRezvtionPub.jsp");
             }
-            else response.sendRedirect("Rezvtion/error.jsp");
+            else  {
+                message="没有相关查询记录";
+                request.getSession().setAttribute("message",message);
+                response.sendRedirect("Manage/school/rezvtion/queryRezvtionPub.jsp");
+            }
         }catch (Exception e){
             e.printStackTrace();
+            message="查询失败";
+            request.getSession().setAttribute("message",message);
+            response.sendRedirect("Manage/school/rezvtion/queryRezvtionPub.jsp");
         }
     }
 
@@ -108,20 +116,16 @@ public class queryRezvPubServlet extends HttpServlet {
         String unit = request.getParameter("unit");
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
-        String Fri_name = "null";
-        String Fri_perid = "null";
-        String Fri_phoneNumber = "null";
+        String Fri_number = "0";
+        ArrayList<Person> friends = new ArrayList<>();
+//随行人员不参与查询
         String visitunit = request.getParameter("visitunit");
         String receptionist = request.getParameter("receptionist");
         String reason = request.getParameter("reason");
         String status = request.getParameter("status");
 
-        Person friend = new Person();
-        friend.setName(Fri_name);
-        friend.setPerid(Fri_perid);
-        friend.setPhoneNumber(Fri_phoneNumber);
 
-        Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,friend,visitunit,receptionist,reason,status,"null");
+        Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,visitunit,receptionist,reason,status,"null");
 
         try{
             RezvtionpublicDao dao = new RezvtionpublicDao();

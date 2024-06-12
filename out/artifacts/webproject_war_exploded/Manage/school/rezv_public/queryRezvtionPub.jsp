@@ -5,205 +5,85 @@
   Time: 22:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=GBK" language="java" %>
+<html>
 <head>
-    <title>æŸ¥è¯¢å…¬åŠ¡é¢„çº¦</title>
-    <div style="text-align:center;">
-        <h1 style="font-size: 75px">æŸ¥è¯¢å…¬åŠ¡é¢„çº¦</h1>
-    </div>
+    <title>²éÑ¯¹«ÎñÔ¤Ô¼</title>
+    <link rel="stylesheet" href="../../my.css">
 </head>
 <style>
-    .grey1{
-        background-color: lightgrey;
-        font-size: 40px;
+    .s{
+        height:30px;
+        width:15%
     }
-    .grey2{
-        background-color: gray;
-        font-size: 40px;
-    }
-    table{
-        border: 1px solid #ddd; /* å¯ä»¥æ·»åŠ è¾¹æ¡†ä»¥åŒºåˆ†è¡¨æ ¼ */
-        width: 75%;
-        border-collapse: separate;
-        font-size: 40px;
-    }
-    table td {
-        border: 1px solid #ddd; /* å¯ä»¥æ·»åŠ è¾¹æ¡†ä»¥åŒºåˆ†å•å…ƒæ ¼ */
-        width: 50%; /* å¦‚æœè¡¨æ ¼åªæœ‰ä¸€ä¸ªåˆ—ï¼Œè¿™ä¼šä½¿å•å…ƒæ ¼å¡«å……æ•´ä¸ªè¡¨æ ¼å®½åº¦ */
-        font-size: 40px;
-    }
-    table thead {
-        background-color: gray;
-        width: 100%; /* å¦‚æœè¡¨æ ¼åªæœ‰ä¸€ä¸ªåˆ—ï¼Œè¿™ä¼šä½¿å•å…ƒæ ¼å¡«å……æ•´ä¸ªè¡¨æ ¼å®½åº¦ */
-        font-size: 40px;
-    }
-    input[type="text"] {
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-        padding: 0px;
-    }
-    input[type="date"] {
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-        padding: 0px;
-    }
-    input[type="number"] {
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-        padding: 0px;
-    }
-    option{
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-    }
-    select{
-        width: 100%;
-        height: 100%;
-        font-size: 30px;
-    }
-    .friend-item {
-        margin-bottom: 10px;
-    }
-    .friend-item div {
-        margin-bottom: 5px;
-    }
-    .friend-item button {
-        display: block;
-        margin-top: 5px;
+    .b{
+        width:15%
     }
 </style>
 <body>
-<div style="text-align:center;">
-    <%-- å®šä¹‰è¡¨å•æäº¤ç”¨æˆ·æ•°æ® --%>
-    <center>
+<div class="title"><div class="dot"></div>²éÑ¯Ô¤Ô¼¼ÇÂ¼</div>
+<p><a class="button2 a" href="../../../query-RezvPub" style="margin-top:15px;margin-left:110px;">²éÑ¯ËùÓĞÔ¤Ô¼</a> </p>
+        <form action="../../../query-RezvPub" method="post" style="margin:10px;line-height:48px;">
+            <span class="input_title" style="margin-left:10px;">¡¡¡¡¡¡Ô¤Ô¼ºÅ</span>
+            <input class="input2 b" type="text" name="serid" value="null">
 
-        <p><a href="../query-RezvPub">æŸ¥è¯¢æ‰€æœ‰é¢„çº¦</a> </p>
-        <form action="../query-RezvPub" method="post">
-            <table>
-                <thead>
-                <tr>
-                    <td colspan="2" style="text-align: center">é¢„çº¦ä¿¡æ¯</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="grey1">é¢„çº¦å·</td>
-                    <td ><input type="text" name="serid" style="width: 98%" value="null"> </td>
-                </tr>
-                <tr>
-                    <td class="grey1">ç”³è¯·æ—¥æœŸ</td>
-                    <td ><input type="datetime-local" name="applytime" style="width: 98%" > </td>
-                </tr>
-                <tr>
-                    <td class="grey1">é¢„çº¦æ ¡åŒº</td>
-                    <td>
-                        <input type="checkbox" name="campus" value="æœæ™–æ ¡åŒº"> æœæ™–æ ¡åŒº<br>
-                        <input type="checkbox" name="campus" value="å±å³°æ ¡åŒº"> å±å³°æ ¡åŒº<br>
-                        <input type="checkbox" name="campus" value="è«å¹²å±±æ ¡åŒº"> è«å¹²å±±æ ¡åŒº
-                    </td>
-                </tr>
+            <span class="input_title" style="margin-left:20px;">ÉêÇëÈÕÆÚ</span>
+            <input class="input2 b" type="datetime-local" name="applytime" value="null">
 
-                <tr>
-                    <td rowspan="2" class="grey1">é¢„çº¦è¿›æ ¡æ—¶é—´</td>
-                    <td>
-                        <input type="datetime-local" name="intime" style="width: 98%" ><br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="datetime-local" name="outtime" style="width: 98%" >
-                    </td>
-                </tr>
-                <tr>
-                    <td class="grey1">æ‰€åœ¨å•ä½</td>
-                    <td><input type="text" name="unit" style="width: 98%" value="null"></td>
-                </tr>
-                <tr>
-                    <td class="grey1">å…¬åŠ¡è®¿é—®éƒ¨é—¨</td>
-                    <td><select name="visitunit" style="width: 100%">
-                        <option value="education"> æ•™åŠ¡å¤„</option>
-                        <option value="security"> ä¿å«å¤„</option>
-                        <option value="finance"> è®¡è´¢å¤„</option>
-                        <option value="committee"> å›¢å§”</option>
-                    </select></td>
-                </tr>
-                <tr>
-                    <td class="grey1">å…¬åŠ¡è®¿é—®æ¥å¾…äºº</td>
-                    <td><input type="text" name="receptionist" style="width: 98%" value="null"></td>
-                </tr>
-                <tr>
-                    <td class="grey1">æ¥è®¿äº‹ç”±</td>
-                    <td><input type="text" name="reason" style="width: 98%" value="null"></td>
-                </tr>
-                <tr>
-                    <td class="grey1">å®¡æ ¸çŠ¶æ€</td>
-                    <td ><input type="text" name="status" style="width: 98%" value="null"> </td>
-                </tr>
-                </tbody>
-            </table>
+            <span class="input_title" style="margin-left:20px;">Ô¤Ô¼Ğ£Çø</span>
+            <select name="campus" class="select s">
+                <option value="null"> </option>
+                <option value="³¯êÍĞ£Çø"> ³¯êÍĞ£Çø</option>
+                <option value="ÆÁ·åĞ£Çø"> ÆÁ·åĞ£Çø</option>
+                <option value="Äª¸ÉÉ½Ğ£Çø"> Äª¸ÉÉ½Ğ£Çø</option>
+            </select>
 
-            <table  border="1" >
-                <thead>
-                <tr>
-                    <td colspan="2" style="text-align: center">è®¿å®¢ä¿¡æ¯</td>
-                </tr>
-                </thead>
-                <tbody>
+            <span class="input_title" style="margin-left:20px;">Ô¤Ô¼½øĞ£Ê±¼ä</span>
+            <input class="input2 b" type="datetime-local" name="intime" value="null">
+            <br>
+            <span class="input_title" style="margin-left:10px;">Ô¤Ô¼³öĞ£Ê±¼ä</span>
+            <input class="input2 b" type="datetime-local" name="outtime" value="null">
 
+            <span class="input_title" style="margin-left:20px;">ËùÔÚµ¥Î»</span>
+            <input class="input2 b" type="text" name="unit" value="null">
 
-                <tr>
-                    <td class="grey1">å§“å</td>
-                    <td><input type="text" name="name" style="width: 98%" value="null"></td>
-                </tr>
-                <tr>
-                    <td class="grey1">èº«ä»½è¯å·</td>
-                    <td><input type="text" name="perid" placeholder="è¯·è¾“å…¥èº«ä»½è¯å·" style="width: 98%" value="null"></td>
-                </tr>
-                <tr>
-                    <td class="grey1">æ‰‹æœºå·</td>
-                    <td><input type="text" name="phoneNumber" placeholder="è¯·è¾“å…¥æ‰‹æœºå·" style="width: 98%" value="null"></td>
-                </tr>
-                <tr>
-                    <td class="grey1">äº¤é€šæ–¹å¼</td>
-                    <td><select name="vehicle" style="width: 100%">
-                        <option value="walk"> æ­¥è¡Œ</option>
-                        <option value="subway"> åœ°é“</option>
-                        <option value="bus"> å…¬äº¤</option>
-                        <option value="car"> æ±½è½¦</option>
-                    </select></td>
-                </tr>
-                <tr>
-                    <td class="grey1">è½¦ç‰Œå·</td>
-                    <td><input type="text" name="vname" style="width: 98%" value="null"> </td>
-                </tr>
-                <%--                <tr>--%>
-                <%--                    <td class="grey1">æ¥è®¿äººæ•°</td>--%>
-                <%--                    <td><input type="number" name="pnumber" style="width: 98%" value="null"> </td>--%>
-                <%--                </tr>--%>
-                <tr>
-                    <td class="grey1">é™ªåŒäººå‘˜</td>
-                    <td>
-                        <div id="friendList">
-                            <div class="friend-item">
-                                <div><input type="text" name="Fri_name" placeholder="å§“å" style="width: 98%;" value="null"></div>
-                                <div><input type="text" name="Fri_perid" placeholder="èº«ä»½è¯å·" style="width: 98%;"value="null"></div>
-                                <div><input type="text" name="Fri_phoneNumber" placeholder="æ‰‹æœºå·" style="width: 98%;"value="null"></div>
-                                <%--                                <button type="button" onclick="addFriend()">æ–°å¢</button>--%>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <input type="submit" value="æäº¤" style="font-size: 40px"/>
-            <input type="reset" value="é‡ç½®" style="font-size: 40px"/>
+            <span class="input_title" style="margin-left:20px;">¹«Îñ·ÃÎÊ²¿ÃÅ</span>
+                    <select name="visitunit"  class="select s" >
+                        <option value="null"> </option>
+                        <option value="education"> ½ÌÎñ´¦</option>
+                        <option value="security"> ±£ÎÀ´¦</option>
+                        <option value="finance"> ¼Æ²Æ´¦</option>
+                        <option value="committee"> ÍÅÎ¯</option>
+                    </select>
+            <span class="input_title" style="margin-left:20px;">¹«Îñ·ÃÎÊ½Ó´ıÈË</span>
+            <input class="input2 b" type="text" name="receptionist"  value="null">
+            <br>
+            <span class="input_title" style="margin-left:20px;">À´·ÃÊÂÓÉ</span>
+            <input class="input2 b" type="text" name="reason"  value="null">
+
+            <span class="input_title" style="margin-left:20px;">ÉóºË×´Ì¬</span>
+            <input class="input2 b" type="text" name="status" value="null">
+            <span class="input_title" style="margin-left:20px;">¡¡¡¡ĞÕÃû</span>
+            <input class="input2 b" type="text" name="name" value="null">
+
+            <span class="input_title" style="margin-left:20px;">Éí·İÖ¤ºÅ</span>
+            <input class="input2 b" type="text" name="perid" placeholder="ÇëÊäÈëÉí·İÖ¤ºÅ" value="null">
+            <br>
+            <span class="input_title" style="margin-left:10px;">¡¡¡¡¡¡ÊÖ»úºÅ</span>
+            <input class="input2 b" type="text" name="phoneNumber" placeholder="ÇëÊäÈëÊÖ»úºÅ" value="null">
+
+            <span class="input_title" style="margin-left:20px;">½»Í¨·½Ê½</span>
+            <select name="vehicle" class="select s">
+                <option value="null"> </option>
+                <option value="walk"> ²½ĞĞ</option>
+                <option value="subway"> µØÌú</option>
+                <option value="bus"> ¹«½»</option>
+                <option value="car"> Æû³µ</option>
+            </select>
+            <span class="input_title" style="margin-left:20px;">¡¡³µÅÆºÅ</span>
+            <input class="input2 b" type="text" name="vname" value="null">
+            <input class="button2" type="submit" value="Ìá½»"/>
+            <input class="button2" type="reset" value="ÖØÖÃ"/>
         </form>
-    </center>
-</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Reservation extends Person implements Serializable {
     //记住还有父类的成员变量作为预约人信息！name perid phoneNumber
@@ -13,13 +14,14 @@ public class Reservation extends Person implements Serializable {
 
     private String vehicle;//交通方式
     private String vname;//车牌号
-    private Person friend;//同行者
+    private String Fri_number;//陪行人员人数
+    private ArrayList<Person> friend;//同行者
     //同行者的信息 Fri_name Fri_perid Fri_phoneNumber
     private String qrcode;//二维码地址
     public Reservation(){
     }
 
-    public Reservation(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend, String qrcode) {
+    public Reservation(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, String fri_number, ArrayList<Person> friend, String qrcode) {
         super(name, perid, phoneNumber);
         this.serid = serid;
         this.applytime = applytime;
@@ -29,6 +31,7 @@ public class Reservation extends Person implements Serializable {
         this.unit = unit;
         this.vehicle = vehicle;
         this.vname = vname;
+        Fri_number = fri_number;
         this.friend = friend;
         this.qrcode = qrcode;
     }
@@ -49,17 +52,6 @@ public class Reservation extends Person implements Serializable {
         this.serid = serid;
     }
 
-    public Reservation(String name, String perid, String phoneNumber, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend) {
-        super(name, perid, phoneNumber);
-        this.applytime = applytime;
-        this.campus = campus;
-        this.intime = intime;
-        this.outtime = outtime;
-        this.unit = unit;
-        this.vehicle = vehicle;
-        this.vname = vname;
-        this.friend = friend;
-    }
 
     public String getApplytime() {
         return applytime;
@@ -70,14 +62,7 @@ public class Reservation extends Person implements Serializable {
     }
 
     //车牌号可以不填
-    public Reservation(String campus, String intime,String outtime, String unit, String vehicle , Person friend) {
-        this.campus = campus;
-        this.intime = intime;
-        this.outtime = outtime;
-        this.unit = unit;
-        this.vehicle=vehicle;
-        this.friend = friend;
-    }
+
 
 
     //随行人员可以不填
@@ -138,11 +123,19 @@ public class Reservation extends Person implements Serializable {
         this.vname = vname;
     }
 
-    public Person getFriend() {
+    public String getFri_number() {
+        return Fri_number;
+    }
+
+    public void setFri_number(String fri_number) {
+        Fri_number = fri_number;
+    }
+
+    public ArrayList<Person> getFriend() {
         return friend;
     }
 
-    public void setFriend(Person friend) {
+    public void setFriend(ArrayList<Person> friend) {
         this.friend = friend;
     }
 }

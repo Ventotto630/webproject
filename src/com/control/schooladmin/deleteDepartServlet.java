@@ -30,8 +30,9 @@ public class deleteDepartServlet extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            message="É¾³ýÊ§°Ü!";
         }
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/home.jsp");
+        response.sendRedirect("Manage/school/depart/deleteDepart.jsp");
     }
 }

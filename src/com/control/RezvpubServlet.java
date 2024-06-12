@@ -13,6 +13,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/RezvpubServlet")
 public class RezvpubServlet extends HttpServlet {
@@ -84,62 +85,71 @@ public class RezvpubServlet extends HttpServlet {
         if (vname == "") {
             vname = "null"; // 或者任何默认值
         }
-        String Fri_name = request.getParameter("Fri_name");
-        if (Fri_name == "") {
-            Fri_name = "null"; // 或者任何默认值
-        }
-        String Fri_perid = request.getParameter("Fri_perid");
-        if (Fri_perid == "") {
-            Fri_perid = "null"; // 或者任何默认值
-        }else{
-            try {
-                // 定义原始数据
-                //String plaintext = "Hello, World!";
-                byte[] input = Fri_perid.getBytes();
+        String Fri_number = request.getParameter("Fri_number");
+        ArrayList<Person> friends=new ArrayList<>();
+        if(Fri_number.equals("0")){
+//            Person friend= new Person();
+//            friend.setName("null");
+//            friend.setPerid("null");
+//            friend.setPhoneNumber("null");
+//            friends.add(friend);
+        }else
+        {
+            String[] Fri_names = request.getParameterValues("Fri_name");
+            String[] Fri_perid = request.getParameterValues("Fri_perid");
+            String[] Fri_phoneNumber = request.getParameterValues("Fri_phoneNumber");
+            for(int i = 0;i<Fri_names.length;i++){
+                Person friend =new Person();
+                friend.setName(Fri_names[i]);
+                try {
+                    // 定义原始数据
+                    //String plaintext = "Hello, World!";
+                    byte[] input = Fri_perid[i].getBytes();
 
-                // 生成密钥
-                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
-                byte[] keyData = Hex.decode(keyHex);
-                SecretKey key = new SecretKeySpec(keyData, "SM4");
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
 
-                // 定义初始向量（IV）
-                String ivHex = "00000000000000000000000000000000";
-                byte[] ivData = Hex.decode(ivHex);
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
 
-                // 加密
-                SM4 sm4 = new SM4();
-                byte[] encrypted = sm4.encrypt(input, key, ivData);
-                Fri_perid = Hex.toHexString(encrypted);
-            }catch (Exception e) {
-                System.err.println("Error: " + e.getMessage());
+                    // 加密
+                    SM4 sm4 = new SM4();
+                    byte[] encrypted = sm4.encrypt(input, key, ivData);
+                    Fri_perid[i] = Hex.toHexString(encrypted);
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                friend.setPerid(Fri_perid[i]);
+
+                try {
+                    // 定义原始数据
+                    //String plaintext = "Hello, World!";
+                    byte[] input = Fri_phoneNumber[i].getBytes();
+
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    // 加密
+                    SM4 sm4 = new SM4();
+                    byte[] encrypted = sm4.encrypt(input, key, ivData);
+                    Fri_phoneNumber[i] = Hex.toHexString(encrypted);
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                friend.setPhoneNumber(Fri_phoneNumber[i]);
+                friends.add(friend);
             }
         }
-        String Fri_phoneNumber = request.getParameter("Fri_phoneNumber");
-        if (Fri_phoneNumber == "") {
-            Fri_phoneNumber = "null"; // 或者任何默认值
-        }else{
-            try {
-                // 定义原始数据
-                //String plaintext = "Hello, World!";
-                byte[] input = Fri_phoneNumber.getBytes();
 
-                // 生成密钥
-                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
-                byte[] keyData = Hex.decode(keyHex);
-                SecretKey key = new SecretKeySpec(keyData, "SM4");
-
-                // 定义初始向量（IV）
-                String ivHex = "00000000000000000000000000000000";
-                byte[] ivData = Hex.decode(ivHex);
-
-                // 加密
-                SM4 sm4 = new SM4();
-                byte[] encrypted = sm4.encrypt(input, key, ivData);
-                Fri_phoneNumber = Hex.toHexString(encrypted);
-            }catch (Exception e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-        }
         String visitunit = request.getParameter("visitunit");
         String receptionist = request.getParameter("receptionist");
         String reason = request.getParameter("reason");
@@ -161,12 +171,9 @@ public class RezvpubServlet extends HttpServlet {
        // String data = name+'|'+perid+'|'+phoneNumber+'|'+serid+'|'+applytime+'|'+campus+'|'+intime+'|'+outtime+'|'+unit+'|'+vehicle+'|'+vname+'|'+Fri_name+'|'+Fri_perid+'|'+Fri_phoneNumber;
         String filepath = "X:\\code\\java\\demo1\\webproject\\QRCode\\"+serid+".png";
 
-        Person friend = new Person();
-        friend.setName(Fri_name);
-        friend.setPerid(Fri_perid);
-        friend.setPhoneNumber(Fri_phoneNumber);
 
-        Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,friend,visitunit,receptionist,reason,status,filepath);
+
+        Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,visitunit,receptionist,reason,status,filepath);
         RezvtionpublicDao rezvtionpublicDao = new RezvtionpublicDao();
         try{
             rezvtionpublicDao.addRezvtion(reservationpub);

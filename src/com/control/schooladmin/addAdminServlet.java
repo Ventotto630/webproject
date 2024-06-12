@@ -45,6 +45,6 @@ public class addAdminServlet extends HttpServlet {
             message="×¢²áÊ§°Ü";
         }
         request.getSession().setAttribute("message", message);
-        response.sendRedirect("Manage/school/home.jsp");
+        response.sendRedirect("Manage/school/admin_depart/addAdmin.jsp");
     }
 }

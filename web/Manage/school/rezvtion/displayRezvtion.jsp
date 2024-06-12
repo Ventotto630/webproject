@@ -1,5 +1,6 @@
 <%@ page import="com.model.Reservation" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.model.Person" %><%--
   Created by IntelliJ IDEA.
   User: 23994
   Date: 2024/6/9
@@ -10,19 +11,24 @@
 <html>
 <head>
     <title>社会预约记录查询结果</title>
+    <link rel="stylesheet" href="../../my.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Rezvtion/styles3.css">
+    <link rel="stylesheet" href="../../../Rezvtion/styles3.css">
+    <style>
+        body{
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
-<div class="title"><div class="dot"></div>查询结果</div>
+<div class="title" style="margin-bottom:20px;"><div class="dot"></div>查询结果</div>
 <div class="container">
     <div class="booking-list" id="bookingList">
 
         <% ArrayList<Reservation> rezvlist= (ArrayList<Reservation>) session.getAttribute("rezvlist");
             for(Reservation rezvtion:rezvlist){
         %>
-
         <div class="booking-item">
             <div class="avatar"></div>
             <div class="details">
@@ -44,8 +50,22 @@
             <p>离开时间: <%=rezvtion.getOuttime()%></p>
             <p>单位: <%=rezvtion.getUnit()%></p>
             <p>交通工具: <%=rezvtion.getVehicle()%></p>
+            <% String vname =rezvtion.getVname();
+                if(!vname.equals("null")){ %>
             <p>车牌号: <%=rezvtion.getVname()%></p>
-            <p>同行人员: <%=rezvtion.getFriend().getName()%></p>
+            <%  }%>
+
+            <% String Fri_number = rezvtion.getFri_number();
+                if(!Fri_number.equals("0")){  %>
+            <p>同行人员：</p>
+            <% ArrayList<Person> friends = rezvtion.getFriend();
+                for(Person friend:friends){ %>
+            <p>          姓名：<%=friend.getName()%></p>
+            <p>          身份证号：<%=friend.getPerid()%></p>
+            <p>          手机号：<%=friend.getPhoneNumber()%></p>
+            <% } %>
+            <% } %>
+
         </div>
 
         <% } %>
@@ -53,6 +73,6 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../Rezvtion/scripts3.js"></script>
+<script src="../../../Rezvtion/scripts3.js"></script>
 </body>
 </html>

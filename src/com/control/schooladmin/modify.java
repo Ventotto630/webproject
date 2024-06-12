@@ -26,12 +26,13 @@ public class modify extends HttpServlet {
         try{
             depart=dao.findById(request.getParameter("id"));
         }catch(Exception e){
-            message="出现异常";
+            message="查询失败";
+            request.getSession().setAttribute("depart",depart);
+            request.getSession().setAttribute("message",message);
+            response.sendRedirect("Manage/school/home.jsp#depart_modify");
         }
-        request.getSession().setAttribute("name",depart.getName());
-        request.getSession().setAttribute("id",depart.getId());
-        request.getSession().setAttribute("type",depart.getType());
+        request.getSession().setAttribute("depart",depart);
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/depart/modifyDepart.jsp");
+        response.sendRedirect("Manage/school/depart/modify.jsp");
     }
 }

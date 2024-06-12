@@ -14,7 +14,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/countRezvPubServlet")
+@WebServlet("/count-RezvPub")
 public class countRezvPubServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,20 +94,18 @@ public class countRezvPubServlet extends HttpServlet {
         String unit = request.getParameter("unit");
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
-        String Fri_name = "null";
-        String Fri_perid = "null";
-        String Fri_phoneNumber = "null";
+        String Fri_number = "0";
+        ArrayList<Person> friends = new ArrayList<>();
+//随行人员不参与查询
+
         String visitunit = request.getParameter("visitunit");
         String receptionist = request.getParameter("receptionist");
         String reason = request.getParameter("reason");
         String status = request.getParameter("status");
 
-        Person friend = new Person();
-        friend.setName(Fri_name);
-        friend.setPerid(Fri_perid);
-        friend.setPhoneNumber(Fri_phoneNumber);
 
-        Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,friend,visitunit,receptionist,reason,status,"null");
+
+        Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,visitunit,receptionist,reason,status,"null");
 
         try{
             RezvtionpublicDao dao = new RezvtionpublicDao();

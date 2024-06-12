@@ -9,10 +9,11 @@
 <html>
 <head>
     <title>添加部门</title>
+    <link rel="stylesheet" href="../../my.css">
 </head>
 <body>
 <div class="title"><div class="dot"></div>添加部门</div>
-<form action="../../add_depart.do" method="post" style="margin-top:40px;">
+<form action="../../../add_depart.do" method="post" style="margin-top:40px;">
     <div class="input_box">
         <span class="input_title">部门编号：<span style="color:red">*</span></span>
         <input class="input" type="text" name="id" placeholder="请输入部门编号" required><br>
@@ -31,5 +32,13 @@
     </div>
     <button class="button">确定</button>
 </form>
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>

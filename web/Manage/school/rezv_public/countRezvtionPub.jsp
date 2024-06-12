@@ -9,20 +9,27 @@
 <!DOCTYPE html>
 <head>
     <title>公务来访预约统计</title>
-    <style>
-        .s{
-            height:30px;
-            width:15%
-        }
-        .b{
-            width:15%
-        }
-    </style>
+    <link rel="stylesheet" href="../../my.css">
 </head>
-
+<style>
+    .s{
+        height:30px;
+        width:15%
+    }
+    .b{
+        width:15%;
+        padding:0
+    }
+</style>
 <body>
-<div class="title"><div class="dot"></div>统计公务预约记录</div>
-<form action="../count-RezvPub" method="post" style="margin:10px;line-height:48px;">
+<div class="title"><div class="dot"></div>公务预约记录统计</div>
+<form action="../../../count-RezvPub" method="post" style="margin:10px;line-height:48px;">
+    <span class="input_title" style="margin-left:10px;">　　　预约号</span>
+    <input class="input2 b" type="text" name="serid" value="null">
+
+    <span class="input_title" style="margin-left:20px;">申请日期</span>
+    <input class="input2 b" type="datetime-local" name="applytime" value="null">
+
     <span class="input_title" style="margin-left:20px;">预约校区</span>
     <select name="campus" class="select s">
         <option value="null"> </option>
@@ -40,6 +47,22 @@
     <span class="input_title" style="margin-left:20px;">所在单位</span>
     <input class="input2 b" type="text" name="unit" value="null">
 
+    <span class="input_title" style="margin-left:20px;">公务访问部门</span>
+    <select name="visitunit"  class="select s" >
+        <option value="null"> </option>
+        <option value="education"> 教务处</option>
+        <option value="security"> 保卫处</option>
+        <option value="finance"> 计财处</option>
+        <option value="committee"> 团委</option>
+    </select>
+    <span class="input_title" style="margin-left:20px;">公务访问接待人</span>
+    <input class="input2 b" type="text" name="receptionist"  value="null">
+    <br>
+    <span class="input_title" style="margin-left:20px;">来访事由</span>
+    <input class="input2 b" type="text" name="reason"  value="null">
+
+    <span class="input_title" style="margin-left:20px;">审核状态</span>
+    <input class="input2 b" type="text" name="status" value="null">
     <span class="input_title" style="margin-left:20px;">　　姓名</span>
     <input class="input2 b" type="text" name="name" value="null">
 
@@ -62,8 +85,13 @@
     　<input class="button2" type="submit" value="提交"/>
     <input class="button2" type="reset" value="重置"/>
 </form>
-<% String cishu = String.valueOf( (int) session.getAttribute("cishu")); %>
-<% String people = String.valueOf( (int)session.getAttribute("people")); %>
-<jsp:include page="displaycountRezvtionPub.jsp" flush="true" />
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>

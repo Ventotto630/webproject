@@ -1,6 +1,7 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Reservation_public extends Person implements Serializable {
     //记住还有父类的成员变量作为预约人信息！name perid phoneNumber
@@ -14,7 +15,8 @@ public class Reservation_public extends Person implements Serializable {
 
     private String vehicle;//交通方式
     private String vname;//车牌号
-    private Person friend;//同行者
+    private String Fri_number;//陪行人员人数
+    private ArrayList<Person> friend;//同行者
     //同行者的信息 Fri_name Fri_perid Fri_phoneNumber
     private String visitunit;//公务访问部门
     private String receptionist;//公务访问接待人
@@ -46,7 +48,7 @@ public class Reservation_public extends Person implements Serializable {
         this.serid = serid;
     }
 
-    public Reservation_public(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, Person friend, String visitunit, String receptionist, String reason, String status, String qrcode) {
+    public Reservation_public(String name, String perid, String phoneNumber, String serid, String applytime, String campus, String intime, String outtime, String unit, String vehicle, String vname, String fri_number, ArrayList<Person> friend, String visitunit, String receptionist, String reason, String status, String qrcode) {
         super(name, perid, phoneNumber);
         this.serid = serid;
         this.applytime = applytime;
@@ -56,6 +58,7 @@ public class Reservation_public extends Person implements Serializable {
         this.unit = unit;
         this.vehicle = vehicle;
         this.vname = vname;
+        Fri_number = fri_number;
         this.friend = friend;
         this.visitunit = visitunit;
         this.receptionist = receptionist;
@@ -120,11 +123,19 @@ public class Reservation_public extends Person implements Serializable {
         this.vname = vname;
     }
 
-    public Person getFriend() {
+    public String getFri_number() {
+        return Fri_number;
+    }
+
+    public void setFri_number(String fri_number) {
+        Fri_number = fri_number;
+    }
+
+    public ArrayList<Person> getFriend() {
         return friend;
     }
 
-    public void setFriend(Person friend) {
+    public void setFriend(ArrayList<Person> friend) {
         this.friend = friend;
     }
 

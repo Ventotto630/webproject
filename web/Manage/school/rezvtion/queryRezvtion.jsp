@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>查询社会公众预约</title>
+    <link rel="stylesheet" href="../../my.css">
 </head>
 <style>
     .s{
@@ -22,8 +23,8 @@
 </style>
 <body>
 <div class="title"><div class="dot"></div>查询预约记录</div>
-<p><a class="button2 a" href="../../query-rezv.do" style="margin-top:15px">查询所有预约</a> </p>
-<form action="../../query-rezv.do" method="post" style="margin:10px;line-height:48px;">
+<p><a class="button2 a" href="../../../query-rezv.do" style="margin-top:15px;margin-left:110px;">查询所有预约</a> </p>
+<form action="../../../query-rezv.do" method="post" style="margin:10px;line-height:48px;">
     <span class="input_title" style="margin-left:10px;">　　　预约号</span>
     <input class="input2 b" type="text" name="serid" value="null">
 
@@ -69,11 +70,5 @@
     　<input class="button2" type="submit" value="提交"/>
     <input class="button2" type="reset" value="重置"/>
 </form>
-
-<% ArrayList<Reservation> rezvlist=
-        (ArrayList<Reservation>)session.getAttribute("rezvlist");
-    if(!rezvlist.isEmpty()){%>
-<jsp:include page="displayRezvtion.jsp" flush="true" />
-<%}%>
 </body>
 </html>

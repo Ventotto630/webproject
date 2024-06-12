@@ -5,34 +5,34 @@
   Time: 12:10
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=GBK" language="java" %>
 <html>
 <head>
     <meta charset="GBK">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>æŸ¥è¯¢é¡µé¢</title>
+    <title>²éÑ¯Ò³Ãæ</title>
     <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-<form action="../myRezvPubServlet" method="post">
+<form action="../myRezvtionPub" method="post">
     <div class="container">
         <header class="header">
-            <h1>æŸ¥è¯¢é¡µé¢</h1>
+            <h1>²éÑ¯Ò³Ãæ</h1>
         </header>
         <div class="form-container">
             <div class="input-group">
-                <label for="name">å§“åï¼š</label>
-                <input type="text" id="name" name="name" placeholder="è¯·è¾“å…¥å§“å">
+                <label for="name">ÐÕÃû£º</label>
+                <input type="text" id="name" name="name" placeholder="ÇëÊäÈëÐÕÃû">
             </div>
             <div class="input-group">
-                <label for="id-card">èº«ä»½è¯ï¼š</label>
-                <input type="text" id="id-card" name="perid" placeholder="è¯·è¾“å…¥èº«ä»½è¯å·ç ">
+                <label for="id-card">Éí·ÝÖ¤£º</label>
+                <input type="text" id="id-card" name="perid" placeholder="ÇëÊäÈëÉí·ÝÖ¤ºÅÂë">
             </div>
             <div class="input-group">
-                <label for="phone">ç”µè¯å·ç ï¼š</label>
-                <input type="text" id="phone" name="phoneNumber" placeholder="è¯·è¾“å…¥ç”µè¯å·ç ">
+                <label for="phone">µç»°ºÅÂë£º</label>
+                <input type="text" id="phone" name="phoneNumber" placeholder="ÇëÊäÈëµç»°ºÅÂë">
             </div>
-            <input class="btn" type="submit" value="æŸ¥è¯¢">
+            <input class="btn" type="submit" value="²éÑ¯">
 
             <p>${message}</p>
         </div>

@@ -1,6 +1,7 @@
 package com.control;
 
 import com.dao.RezvtionpublicDao;
+import com.model.Person;
 import com.model.Reservation_public;
 import com.utils.RezvQRCode;
 import com.utils.SM4;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @WebServlet("/Qrcodepub_check")
 public class Qrcodepub_check extends HttpServlet {
@@ -102,73 +104,80 @@ public class Qrcodepub_check extends HttpServlet {
         String unit = reservation_public.getUnit();
         String vehicle = reservation_public.getVehicle();
         String vname = reservation_public.getVname();
-        String Fri_name = reservation_public.getFriend().getName();
-        String Fri_perid = reservation_public.getFriend().getPerid();
-        if(!Fri_perid.equals("null")){
-            StringBuffer fri_perid_gai=new StringBuffer();
-            try{
-                // 生成密钥
-                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
-                byte[] keyData = Hex.decode(keyHex);
-                SecretKey key = new SecretKeySpec(keyData, "SM4");
-
-                // 定义初始向量（IV）
-                String ivHex = "00000000000000000000000000000000";
-                byte[] ivData = Hex.decode(ivHex);
-
-                byte[] encryptedFromHex = Hex.decode(Fri_perid);
-                SM4 sm4 = new SM4();
-// 解密
-                byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
-                Fri_perid = new String(decrypted);
-                fri_perid_gai.append(Fri_perid.substring(0,6));
-                fri_perid_gai.append("********");
-                fri_perid_gai.append(Fri_perid.substring(14,18));
-                Fri_perid=fri_perid_gai.toString();
-            }catch (Exception e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-        }
-
-        String Fri_phoneNumber = reservation_public.getFriend().getPhoneNumber();
-        if(!Fri_phoneNumber.equals("null")){
-            StringBuffer fri_phone_gai=new StringBuffer();
-            try{
-                // 生成密钥
-                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
-                byte[] keyData = Hex.decode(keyHex);
-                SecretKey key = new SecretKeySpec(keyData, "SM4");
-
-                // 定义初始向量（IV）
-                String ivHex = "00000000000000000000000000000000";
-                byte[] ivData = Hex.decode(ivHex);
-
-                byte[] encryptedFromHex = Hex.decode(Fri_phoneNumber);
-                SM4 sm4 = new SM4();
-// 解密
-                byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
-                Fri_phoneNumber = new String(decrypted);
-                fri_phone_gai.append(Fri_phoneNumber.substring(0,3));
-                fri_phone_gai.append("****");
-                fri_phone_gai.append(Fri_phoneNumber.substring(7,11));
-                Fri_phoneNumber=fri_phone_gai.toString();
-            }catch (Exception e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-        }
-
+        String Fri_number = reservation_public.getFri_number();
         String path = reservation_public.getQrcode();
         String visitunit = reservation_public.getVisitunit();
         String receptionist = reservation_public.getReceptionist();
         String reason = reservation_public.getReason();
         String status = reservation_public.getStatus();
+        String data = name+'|'+perid+'|'+phoneNumber+'|'+serid+'|'+applytime+'|'+campus+'|'+intime+'|'+outtime+'|'+unit+'|'+vehicle+'|'+vname+'|'+Fri_number+'|'+visitunit+'|'+receptionist+'|'+reason+'|'+status;
+
+
+        if(!Fri_number.equals("0")){
+            ArrayList<Person> friends =reservation_public.getFriend();
+            for(Person friend:friends){
+                String Fri_name = friend.getName();
+
+                String Fri_perid = friend.getPerid();
+                StringBuffer fri_perid_gai=new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(Fri_perid);
+                    SM4 sm4 = new SM4();
+// 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    Fri_perid = new String(decrypted);
+                    fri_perid_gai.append(Fri_perid.substring(0,6));
+                    fri_perid_gai.append("********");
+                    fri_perid_gai.append(Fri_perid.substring(14,18));
+                    Fri_perid=fri_perid_gai.toString();
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+
+                String Fri_phoneNumber = friend.getPhoneNumber();
+                StringBuffer fri_phone_gai=new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(Fri_phoneNumber);
+                    SM4 sm4 = new SM4();
+// 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    Fri_phoneNumber = new String(decrypted);
+                    fri_phone_gai.append(Fri_phoneNumber.substring(0,3));
+                    fri_phone_gai.append("****");
+                    fri_phone_gai.append(Fri_phoneNumber.substring(7,11));
+                    Fri_phoneNumber=fri_phone_gai.toString();
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                data+="|"+Fri_name+"|"+Fri_perid+"|"+Fri_phoneNumber;
+            }
+        }
+
+
 
         LocalDateTime time1= LocalDateTime.now();
         LocalDateTime time2= LocalDateTime.parse(intime);
         LocalDateTime time3= LocalDateTime.parse(outtime);
 
 
-        String data = name+'|'+perid+'|'+phoneNumber+'|'+serid+'|'+applytime+'|'+campus+'|'+intime+'|'+outtime+'|'+unit+'|'+vehicle+'|'+vname+'|'+Fri_name+'|'+Fri_perid+'|'+Fri_phoneNumber+'|'+visitunit+'|'+receptionist+'|'+reason+'|'+status;
         RezvQRCode qrCode = new RezvQRCode();
         String filepath_xd;
 

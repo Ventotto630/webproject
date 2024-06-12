@@ -1,6 +1,7 @@
 <%@ page import="com.model.Reservation_public" %>
 <%@ page import="com.model.Customer" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.model.Person" %><%--
   Created by IntelliJ IDEA.
   User: Ventotto
   Date: 2024/6/4
@@ -11,12 +12,18 @@
 <html>
 <head>
     <title>审核</title>
+    <link rel="stylesheet" href="../../my.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Rezvtion/styles3.css">
+    <link rel="stylesheet" href="../../../Rezvtion/styles3.css">
+    <style>
+        body{
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
-<div class="title"><div class="dot"></div>审核预约信息</div>
+<div class="title" style="margin-bottom:20px;"><div class="dot"></div>审核预约信息</div>
 <div class="container">
     <div class="booking-list" id="bookingList">
     <% ArrayList<Reservation_public> rezvlist= (ArrayList<Reservation_public>) session.getAttribute("rezvlist");
@@ -42,9 +49,26 @@
             <p>进入时间: <%=rezvtion.getIntime()%></p>
             <p>离开时间: <%=rezvtion.getOuttime()%></p>
             <p>单位: <%=rezvtion.getUnit()%></p>
+            <p>访问原因: <%=rezvtion.getReason()%></p>
+            <p>接待人员: <%=rezvtion.getReceptionist()%></p>
+            <p>访问部门: <%=rezvtion.getVisitunit()%></p>
             <p>交通工具: <%=rezvtion.getVehicle()%></p>
+
+            <% String vname =rezvtion.getVname();
+                if(!vname.equals("null")){ %>
             <p>车牌号: <%=rezvtion.getVname()%></p>
-            <p>同行人员: <%=rezvtion.getFriend().getName()%></p>
+            <%  }%>
+
+            <% String Fri_number = rezvtion.getFri_number();
+                if(!Fri_number.equals("0")){  %>
+            <p>同行人员：</p>
+            <% ArrayList<Person> friends = rezvtion.getFriend();
+                for(Person friend:friends){ %>
+            <p>          姓名：<%=friend.getName()%></p>
+            <p>          身份证号：<%=friend.getPerid()%></p>
+            <p>          手机号：<%=friend.getPhoneNumber()%></p>
+            <% } %>
+            <% } %>
             <a href="checkRezvpub.jsp?status=<%=rezvtion.getStatus()%>&serid=<%=rezvtion.getSerid()%>">审核预约信息</a></td>
 
         </div>
@@ -53,6 +77,6 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="scripts3.js"></script>
+<script src="../../../Rezvtion/scripts3.js"></script>
 </body>
 </html>

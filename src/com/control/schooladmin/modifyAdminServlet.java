@@ -44,6 +44,6 @@ public class modifyAdminServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/home.jsp");
+        response.sendRedirect("Manage/school/home.jsp#admin_modify");
     }
 }

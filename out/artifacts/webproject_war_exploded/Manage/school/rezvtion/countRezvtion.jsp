@@ -9,19 +9,24 @@
 <!DOCTYPE html>
 <head>
     <title>社会公众进校预约统计</title>
-    <style>
-        .s{
-            height:30px;
-            width:15%
-        }
-        .b{
-            width:15%
-        }
-    </style>
+    <link rel="stylesheet" href="../../my.css">
 </head>
+<style>
+    .s{
+        height:30px;
+        width:15%
+    }
+    .b{
+        width:15%;
+        padding:0
+    }
+</style>
 <body>
-<div class="title"><div class="dot"></div>统计社会预约记录</div>
-<form action="../../count-Rezv" method="post"  style="margin:10px;line-height:48px;">
+<div class="title"><div class="dot"></div>预约记录统计</div>
+<form action="../../../count-Rezv.do" method="post" style="margin:10px;line-height:48px;">
+    <span class="input_title" style="margin-left:10px;">　　　预约号</span>
+    <input class="input2 b" type="text" name="serid" value="null">
+
     <span class="input_title" style="margin-left:20px;">申请日期</span>
     <input class="input2 b" type="datetime-local" name="applytime" value="null">
 
@@ -64,8 +69,13 @@
     　<input class="button2" type="submit" value="提交"/>
     <input class="button2" type="reset" value="重置"/>
 </form>
-<% String cishu = String.valueOf( (int) session.getAttribute("cishu")); %>
-<% String people = String.valueOf( (int)session.getAttribute("people")); %>
-<jsp:include page="displaycountRezvtion.jsp" flush="true" />
+<script>
+    window.onload = function() {
+        var message = "${message}"; // 使用EL获取Servlet中设置的提示信息
+        if (message) {
+            alert(message); // 弹出提示框
+        }
+    };
+</script>
 </body>
 </html>
