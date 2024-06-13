@@ -158,12 +158,12 @@
         <td class="grey1">公务访问部门</td>
         <td>
           <select name="visitunit">
-            <option value="education">教务处</option>
-            <option value="security">保卫处</option>
-            <option value="finance">计财处</option>
-            <option value="committee">团委</option>
-            <option value="committee">容大后勤</option>
-            <option value="committee">招生办</option>
+            <option value="教务处">教务处</option>
+            <option value="保卫处">保卫处</option>
+            <option value="计财处">计财处</option>
+            <option value="团委">团委</option>
+            <option value="容大后勤">容大后勤</option>
+            <option value="招生办">招生办</option>
           </select>
         </td>
       </tr>
