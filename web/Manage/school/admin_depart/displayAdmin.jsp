@@ -67,3 +67,4 @@
 </body>
 </html>
 <%session.removeAttribute("message");%>
+<%session.removeAttribute("adminList");%>

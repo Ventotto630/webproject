@@ -25,14 +25,10 @@ public class modifyAdminServlet extends HttpServlet {
         Administrators admin=new Administrators();
         adminDao dao=new adminDao();
         String message=null;
-        String password=request.getParameter("password");
-        byte[] sm3 = CryptoSM3.hash(password.getBytes());
-        String sm= CryptoSM3.bytesToHexString(sm3);
         try {
             admin =dao.findById(request.getParameter("adminid"));
             admin.setName(request.getParameter("name"));
             admin.setUsername(request.getParameter("username"));
-            admin.setPassword(sm);
             admin.setDepartmentID(request.getParameter("departmentid"));
             admin.setPhone(request.getParameter("phone"));
             admin.setRole(request.getParameter("role"));

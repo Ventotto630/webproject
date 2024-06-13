@@ -47,11 +47,6 @@
                                    value=${admin.getUsername()}>
     </div>
     <div class="input_box">
-        <span class="input_title">密码：</span>
-        <input class="input" type="password" name="password" id="password"
-                                      value=${admin.getPassword()}>
-    </div>
-    <div class="input_box">
         <span class="input_title">部门编号：</span>
         <input class="input" type="text" name="departmentid"
                                    value=${admin.getDepartmentID()}>
@@ -66,3 +61,4 @@
 </form>
 </body>
 </html>
+<%session.removeAttribute("admin");%>

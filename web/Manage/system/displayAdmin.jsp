@@ -70,3 +70,4 @@
 </script>
 </body>
 </html>
+<%session.removeAttribute("adminList");%>

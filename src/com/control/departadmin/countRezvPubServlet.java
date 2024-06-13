@@ -1,6 +1,9 @@
-package com.control;
+package com.control.departadmin;
 
+import com.dao.DepartDao;
 import com.dao.RezvtionpublicDao;
+import com.model.Administrators;
+import com.model.Department;
 import com.model.Person;
 import com.model.Reservation_public;
 import com.utils.SM4;
@@ -8,13 +11,16 @@ import org.bouncycastle.util.encoders.Hex;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/count-RezvPub.do")
+@WebServlet("/count-DRezvPub.do")
 public class countRezvPubServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +34,16 @@ public class countRezvPubServlet extends HttpServlet {
         String name = request.getParameter("name");
         String perid = request.getParameter("perid");
         String message;
+        HttpSession session=request.getSession();
+        Administrators myadmin=(Administrators) session.getAttribute("myadmin");
+        //由于管理员只有id字段
+        String visitunit=null;
+        try { DepartDao dapartdao=new DepartDao();
+            Department depart= dapartdao.findById(myadmin.getDepartmentID());
+            visitunit= depart.getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if(!perid.equals("null")){
             try {
                 // 定义原始数据
@@ -99,7 +115,6 @@ public class countRezvPubServlet extends HttpServlet {
         ArrayList<Person> friends = new ArrayList<>();
 //随行人员不参与查询
 
-        String visitunit = request.getParameter("visitunit");
         String receptionist = request.getParameter("receptionist");
         String reason = request.getParameter("reason");
         String status = request.getParameter("status");

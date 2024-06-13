@@ -24,14 +24,10 @@ public class modifyAdminServlet extends HttpServlet {
         Administrators admin=new Administrators();
         adminDao dao=new adminDao();
         String message=null;
-        String password=request.getParameter("password");
-        byte[] sm3 = CryptoSM3.hash(password.getBytes());
-        String sm= CryptoSM3.bytesToHexString(sm3);
         try {
             admin =dao.findById(request.getParameter("adminid"));
             admin.setName(request.getParameter("name"));
             admin.setUsername(request.getParameter("username"));
-            admin.setPassword(sm);
             admin.setDepartmentID(request.getParameter("departmentid"));
             admin.setPhone(request.getParameter("phone"));
             boolean success=dao.modifyAdmin(admin);
@@ -44,6 +40,6 @@ public class modifyAdminServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.getSession().setAttribute("message",message);
-        response.sendRedirect("Manage/school/admin_depart/modify.jsp");
+        response.sendRedirect("Manage/school/admin_depart/addAdmin.jsp");
     }
 }

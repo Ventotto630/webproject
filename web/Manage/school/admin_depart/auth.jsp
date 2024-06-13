@@ -40,3 +40,4 @@ document.getElementById('contentFrame').innerHTML = '<iframe src="' authAdmin.js
 </body>
 </html>
 <%session.removeAttribute("message");%>
+<%session.removeAttribute("adminList");%>

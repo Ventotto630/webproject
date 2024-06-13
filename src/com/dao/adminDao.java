@@ -3,11 +3,16 @@ package com.dao;
 import com.model.Administrators;
 import com.model.Department;
 import com.model.Reservation_public;
+import com.utils.SM4;
+import org.bouncycastle.util.encoders.Hex;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class adminDao implements Basedao{
@@ -31,6 +36,7 @@ public class adminDao implements Basedao{
                     admin.setRole(rst.getString("role"));
                     admin.setSocial(rst.getString("social"));
                     admin.setPub(rst.getString("pub"));
+                    admin.setPtime(rst.getString("ptime"));
                 }
             }
         }catch(SQLException se){
@@ -40,7 +46,7 @@ public class adminDao implements Basedao{
     }
     //添加管理员
     public boolean addAdmin(Administrators admin) throws DaoException{
-        String sql ="insert into administrators values(?,?,?,?,?,?,?,?,?)";
+        String sql ="insert into administrators values(?,?,?,?,?,?,?,?,?,?)";
         try(Connection dbconn = getConnection();
             PreparedStatement pstmt = dbconn.prepareStatement(sql)){
             pstmt.setString(1,admin.getAdminID());
@@ -48,10 +54,34 @@ public class adminDao implements Basedao{
             pstmt.setString(3,admin.getUsername());
             pstmt.setString(4,admin.getPassword());
             pstmt.setString(5,admin.getDepartmentID());
-            pstmt.setString(6,admin.getPhone());
+            //对电话进行加密
+            String phone = admin.getPhone();
+            try {
+                // 定义原始数据
+                byte[] input = phone.getBytes();
+
+                // 生成密钥
+                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                byte[] keyData = Hex.decode(keyHex);
+                SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                // 定义初始向量（IV）
+                String ivHex = "00000000000000000000000000000000";
+                byte[] ivData = Hex.decode(ivHex);
+
+                // 加密
+                SM4 sm4 = new SM4();
+                byte[] encrypted = sm4.encrypt(input, key, ivData);
+                phone = Hex.toHexString(encrypted);
+            }catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+
+            pstmt.setString(6,phone);
             pstmt.setString(7,admin.getRole());
             pstmt.setString(8,admin.getSocial());
             pstmt.setString(9,admin.getPub());
+            pstmt.setString(10,admin.getPtime());
             pstmt.executeUpdate();
             return true;
         }catch (SQLException ne){
@@ -76,7 +106,7 @@ public class adminDao implements Basedao{
     }
     //根据名字查找管理员（所有的）
     public ArrayList<Administrators> findByFuzzyName(String name)throws Exception{
-        String sql="SELECT * FROM administrators WHERE name LIKE ?";
+        String sql="SELECT * FROM administrators WHERE name LIKE ? ORDER BY adminid";
         ArrayList<Administrators>adminList=new ArrayList<Administrators>();
         try(
                 Connection conn=getConnection();
@@ -91,10 +121,37 @@ public class adminDao implements Basedao{
                     admin.setUsername(rst.getString("username"));
                     admin.setPassword(rst.getString("password"));
                     admin.setDepartmentID(rst.getString("departmentid"));
-                    admin.setPhone(rst.getString("phone"));
+
+                    //对电话号码进行sm4解密
+                    String phonenumber=rst.getString("phone");
+                    StringBuffer phonenumber_gai=new StringBuffer();
+                    try{
+                        // 生成密钥
+                        String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                        byte[] keyData = Hex.decode(keyHex);
+                        SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                        // 定义初始向量（IV）
+                        String ivHex = "00000000000000000000000000000000";
+                        byte[] ivData = Hex.decode(ivHex);
+
+                        byte[] encryptedFromHex = Hex.decode(phonenumber);
+                        SM4 sm4 = new SM4();
+                        // 解密
+                        byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                        phonenumber = new String(decrypted);
+                        phonenumber_gai.append(phonenumber.substring(0,3));
+                        phonenumber_gai.append("****");
+                        phonenumber_gai.append(phonenumber.substring(7,11));
+                    }catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    admin.setPhone(phonenumber_gai.toString());
+
                     admin.setRole(rst.getString("role"));
                     admin.setSocial(rst.getString("social"));
                     admin.setPub(rst.getString("pub"));
+                    admin.setPtime(rst.getString("ptime"));
                     adminList.add(admin);
                 }
             }
@@ -106,7 +163,7 @@ public class adminDao implements Basedao{
     //查找所有管理员
     public ArrayList<Administrators>findAllAdmin()throws Exception{
         ArrayList<Administrators>adminList= new ArrayList<>();
-        String sql="SELECT * FROM administrators";
+        String sql="SELECT * FROM administrators ORDER BY adminid";
         try(
                 Connection conn=getConnection();
                 PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -119,10 +176,37 @@ public class adminDao implements Basedao{
                 admin.setUsername(rst.getString("username"));
                 admin.setPassword(rst.getString("password"));
                 admin.setDepartmentID(rst.getString("departmentid"));
-                admin.setPhone(rst.getString("phone"));
+
+                //对电话号码进行sm4解密
+                String phonenumber=rst.getString("phone");
+                StringBuffer phonenumber_gai=new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(phonenumber);
+                    SM4 sm4 = new SM4();
+                    // 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    phonenumber = new String(decrypted);
+                    phonenumber_gai.append(phonenumber.substring(0,3));
+                    phonenumber_gai.append("****");
+                    phonenumber_gai.append(phonenumber.substring(7,11));
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                admin.setPhone(phonenumber_gai.toString());
+
                 admin.setRole(rst.getString("role"));
                 admin.setSocial(rst.getString("social"));
                 admin.setPub(rst.getString("pub"));
+                admin.setPtime(rst.getString("ptime"));
                 adminList.add(admin);
             }
             return adminList;
@@ -146,7 +230,31 @@ public class adminDao implements Basedao{
                     admin.setUsername(rst.getString("username"));
                     admin.setPassword(rst.getString("password"));
                     admin.setDepartmentID(rst.getString("departmentID"));
-                    admin.setPhone(rst.getString("phone"));
+
+                    //对电话号码进行sm4解密
+                    String phonenumber=rst.getString("phone");
+                    StringBuffer phonenumber_gai=new StringBuffer();
+                    try{
+                        // 生成密钥
+                        String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                        byte[] keyData = Hex.decode(keyHex);
+                        SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                        // 定义初始向量（IV）
+                        String ivHex = "00000000000000000000000000000000";
+                        byte[] ivData = Hex.decode(ivHex);
+
+                        byte[] encryptedFromHex = Hex.decode(phonenumber);
+                        SM4 sm4 = new SM4();
+                        // 解密
+                        byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                        phonenumber = new String(decrypted);
+                        phonenumber_gai.append(phonenumber.substring(0,11));
+                    }catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    admin.setPhone(phonenumber_gai.toString());
+
                     admin.setRole(rst.getString("role"));
                     admin.setSocial(rst.getString("social"));
                     admin.setPub(rst.getString("pub"));
@@ -160,7 +268,7 @@ public class adminDao implements Basedao{
     //修改管理员
     public boolean modifyAdmin(Administrators admin){
         String sql="UPDATE administrators SET name=?," +
-                "username=?,password=?," +
+                "username=?," +
                 "departmentid=?,phone=?,role=?" +
                 "WHERE adminid=?;";
         try(
@@ -169,11 +277,49 @@ public class adminDao implements Basedao{
         ){
             pstmt.setString(1,admin.getName());
             pstmt.setString(2,admin.getUsername());
-            pstmt.setString(3,admin.getPassword());
-            pstmt.setString(4,admin.getDepartmentID());
-            pstmt.setString(5,admin.getPhone());
-            pstmt.setString(6,admin.getRole());
-            pstmt.setString(7,admin.getAdminID());
+            pstmt.setString(3,admin.getDepartmentID());
+            //对电话进行加密
+            String phone = admin.getPhone();
+            try {
+                // 定义原始数据
+                byte[] input = phone.getBytes();
+
+                // 生成密钥
+                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                byte[] keyData = Hex.decode(keyHex);
+                SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                // 定义初始向量（IV）
+                String ivHex = "00000000000000000000000000000000";
+                byte[] ivData = Hex.decode(ivHex);
+
+                // 加密
+                SM4 sm4 = new SM4();
+                byte[] encrypted = sm4.encrypt(input, key, ivData);
+                phone = Hex.toHexString(encrypted);
+            }catch (Exception e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+            pstmt.setString(4,phone);
+            pstmt.setString(5,admin.getRole());
+            pstmt.setString(6,admin.getAdminID());
+            pstmt.executeUpdate();
+            return true;
+        }catch(SQLException se){
+            se.printStackTrace();
+            return false;
+        }
+    }
+    public boolean changepass(String password,String adminid){
+        LocalDate date = LocalDate.now(); // get the current date
+        String sql="UPDATE administrators SET password=?,ptime=? WHERE adminid=?;";
+        try(
+                Connection conn=getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,password);
+            pstmt.setString(2, String.valueOf(date));
+            pstmt.setString(3,adminid);
             pstmt.executeUpdate();
             return true;
         }catch(SQLException se){
@@ -188,7 +334,7 @@ public class adminDao implements Basedao{
 
     //根据名字查找管理员（只有部门管理员）
     public ArrayList<Administrators> findDByFuzzyName(String name)throws Exception{
-        String sql="SELECT * FROM administrators WHERE name LIKE ? AND role='部门管理员'";
+        String sql="SELECT * FROM administrators WHERE name LIKE ? AND role='部门管理员' ORDER BY adminid";
         ArrayList<Administrators>adminList=new ArrayList<Administrators>();
         try(
                 Connection conn=getConnection();
@@ -203,10 +349,35 @@ public class adminDao implements Basedao{
                     admin.setUsername(rst.getString("username"));
                     admin.setPassword(rst.getString("password"));
                     admin.setDepartmentID(rst.getString("departmentid"));
-                    admin.setPhone(rst.getString("phone"));
+                    //对电话号码进行sm4解密
+                    String phonenumber=rst.getString("phone");
+                    StringBuffer phonenumber_gai=new StringBuffer();
+                    try{
+                        // 生成密钥
+                        String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                        byte[] keyData = Hex.decode(keyHex);
+                        SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                        // 定义初始向量（IV）
+                        String ivHex = "00000000000000000000000000000000";
+                        byte[] ivData = Hex.decode(ivHex);
+
+                        byte[] encryptedFromHex = Hex.decode(phonenumber);
+                        SM4 sm4 = new SM4();
+                        // 解密
+                        byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                        phonenumber = new String(decrypted);
+                        phonenumber_gai.append(phonenumber.substring(0,3));
+                        phonenumber_gai.append("****");
+                        phonenumber_gai.append(phonenumber.substring(7,11));
+                    }catch (Exception e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    admin.setPhone(phonenumber_gai.toString());
                     admin.setRole(rst.getString("role"));
                     admin.setSocial(rst.getString("social"));
                     admin.setPub(rst.getString("pub"));
+                    admin.setPtime(rst.getString("ptime"));
                     adminList.add(admin);
                 }
             }
@@ -219,7 +390,7 @@ public class adminDao implements Basedao{
     //查找所有部门管理员
     public ArrayList<Administrators>findAllDAdmin()throws Exception{
         ArrayList<Administrators>adminList= new ArrayList<>();
-        String sql="SELECT * FROM administrators WHERE role='部门管理员'";
+        String sql="SELECT * FROM administrators WHERE role='部门管理员' ORDER BY adminid";
         try(
                 Connection conn=getConnection();
                 PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -232,10 +403,35 @@ public class adminDao implements Basedao{
                 admin.setUsername(rst.getString("username"));
                 admin.setPassword(rst.getString("password"));
                 admin.setDepartmentID(rst.getString("departmentid"));
-                admin.setPhone(rst.getString("phone"));
+                //对电话号码进行sm4解密
+                String phonenumber=rst.getString("phone");
+                StringBuffer phonenumber_gai=new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(phonenumber);
+                    SM4 sm4 = new SM4();
+                    // 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    phonenumber = new String(decrypted);
+                    phonenumber_gai.append(phonenumber.substring(0,3));
+                    phonenumber_gai.append("****");
+                    phonenumber_gai.append(phonenumber.substring(7,11));
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                admin.setPhone(phonenumber_gai.toString());
                 admin.setRole(rst.getString("role"));
                 admin.setSocial(rst.getString("social"));
                 admin.setPub(rst.getString("pub"));
+                admin.setPtime(rst.getString("ptime"));
                 adminList.add(admin);
             }
             return adminList;

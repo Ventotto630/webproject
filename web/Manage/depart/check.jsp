@@ -12,10 +12,10 @@
 <html>
 <head>
     <title>审核</title>
-    <link rel="stylesheet" href="../../my.css">
+    <link rel="stylesheet" href="../my.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../Rezvtion/styles3.css">
+    <link rel="stylesheet" href="../../Rezvtion/styles3.css">
     <style>
         body{
             background-color: #fff;
@@ -76,14 +76,14 @@
             <p>          手机号：<%=friend.getPhoneNumber()%></p>
             <% } %>
             <% } %>
-            <a class="button c" href="../../../checkRezvpubServlet.do?status=<%="审核通过"%>&serid=<%=rezvtion.getSerid()%>">审核通过</a>
-            <a class="button d" href="../../../checkRezvpubServlet.do?status=<%="审核未通过"%>&serid=<%=rezvtion.getSerid()%>">审核未通过</a>
+            <a class="button c" href="../../checkDRezvpubServlet.do?status=<%="审核通过"%>&serid=<%=rezvtion.getSerid()%>">审核通过</a>
+            <a class="button d" href="../../checkDRezvpubServlet.do?status=<%="审核未通过"%>&serid=<%=rezvtion.getSerid()%>">审核未通过</a>
         </div>
 
     <% } %>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../Rezvtion/scripts3.js"></script>
+<script src="../../Rezvtion/scripts3.js"></script>
 </body>
 </html>

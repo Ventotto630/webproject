@@ -20,7 +20,7 @@ public class checkServlet extends HttpServlet { //显示所有可审核的记录
                 request.getSession().setAttribute("rezvlist",rezvlist);
                 response.sendRedirect("Manage/school/rezv_public/check.jsp");
             }
-            else response.sendRedirect("Manage/checkdone.jsp");
+            else response.sendRedirect("Manage/school/rezv_public/checkdone.jsp");
         }catch (Exception e){
             e.printStackTrace();
         }

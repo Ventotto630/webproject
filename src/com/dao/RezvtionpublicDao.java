@@ -1126,4 +1126,321 @@ public class RezvtionpublicDao implements Basedao{
 //            return false;
 //        }
 //    }  好像不需要
+
+    //后面是针对部门管理员的
+    public  ArrayList<Reservation_public>findDBystatus(String visitunit)throws DaoException{
+        String sql="select * "
+                +"from rezvtionpub where status='未审核' AND visitunit=?";
+        ArrayList<Reservation_public> rezvlist = new ArrayList<Reservation_public>();
+        try( Connection dbconn =getConnection();
+             PreparedStatement pstmt = dbconn.prepareStatement(sql);){
+             pstmt.setString(1,visitunit);
+             ResultSet rst = pstmt.executeQuery();
+            while(rst.next()){
+                Reservation_public rezv = new Reservation_public();
+                rezv.setName(rst.getString("name"));
+
+                String per_id=rst.getString("perid");
+                StringBuffer perid_gai =new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(per_id);
+                    SM4 sm4 = new SM4();
+// 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    per_id = new String(decrypted);
+
+                    perid_gai.append(per_id.substring(0, 6));
+                    perid_gai.append("********");
+                    perid_gai.append(per_id.substring(14,18));
+
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                rezv.setPerid(perid_gai.toString());
+
+                String phonenumber=rst.getString("phonenumber");
+                StringBuffer phonenumber_gai=new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(phonenumber);
+                    SM4 sm4 = new SM4();
+// 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    phonenumber = new String(decrypted);
+                    phonenumber_gai.append(phonenumber.substring(0,3));
+                    phonenumber_gai.append("****");
+                    phonenumber_gai.append(phonenumber.substring(7,11));
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                rezv.setPhoneNumber(phonenumber_gai.toString());
+
+                rezv.setSerid(rst.getString("serid"));
+                rezv.setApplytime(rst.getString("applytime"));
+                rezv.setCampus(rst.getString("campus"));
+                rezv.setIntime(rst.getString("intime"));
+                rezv.setOuttime(rst.getString("outtime"));
+                rezv.setUnit(rst.getString("unit"));
+                rezv.setVehicle(rst.getString("vehicle"));
+                rezv.setVname(rst.getString("vname"));
+
+                String serid =rst.getString("serid");
+                String Fri_number=rst.getString("fri_number");
+                rezv.setFri_number(Fri_number);
+                if (!Fri_number.equals("0")){
+                    String sql2="select * "
+                            +"from rezvpub_friend where  serid=?";
+                    ArrayList<Person> friends = new ArrayList<>();
+                    try(PreparedStatement pstmt1 = dbconn.prepareStatement(sql2);){
+                        pstmt1.setString(1,serid);
+                        ResultSet rst1 = pstmt1.executeQuery();
+                        while(rst1.next()){
+                            Person friend=new Person();
+                            friend.setName(rst1.getString("fri_name"));
+
+                            String fri_perid=rst1.getString("fri_perid");
+                            StringBuffer fri_perid_gai=new StringBuffer();
+                            try{
+                                // 生成密钥
+                                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                                byte[] keyData = Hex.decode(keyHex);
+                                SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                                // 定义初始向量（IV）
+                                String ivHex = "00000000000000000000000000000000";
+                                byte[] ivData = Hex.decode(ivHex);
+
+                                byte[] encryptedFromHex = Hex.decode(fri_perid);
+                                SM4 sm4 = new SM4();
+// 解密
+                                byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                                fri_perid = new String(decrypted);
+                                fri_perid_gai.append(fri_perid.substring(0,6));
+                                fri_perid_gai.append("********");
+                                fri_perid_gai.append(fri_perid.substring(14,18));
+                            }catch (Exception e) {
+                                System.err.println("Error: " + e.getMessage());
+                            }
+                            friend.setPerid(fri_perid_gai.toString());
+
+                            String fri_phone=rst1.getString("fri_phonenumber");
+                            StringBuffer fri_phone_gai=new StringBuffer();
+                            try{
+                                // 生成密钥
+                                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                                byte[] keyData = Hex.decode(keyHex);
+                                SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                                // 定义初始向量（IV）
+                                String ivHex = "00000000000000000000000000000000";
+                                byte[] ivData = Hex.decode(ivHex);
+
+                                byte[] encryptedFromHex = Hex.decode(fri_phone);
+                                SM4 sm4 = new SM4();
+// 解密
+                                byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                                fri_phone = new String(decrypted);
+                                fri_phone_gai.append(fri_phone.substring(0,3));
+                                fri_phone_gai.append("****");
+                                fri_phone_gai.append(fri_phone.substring(7,11));
+                            }catch (Exception e) {
+                                System.err.println("Error: " + e.getMessage());
+                            }
+                            friend.setPhoneNumber(fri_phone_gai.toString());
+
+                            friends.add(friend);
+                        }
+                    }
+
+                    rezv.setFriend(friends);
+                }
+
+                rezv.setVisitunit(rst.getString("visitunit"));
+                rezv.setReceptionist(rst.getString("receptionist"));
+                rezv.setReason(rst.getString("reason"));
+                rezv.setStatus(rst.getString("status"));
+
+                rezvlist.add(rezv);
+            }
+            return rezvlist;
+        }catch (SQLException ne){
+            ne.printStackTrace();
+            return null;
+        }
+    }
+    public  ArrayList<Reservation_public>findAllDrezv(String visitunit)throws DaoException{
+        String sql="select * "
+                +"from rezvtionpub WHERE visitunit=?";
+        ArrayList<Reservation_public> rezvlist = new ArrayList<Reservation_public>();
+        try( Connection dbconn =getConnection();
+             PreparedStatement pstmt = dbconn.prepareStatement(sql);){
+            pstmt.setString(1,visitunit);
+             ResultSet rst = pstmt.executeQuery();
+            while(rst.next()){
+                Reservation_public rezv = new Reservation_public();
+                rezv.setName(rst.getString("name"));
+
+                String per_id=rst.getString("perid");
+                StringBuffer perid_gai =new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(per_id);
+                    SM4 sm4 = new SM4();
+// 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    per_id = new String(decrypted);
+
+                    perid_gai.append(per_id.substring(0, 6));
+                    perid_gai.append("********");
+                    perid_gai.append(per_id.substring(14,18));
+
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                rezv.setPerid(perid_gai.toString());
+
+                String phonenumber=rst.getString("phonenumber");
+                StringBuffer phonenumber_gai=new StringBuffer();
+                try{
+                    // 生成密钥
+                    String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                    byte[] keyData = Hex.decode(keyHex);
+                    SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                    // 定义初始向量（IV）
+                    String ivHex = "00000000000000000000000000000000";
+                    byte[] ivData = Hex.decode(ivHex);
+
+                    byte[] encryptedFromHex = Hex.decode(phonenumber);
+                    SM4 sm4 = new SM4();
+// 解密
+                    byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                    phonenumber = new String(decrypted);
+                    phonenumber_gai.append(phonenumber.substring(0,3));
+                    phonenumber_gai.append("****");
+                    phonenumber_gai.append(phonenumber.substring(7,11));
+                }catch (Exception e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                rezv.setPhoneNumber(phonenumber_gai.toString());
+
+
+                rezv.setSerid(rst.getString("serid"));
+                rezv.setApplytime(rst.getString("applytime"));
+                rezv.setCampus(rst.getString("campus"));
+                rezv.setIntime(rst.getString("intime"));
+                rezv.setOuttime(rst.getString("outtime"));
+                rezv.setUnit(rst.getString("unit"));
+                rezv.setVehicle(rst.getString("vehicle"));
+                rezv.setVname(rst.getString("vname"));
+
+                String serid =rst.getString("serid");
+                String Fri_number=rst.getString("fri_number");
+                rezv.setFri_number(Fri_number);
+                if (!Fri_number.equals("0")){
+                    String sql2="select * "
+                            +"from rezvpub_friend where  serid=?";
+                    ArrayList<Person> friends = new ArrayList<>();
+                    try(PreparedStatement pstmt1 = dbconn.prepareStatement(sql2);){
+                        pstmt1.setString(1,serid);
+                        ResultSet rst1 = pstmt1.executeQuery();
+                        while(rst1.next()){
+                            Person friend=new Person();
+                            friend.setName(rst1.getString("fri_name"));
+
+                            String fri_perid=rst1.getString("fri_perid");
+                            StringBuffer fri_perid_gai=new StringBuffer();
+                            try{
+                                // 生成密钥
+                                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                                byte[] keyData = Hex.decode(keyHex);
+                                SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                                // 定义初始向量（IV）
+                                String ivHex = "00000000000000000000000000000000";
+                                byte[] ivData = Hex.decode(ivHex);
+
+                                byte[] encryptedFromHex = Hex.decode(fri_perid);
+                                SM4 sm4 = new SM4();
+// 解密
+                                byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                                fri_perid = new String(decrypted);
+                                fri_perid_gai.append(fri_perid.substring(0,6));
+                                fri_perid_gai.append("********");
+                                fri_perid_gai.append(fri_perid.substring(14,18));
+                            }catch (Exception e) {
+                                System.err.println("Error: " + e.getMessage());
+                            }
+                            friend.setPerid(fri_perid_gai.toString());
+
+                            String fri_phone=rst1.getString("fri_phonenumber");
+                            StringBuffer fri_phone_gai=new StringBuffer();
+                            try{
+                                // 生成密钥
+                                String keyHex = "0123456789ABCDEF0123456789ABCDEF";
+                                byte[] keyData = Hex.decode(keyHex);
+                                SecretKey key = new SecretKeySpec(keyData, "SM4");
+
+                                // 定义初始向量（IV）
+                                String ivHex = "00000000000000000000000000000000";
+                                byte[] ivData = Hex.decode(ivHex);
+
+                                byte[] encryptedFromHex = Hex.decode(fri_phone);
+                                SM4 sm4 = new SM4();
+// 解密
+                                byte[] decrypted = sm4.decrypt(encryptedFromHex, key, ivData);
+                                fri_phone = new String(decrypted);
+                                fri_phone_gai.append(fri_phone.substring(0,3));
+                                fri_phone_gai.append("****");
+                                fri_phone_gai.append(fri_phone.substring(7,11));
+                            }catch (Exception e) {
+                                System.err.println("Error: " + e.getMessage());
+                            }
+                            friend.setPhoneNumber(fri_phone_gai.toString());
+
+                            friends.add(friend);
+                        }
+                    }
+
+                    rezv.setFriend(friends);
+                }
+
+                rezv.setVisitunit(rst.getString("visitunit"));
+                rezv.setReceptionist(rst.getString("receptionist"));
+                rezv.setReason(rst.getString("reason"));
+                rezv.setStatus(rst.getString("status"));
+
+                rezvlist.add(rezv);
+            }
+            return rezvlist;
+        }catch (SQLException ne){
+            ne.printStackTrace();
+            return null;
+        }
+    }
 }

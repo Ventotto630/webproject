@@ -13,10 +13,11 @@ public class Administrators implements Serializable {
 //    部门管理员对社会预约和（除本部门外其他部门）公务预约的权限，有权限为1
     String social;
     String pub;
+    String ptime;
 
     public Administrators(){}
 
-    public Administrators(String adminID, String name, String username, String password, String departmentID, String phone, String role, String social, String pub) {
+    public Administrators(String adminID, String name, String username, String password, String departmentID, String phone, String role, String social, String pub, String ptime) {
         this.adminID = adminID;
         this.name = name;
         this.username = username;
@@ -26,6 +27,7 @@ public class Administrators implements Serializable {
         this.role = role;
         this.social = social;
         this.pub = pub;
+        this.ptime = ptime;
     }
 
     public String getAdminID() {
@@ -98,5 +100,13 @@ public class Administrators implements Serializable {
 
     public void setPub(String pub) {
         this.pub = pub;
+    }
+
+    public String getPtime() {
+        return ptime;
+    }
+
+    public void setPtime(String ptime) {
+        this.ptime = ptime;
     }
 }

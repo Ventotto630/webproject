@@ -1,14 +1,15 @@
-package com.control;
+package com.control.departadmin;
 
 import com.dao.RezvtionpublicDao;
-import com.model.Reservation_public;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/checkRezvpubServlet.do")
+@WebServlet("/checkDRezvpubServlet.do")
 public class checkRezvpubServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,13 +29,13 @@ public class checkRezvpubServlet extends HttpServlet {
             //reservation_public = dao.findByserid(sid); //根据serid查询有最新的serid的记录;
             if(dao.updateStatus(status,sid)){
                 //response.sendRedirect("Manage/check.jsp");
-                response.sendRedirect("checkServlet");
+                response.sendRedirect("DcheckServlet");
             }
             //else response.sendRedirect("Rezvtion/error.jsp"); else 改
         }catch (Exception ne){
             message="审核出错";
             request.getSession().setAttribute("message",message);
-            response.sendRedirect("Manage/school/home.jsp");
+            response.sendRedirect("Manage/depart/home.jsp");
         }
 
     }

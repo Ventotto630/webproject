@@ -2,13 +2,13 @@
   Created by IntelliJ IDEA.
   User: 23994
   Date: 2024/6/5
-  Time: 16:25
+  Time: 16:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>学校管理员</title>
+    <title>审计查询</title>
     <link rel="stylesheet" href="../my.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.cn/cdnjs/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -148,43 +148,14 @@
     </style>
 </head>
 <body>
-
 <div class="wrap" style="float:left;" id="mySidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
     <div class="nav">
         <ul>
             <li class="list">
-                <h2><i></i>部门管理</h2>
+                <h2><i></i>日志管理</h2>
                 <div class="hide">
-                    <h5><a href="#" onclick="loadPage('depart/addDepart.jsp')">添加</a></h5>
-                    <h5><a href="#" onclick="loadPage('depart/findDepart.jsp')">查询</a></h5>
-                    <h5><a href="#" onclick="loadPage('depart/modify.jsp')">修改</a></h5>
-                    <h5><a href="#" onclick="loadPage('depart/deleteDepart.jsp')">删除</a></h5>
-                </div>
-            </li>
-            <li class="list">
-                <h2><i></i>管理员管理</h2>
-                <div class="hide">
-                    <h5><a href="#" onclick="loadPage('admin_depart/addAdmin.jsp')">添加</a></h5>
-                    <h5><a href="#" onclick="loadPage('admin_depart/findAdmin.jsp')">查询</a></h5>
-                    <h5><a href="#" onclick="loadPage('admin_depart/modify.jsp')">修改</a></h5>
-                    <h5><a href="#" onclick="loadPage('admin_depart/deleteAdmin.jsp')">删除</a></h5>
-                    <h5><a href="#" onclick="loadPage('admin_depart/auth.jsp')">授权</a></h5>
-                </div>
-            </li>
-            <li class="list">
-                <h2><i></i>社会预约</h2>
-                <div class="hide">
-                    <h5><a href="#" onclick="loadPage('rezvtion/queryRezvtion.jsp')">查询</a></h5>
-                    <h5><a href="#" onclick="loadPage('rezvtion/countRezvtion.jsp')">统计</a></h5>
-                </div>
-            </li>
-            <li class="list">
-                <h2><i></i>公务预约</h2>
-                <div class="hide">
-                    <h5><a href="#" onclick="loadPage('rezv_public/queryRezvtionPub.jsp')">查询</a></h5>
-                    <h5><a href="#" onclick="loadPage('rezv_public/countRezvtionPub.jsp')">统计</a></h5>
-                    <h5><a href="#" onclick="loadPage('../../checkServlet')">审核</a></h5>
+                    <h5><a href="#" onclick="loadPage('audit.jsp')">查询</a></h5>
                 </div>
             </li>
         </ul>
@@ -244,7 +215,7 @@
                         <%}%>
                     </span>
                     <div>
-                        <div class="drop">学校管理员</div>
+                        <div class="drop">审计管理员</div>
                         <div class="drop" onclick="changejump()">修改密码</div>
                         <div class="drop" onclick="logout()">退出登录</div>
                     </div>
@@ -254,11 +225,12 @@
         <div class="shouye">
             <div class="content" id="contentFrame">
                 <!-- 默认显示内容，可根据需求修改 -->
-<%--                <jsp:include page="depart/addDepart.jsp"/>--%>
+<%--                <jsp:include page=""/>--%>
             </div>
         </div>
     </div>
 </div>
+
 <script>
     window.onload = function() {
         var message = "${message}"; // 使用EL获取Servlet中设置的提示信息

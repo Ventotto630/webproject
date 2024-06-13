@@ -26,18 +26,18 @@ public class queryRezvPubServlet extends HttpServlet {
             ArrayList<Reservation_public> rezvlist=dao.findAllrezv();
             if(!rezvlist.isEmpty()){
                 request.getSession().setAttribute("rezvlist",rezvlist);
-                response.sendRedirect("Rezvtion/displayRezvtionPub.jsp");
+                response.sendRedirect("Manage/school/rezv_public/displayRezvtionPub.jsp");
             }
             else  {
                 message="没有相关查询记录";
                 request.getSession().setAttribute("message",message);
-                response.sendRedirect("Manage/school/rezvtion/queryRezvtionPub.jsp");
+                response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
             }
         }catch (Exception e){
             e.printStackTrace();
             message="查询失败";
             request.getSession().setAttribute("message",message);
-            response.sendRedirect("Manage/school/rezvtion/queryRezvtionPub.jsp");
+            response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
         }
     }
 
@@ -47,6 +47,7 @@ public class queryRezvPubServlet extends HttpServlet {
         response.setCharacterEncoding("GBK");
         String name = request.getParameter("name");
         String perid = request.getParameter("perid");
+        String message;
         if(!perid.equals("null")){
             try {
                 // 定义原始数据
@@ -132,11 +133,18 @@ public class queryRezvPubServlet extends HttpServlet {
             ArrayList<Reservation_public> rezvlist = dao.find(reservationpub);
             if(!rezvlist.isEmpty()){
                 request.getSession().setAttribute("rezvlist",rezvlist);
-                response.sendRedirect("Rezvtion/displayRezvtionPub.jsp");
+                response.sendRedirect("Manage/school/rezv_public/displayRezvtionPub.jsp");
             }
-            else response.sendRedirect("Rezvtion/error.jsp");
+            else {
+                message="没有相关预约记录";
+                request.getSession().setAttribute("message",message);
+                response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
+            }
         }catch (Exception e1){
             e1.printStackTrace();
+            message="查询失败";
+            request.getSession().setAttribute("message",message);
+            response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
         }
     }
 }

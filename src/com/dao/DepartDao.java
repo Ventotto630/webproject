@@ -42,7 +42,7 @@ public class DepartDao implements Basedao{
     }
     public ArrayList<Department> findAllDepart()throws Exception{
         ArrayList<Department>departList= new ArrayList<>();
-        String sql="SELECT * FROM department";
+        String sql="SELECT * FROM department ORDER BY id";
         try(
                 Connection conn=getConnection();
                 PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class DepartDao implements Basedao{
         }
     }
     public ArrayList<Department> findByFuzzyName(String name)throws Exception{
-        String sql="SELECT * FROM department WHERE name LIKE ?";
+        String sql="SELECT * FROM department WHERE name LIKE ? ORDER BY id";
         ArrayList<Department>departList=new ArrayList<>();
         try(
                 Connection conn=getConnection();

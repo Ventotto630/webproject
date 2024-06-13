@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet(name="/registerServlet",value="/addDAdmin.do")
 public class addAdminServlet extends HttpServlet {
@@ -18,6 +19,7 @@ public class addAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LocalDate date = LocalDate.now(); // get the current date
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         adminDao dao=new adminDao();
@@ -34,6 +36,7 @@ public class addAdminServlet extends HttpServlet {
         admin.setRole(request.getParameter("role"));
         admin.setSocial(request.getParameter("social"));
         admin.setPub(request.getParameter("pub"));
+        admin.setPtime(String.valueOf(date));
         String message=null;
         try{
             boolean sucess=dao.addAdmin(admin);
