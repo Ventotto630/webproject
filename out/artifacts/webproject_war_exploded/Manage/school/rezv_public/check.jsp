@@ -20,6 +20,13 @@
         body{
             background-color: #fff;
         }
+        .c{
+            margin-left:600px;
+        }
+        .d{
+            background-color: #ff5c5c;
+            margin-left:20px;
+        }
     </style>
 </head>
 <body>
@@ -69,8 +76,8 @@
             <p>          手机号：<%=friend.getPhoneNumber()%></p>
             <% } %>
             <% } %>
-            <a href="checkRezvpub.jsp?status=<%=rezvtion.getStatus()%>&serid=<%=rezvtion.getSerid()%>">审核预约信息</a></td>
-
+            <a class="button c" href="../../../checkRezvpubServlet.do?status=<%="审核通过"%>&serid=<%=rezvtion.getSerid()%>">审核通过</a>
+            <a class="button d" href="../../../checkRezvpubServlet.do?status=<%="审核未通过"%>&serid=<%=rezvtion.getSerid()%>">审核未通过</a>
         </div>
 
     <% } %>

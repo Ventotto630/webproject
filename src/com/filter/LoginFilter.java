@@ -31,7 +31,7 @@ public class LoginFilter extends HttpFilter {
             if (session == null || session.getAttribute("myadmin") == null) {
                 // 用户未登录，重定向到登录页面
                 httpRequest.setAttribute("message", "您还没有登录，请登录");
-                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+                httpResponse.sendRedirect( "/webproject/Manage/login.jsp");
             } else {
                 // 用户已登录，继续处理请求
                 chain.doFilter(request, response);

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>审核完毕</title>
 </head>
 <body>
 <div class="title"><div class="dot"></div>没有可以审核的预约记录</div>

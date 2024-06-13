@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.model.Administrators" %><%--
   Created by IntelliJ IDEA.
   User: 23994
   Date: 2024/6/5
@@ -69,7 +69,7 @@
             position: relative;
             padding: 15px 20px;
             font-size: 16px;
-            color: #b9b9b9;
+            color: #eee;
             transition: .5s;
         }
         .list h2.on{
@@ -102,6 +102,48 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+        .items {
+            position:absolute;
+            font-size: 16px;
+            width: 100px;
+            color: rgb(89, 89, 89);
+            top: 12.5px;
+            right: 30px;
+
+        }
+        /* END */
+
+        /* 菜单与鼠标移入 */
+        .menu{
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu:hover{
+            overflow: visible;
+            font-weight:700;
+            z-index: 999;
+            cursor: pointer;
+        }
+        /* END */
+
+        /* 下拉菜单与鼠标移入 */
+        .drop{
+            background: #63727a;
+            text-align: center;
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            overflow: hidden;
+            color:#eee;
+        }
+        .drop:hover {
+            background:#37474f;
+            color:#fff;
         }
     </style>
 </head>
@@ -190,10 +232,30 @@
 <div id="main" style="float:left;">
     <div class="page">
         <div class="up" onclick="openNav()">&#9776; 　校园通行码管理系统
-            <span class="name">欢迎您：学校管理员 / ${myadmin.getName()}</span>
+            <span class="name" style="padding-right:120px;">欢迎您： </span>
+            <div class="items">
+                <div class="menu">
+                    <%Administrators myadmin=(Administrators) session.getAttribute("myadmin");%>
+                    <span>
+                        <%if(myadmin!=null){%>
+                           ${myadmin.getName()}
+                        <%}else{%>
+                        <span onclick="logout()" style="color:darkred">请登录</span>
+                        <%}%>
+                    </span>
+                    <div>
+                        <div class="drop">学校管理员</div>
+                        <div class="drop" onclick="changejump()">修改密码</div>
+                        <div class="drop" onclick="logout()">退出登录</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="content" id="contentFrame">
-            <!-- 默认显示内容，可根据需求修改 -->
+        <div class="shouye">
+            <div class="content" id="contentFrame">
+                <!-- 默认显示内容，可根据需求修改 -->
+<%--                <jsp:include page="depart/addDepart.jsp"/>--%>
+            </div>
         </div>
     </div>
 </div>
@@ -204,6 +266,28 @@
             alert(message); // 弹出提示框
         }
     };
+    function changejump(){
+        window.location.href="../passwordchange.jsp";
+    }
+    function logout(){
+        window.location.href="../login.jsp";
+        <%session.removeAttribute("myuser");%>
+    }
+    var sessionTimeout = 3 * 60 * 1000; // 30分钟，以毫秒为单位
+    var timeout;
+    function resetTimer() {
+        // 重置超时计时器
+        clearTimeout(timeout);
+        timeout = setTimeout(logout, sessionTimeout);
+    }
+
+    // 监听用户事件
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+
+    // 初始化计时器
+    resetTimer();
+
 </script>
 </body>
 </html>

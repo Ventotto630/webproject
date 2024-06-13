@@ -12,25 +12,16 @@
 <html>
 <head>
     <title>审计日志信息</title>
-    <link rel="stylesheet" href="../../my.css">
+    <link rel="stylesheet" href="../my.css">
     <style>
         table tbody td:nth-child(1){
             width:150px;
         }
         table tbody td:nth-child(2){
-            width:100px;
+            width:150px;
         }
         table tbody td:nth-child(3){
-            width:140px;
-        }
-        table tbody td:nth-child(4){
-            width:120px;
-        }
-        table tbody td:nth-child(5){
-            width:120px;
-        }
-        table tbody td:nth-child(6){
-            width:300px;
+            width:740px;
         }
     </style>
 </head>
@@ -40,7 +31,7 @@
     <tr><td>操作人姓名</td><td>操作行为</td><td>操作细节</td>
     </tr>
     <% ArrayList<Auditlog> logList=
-            (ArrayList<Auditlog>)session.getAttribute("logList");
+            (ArrayList<Auditlog>)session.getAttribute("loglist");
         for(Auditlog log:logList){
     %>
     <tr><td><%=log.getUname()%></td>
