@@ -162,6 +162,8 @@
             <option value="security">保卫处</option>
             <option value="finance">计财处</option>
             <option value="committee">团委</option>
+            <option value="committee">容大后勤</option>
+            <option value="committee">招生办</option>
           </select>
         </td>
       </tr>
