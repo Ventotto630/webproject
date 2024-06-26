@@ -6,6 +6,15 @@ public class Auditlog implements Serializable {
     private String uname;
     private String operation;
     private String description;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public Auditlog() {
     }

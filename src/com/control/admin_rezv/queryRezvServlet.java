@@ -47,8 +47,9 @@ public class queryRezvServlet extends HttpServlet {
         response.setCharacterEncoding("GBK");
         String message;
         String name = request.getParameter("name");
+        if(name.isEmpty()) name="null";
         String perid = request.getParameter("perid");
-        if(!perid.equals("null")){
+        if(!perid.isEmpty()){
             try {
                 // 定义原始数据
                 //String plaintext = "Hello, World!";
@@ -71,9 +72,11 @@ public class queryRezvServlet extends HttpServlet {
                 System.err.println("Error: " + e.getMessage());
             }
         }
-
+        else {
+            perid="null";
+        }
         String phoneNumber = request.getParameter("phoneNumber");
-        if(!phoneNumber.equals("null")){
+        if(!phoneNumber.isEmpty()){
             try {
                 // 定义原始数据
                 //String plaintext = "Hello, World!";
@@ -95,9 +98,11 @@ public class queryRezvServlet extends HttpServlet {
             }catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
             }
+        }else {
+            phoneNumber="null";
         }
-
         String serid = request.getParameter("serid");
+        if(serid.isEmpty()) serid="null";
         String applytime = request.getParameter("applytime");
         if (applytime == "") {
             applytime = "null"; // 或者任何默认值
@@ -115,8 +120,10 @@ public class queryRezvServlet extends HttpServlet {
             outtime = "null"; // 或者任何默认值
         }
         String unit = request.getParameter("unit");
+        if(unit.isEmpty()) unit="null";
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
+        if(vname.isEmpty()) vname="null";
         String Fri_number = "0";
         ArrayList<Person> friends = new ArrayList<>();
 //随行人员不参与查询

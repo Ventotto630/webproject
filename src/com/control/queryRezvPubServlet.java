@@ -46,9 +46,10 @@ public class queryRezvPubServlet extends HttpServlet {
         request.setCharacterEncoding("GBK");
         response.setCharacterEncoding("GBK");
         String name = request.getParameter("name");
+        if(name.isEmpty()) name="null";
         String perid = request.getParameter("perid");
         String message;
-        if(!perid.equals("null")){
+        if(!perid.isEmpty()){
             try {
                 // 定义原始数据
                 //String plaintext = "Hello, World!";
@@ -70,10 +71,12 @@ public class queryRezvPubServlet extends HttpServlet {
             }catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
             }
+        }else {
+            perid="null";
         }
 
         String phoneNumber = request.getParameter("phoneNumber");
-        if(!phoneNumber.equals("null")){
+        if(!phoneNumber.isEmpty()){
             try {
                 // 定义原始数据
                 //String plaintext = "Hello, World!";
@@ -95,9 +98,12 @@ public class queryRezvPubServlet extends HttpServlet {
             }catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
             }
+        }else {
+            phoneNumber="null";
         }
 
         String serid = request.getParameter("serid");
+        if(serid.isEmpty()) serid="null";
         String applytime = request.getParameter("applytime");
         if (applytime == "") {
             applytime = "null"; // 或者任何默认值
@@ -115,15 +121,21 @@ public class queryRezvPubServlet extends HttpServlet {
             outtime = "null"; // 或者任何默认值
         }
         String unit = request.getParameter("unit");
+        if(unit.isEmpty()) unit="null";
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
+        if(vname.isEmpty()) vname="null";
         String Fri_number = "0";
         ArrayList<Person> friends = new ArrayList<>();
 //随行人员不参与查询
         String visitunit = request.getParameter("visitunit");
+        if(visitunit.isEmpty()) visitunit="null";
         String receptionist = request.getParameter("receptionist");
+        if(receptionist.isEmpty()) receptionist="null";
         String reason = request.getParameter("reason");
+        if(reason.isEmpty()) reason="null";
         String status = request.getParameter("status");
+        if(status.isEmpty()) status="null";
 
 
         Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,visitunit,receptionist,reason,status,"null");

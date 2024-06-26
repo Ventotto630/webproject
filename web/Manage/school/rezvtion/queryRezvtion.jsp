@@ -26,7 +26,7 @@
 <p><a class="button2 a" href="../../../query-rezv.do" style="margin-top:15px;margin-left:110px;">查询所有预约</a> </p>
 <form action="../../../query-rezv.do" method="post" style="margin:10px;line-height:48px;">
     <span class="input_title" style="margin-left:10px;">　　　预约号</span>
-    <input class="input2 b" type="text" name="serid" value="null">
+    <input class="input2 b" type="text" name="serid" >
 
     <span class="input_title" style="margin-left:20px;">申请日期</span>
     <input class="input2 b" type="datetime-local" name="applytime" value="null">
@@ -46,16 +46,16 @@
     <input class="input2 b" type="datetime-local" name="outtime" value="null">
 
     <span class="input_title" style="margin-left:20px;">所在单位</span>
-    <input class="input2 b" type="text" name="unit" value="null">
+    <input class="input2 b" type="text" name="unit" >
 
     <span class="input_title" style="margin-left:20px;">　　姓名</span>
-    <input class="input2 b" type="text" name="name" value="null">
+    <input class="input2 b" type="text" name="name" >
 
     <span class="input_title" style="margin-left:20px;">身份证号</span>
-    <input class="input2 b" type="text" name="perid" placeholder="请输入身份证号" value="null">
+    <input class="input2 b" type="text" name="perid" placeholder="请输入身份证号" >
     <br>
     <span class="input_title" style="margin-left:10px;">　　　手机号</span>
-    <input class="input2 b" type="text" name="phoneNumber" placeholder="请输入手机号" value="null">
+    <input class="input2 b" type="text" name="phoneNumber" placeholder="请输入手机号" >
 
     <span class="input_title" style="margin-left:20px;">交通方式</span>
     <select name="vehicle" class="select s">
@@ -66,7 +66,7 @@
         <option value="car"> 汽车</option>
     </select>
     <span class="input_title" style="margin-left:20px;">　车牌号</span>
-    <input class="input2 b" type="text" name="vname" value="null">
+    <input class="input2 b" type="text" name="vname" >
     　<input class="button2" type="submit" value="提交"/>
     <input class="button2" type="reset" value="重置"/>
 </form>

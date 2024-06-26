@@ -28,7 +28,7 @@
 <body>
 <div class="title"><div class="dot"></div>审计日志信息</div>
 <table class="pos" style="margin-left:120px;">
-    <tr><td>操作人姓名</td><td>操作行为</td><td>操作细节</td>
+    <tr><td>操作人姓名</td><td>操作行为</td><td>操作细节</td><td>操作时间</td>
     </tr>
     <% ArrayList<Auditlog> logList=
             (ArrayList<Auditlog>)session.getAttribute("loglist");
@@ -37,7 +37,7 @@
     <tr><td><%=log.getUname()%></td>
         <td><%=log.getOperation()%></td>
         <td><%=log.getDescription()%></td>
-
+        <td><%=log.getTime()%></td>
 
     </tr>
     <%}%>

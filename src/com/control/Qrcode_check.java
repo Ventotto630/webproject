@@ -165,7 +165,8 @@ public class Qrcode_check extends HttpServlet {
                 data+="|"+Fri_name+"|"+Fri_perid+"|"+Fri_phoneNumber;
             }
         }
-
+        intime=intime.replace(" ","T");
+        outtime=outtime.replace(" ","T");
         LocalDateTime time1= LocalDateTime.now();
         LocalDateTime time2= LocalDateTime.parse(intime);
         LocalDateTime time3= LocalDateTime.parse(outtime);

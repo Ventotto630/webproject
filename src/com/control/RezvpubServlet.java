@@ -162,6 +162,8 @@ public class RezvpubServlet extends HttpServlet {
         //jsp传入的类型为datatime-local
         applytime = applytime.replace("-","");
         applytime = applytime.replace(":","");
+        intime = intime.replace("T"," ");
+        outtime = outtime.replace("T"," ");
         String serid = new String();
         byte[] sm3 = CryptoSM3.hash(name.getBytes());
         String ssm=CryptoSM3.bytesToHexString(sm3);

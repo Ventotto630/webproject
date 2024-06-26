@@ -15,7 +15,7 @@ import java.util.Objects;
 @WebServlet(name="/loginServlet",value="/login.do")
 public class loginServlet extends HttpServlet {
     private static final int MAX_LOGIN_ATTEMPTS = 5;
-    private static final int LOCK_TIME_MINUTES = 2;
+    private static final int LOCK_TIME_MINUTES = 1;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -171,7 +171,8 @@ public class Qrcodepub_check extends HttpServlet {
             }
         }
 
-
+        intime=intime.replace(" ","T");
+        outtime=outtime.replace(" ","T");
 
         LocalDateTime time1= LocalDateTime.now();
         LocalDateTime time2= LocalDateTime.parse(intime);

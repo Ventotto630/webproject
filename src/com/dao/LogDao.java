@@ -53,6 +53,7 @@ public class LogDao implements Basedao{
                     log1.setUname(rst.getString("uname"));
                     log1.setOperation(rst.getString("operation"));
                     log1.setDescription(rst.getString("description"));
+                    log1.setTime(rst.getString("timestamp"));
                     logs.add(log1);
                 }
             }
