@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//¹ÜÀíÔ±²éÑ¯
+//ç®¡ç†å‘˜æŸ¥è¯¢
 @WebServlet("/Dquery-RezvPub.do")
 public class queryRezvPubServlet extends HttpServlet {
     @Override
@@ -29,7 +29,7 @@ public class queryRezvPubServlet extends HttpServlet {
         String message;
         HttpSession session=request.getSession();
         Administrators myadmin=(Administrators) session.getAttribute("myadmin");
-        //ÓÉÓÚ¹ÜÀíÔ±Ö»ÓĞid×Ö¶Î
+        //ç”±äºç®¡ç†å‘˜åªæœ‰idå­—æ®µ
         String visitunit=null;
         try { DepartDao dapartdao=new DepartDao();
             Department depart= dapartdao.findById(myadmin.getDepartmentID());
@@ -44,13 +44,13 @@ public class queryRezvPubServlet extends HttpServlet {
                 response.sendRedirect("Manage/school/rezv_public/displayRezvtionPub.jsp");
             }
             else  {
-                message="Ã»ÓĞÏà¹Ø²éÑ¯¼ÇÂ¼";
+                message="æ²¡æœ‰ç›¸å…³æŸ¥è¯¢è®°å½•";
                 request.getSession().setAttribute("message",message);
                 response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
             }
         }catch (Exception e){
             e.printStackTrace();
-            message="²éÑ¯Ê§°Ü";
+            message="æŸ¥è¯¢å¤±è´¥";
             request.getSession().setAttribute("message",message);
             response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
         }
@@ -61,24 +61,25 @@ public class queryRezvPubServlet extends HttpServlet {
         request.setCharacterEncoding("GBK");
         response.setCharacterEncoding("GBK");
         String name = request.getParameter("name");
+        if(name.isEmpty()) name="null";
         String perid = request.getParameter("perid");
         String message;
-        if(!perid.equals("null")){
+        if(!perid.isEmpty()){
             try {
-                // ¶¨ÒåÔ­Ê¼Êı¾İ
+                // å®šä¹‰åŸå§‹æ•°æ®
                 //String plaintext = "Hello, World!";
                 byte[] input = perid.getBytes();
 
-                // Éú³ÉÃÜÔ¿
+                // ç”Ÿæˆå¯†é’¥
                 String keyHex = "0123456789ABCDEF0123456789ABCDEF";
                 byte[] keyData = Hex.decode(keyHex);
                 SecretKey key = new SecretKeySpec(keyData, "SM4");
 
-                // ¶¨Òå³õÊ¼ÏòÁ¿£¨IV£©
+                // å®šä¹‰åˆå§‹å‘é‡ï¼ˆIVï¼‰
                 String ivHex = "00000000000000000000000000000000";
                 byte[] ivData = Hex.decode(ivHex);
 
-                // ¼ÓÃÜ
+                // åŠ å¯†
                 SM4 sm4 = new SM4();
                 byte[] encrypted = sm4.encrypt(input, key, ivData);
                 perid = Hex.toHexString(encrypted);
@@ -86,58 +87,65 @@ public class queryRezvPubServlet extends HttpServlet {
                 System.err.println("Error: " + e.getMessage());
             }
         }
-
+        else {
+            perid="null";
+        }
         String phoneNumber = request.getParameter("phoneNumber");
-        if(!phoneNumber.equals("null")){
+        if(!phoneNumber.isEmpty()){
             try {
-                // ¶¨ÒåÔ­Ê¼Êı¾İ
+                // å®šä¹‰åŸå§‹æ•°æ®
                 //String plaintext = "Hello, World!";
                 byte[] input = phoneNumber.getBytes();
 
-                // Éú³ÉÃÜÔ¿
+                // ç”Ÿæˆå¯†é’¥
                 String keyHex = "0123456789ABCDEF0123456789ABCDEF";
                 byte[] keyData = Hex.decode(keyHex);
                 SecretKey key = new SecretKeySpec(keyData, "SM4");
 
-                // ¶¨Òå³õÊ¼ÏòÁ¿£¨IV£©
+                // å®šä¹‰åˆå§‹å‘é‡ï¼ˆIVï¼‰
                 String ivHex = "00000000000000000000000000000000";
                 byte[] ivData = Hex.decode(ivHex);
 
-                // ¼ÓÃÜ
+                // åŠ å¯†
                 SM4 sm4 = new SM4();
                 byte[] encrypted = sm4.encrypt(input, key, ivData);
                 phoneNumber = Hex.toHexString(encrypted);
             }catch (Exception e) {
                 System.err.println("Error: " + e.getMessage());
             }
+        }else {
+            phoneNumber="null";
         }
 
         String serid = request.getParameter("serid");
+        if(serid.isEmpty()) serid="null";
         String applytime = request.getParameter("applytime");
         if (applytime == "") {
-            applytime = "null"; // »òÕßÈÎºÎÄ¬ÈÏÖµ
+            applytime = "null"; // æˆ–è€…ä»»ä½•é»˜è®¤å€¼
         }
         String campus = request.getParameter("campus");
         if (campus == null) {
-            campus = "null"; // »òÕßÈÎºÎÄ¬ÈÏÖµ
+            campus = "null"; // æˆ–è€…ä»»ä½•é»˜è®¤å€¼
         }
         String intime = request.getParameter("intime");
         if (intime == "") {
-            intime = "null"; // »òÕßÈÎºÎÄ¬ÈÏÖµ
+            intime = "null"; // æˆ–è€…ä»»ä½•é»˜è®¤å€¼
         }
         String outtime = request.getParameter("outtime");
         if (outtime == "") {
-            outtime = "null"; // »òÕßÈÎºÎÄ¬ÈÏÖµ
+            outtime = "null"; // æˆ–è€…ä»»ä½•é»˜è®¤å€¼
         }
         String unit = request.getParameter("unit");
+        if(unit.isEmpty()) unit="null";
         String vehicle = request.getParameter("vehicle");
         String vname = request.getParameter("vname");
+        if(vname.isEmpty()) vname="null";
         String Fri_number = "0";
         ArrayList<Person> friends = new ArrayList<>();
-//ËæĞĞÈËÔ±²»²ÎÓë²éÑ¯
+//éšè¡Œäººå‘˜ä¸å‚ä¸æŸ¥è¯¢
         HttpSession session=request.getSession();
         Administrators myadmin=(Administrators) session.getAttribute("myadmin");
-        //ÓÉÓÚ¹ÜÀíÔ±Ö»ÓĞid×Ö¶Î
+        //ç”±äºç®¡ç†å‘˜åªæœ‰idå­—æ®µ
         String visitunit=null;
         try { DepartDao dapartdao=new DepartDao();
             Department depart= dapartdao.findById(myadmin.getDepartmentID());
@@ -146,8 +154,11 @@ public class queryRezvPubServlet extends HttpServlet {
             e.printStackTrace();
         }
         String receptionist = request.getParameter("receptionist");
+        if(receptionist.isEmpty()) receptionist="null";
         String reason = request.getParameter("reason");
+        if(reason.isEmpty()) reason="null";
         String status = request.getParameter("status");
+        if(status.isEmpty()) status="null";
 
 
         Reservation_public reservationpub = new Reservation_public(name,perid,phoneNumber,serid,applytime,campus,intime,outtime,unit,vehicle,vname,Fri_number,friends,visitunit,receptionist,reason,status,"null");
@@ -160,13 +171,13 @@ public class queryRezvPubServlet extends HttpServlet {
                 response.sendRedirect("Manage/school/rezv_public/displayRezvtionPub.jsp");
             }
             else {
-                message="Ã»ÓĞÏà¹ØÔ¤Ô¼¼ÇÂ¼";
+                message="æ²¡æœ‰ç›¸å…³é¢„çº¦è®°å½•";
                 request.getSession().setAttribute("message",message);
                 response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
             }
         }catch (Exception e1){
             e1.printStackTrace();
-            message="²éÑ¯Ê§°Ü";
+            message="æŸ¥è¯¢å¤±è´¥";
             request.getSession().setAttribute("message",message);
             response.sendRedirect("Manage/school/rezv_public/queryRezvtionPub.jsp");
         }
