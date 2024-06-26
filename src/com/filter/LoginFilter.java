@@ -9,7 +9,7 @@ import java.io.IOException;
 public class LoginFilter extends HttpFilter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // ³õÊ¼»¯´úÂë
+        // åˆå§‹åŒ–ä»£ç 
     }
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response,
@@ -17,30 +17,35 @@ public class LoginFilter extends HttpFilter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        HttpSession session = httpRequest.getSession(false); // ²»´´½¨ĞÂµÄsession
+        HttpSession session = httpRequest.getSession(false); // ä¸åˆ›å»ºæ–°çš„session
 
-        // ¼ì²éÇëÇóµÄURLÊÇ·ñÊÇµÇÂ¼Ò³Ãæ
+        // æ£€æŸ¥è¯·æ±‚çš„URLæ˜¯å¦æ˜¯ç™»å½•é¡µé¢
         String requestURI = httpRequest.getRequestURI();
-        boolean isLoginPage = requestURI.endsWith("/login.jsp"); // ¼ÙÉèµÇÂ¼Ò³ÃæÊÇ/login.jsp
+        boolean isLoginPage = requestURI.endsWith("/login.jsp"); // å‡è®¾ç™»å½•é¡µé¢æ˜¯/login.jsp
 
         if (isLoginPage) {
-            // Èç¹ûÊÇµÇÂ¼Ò³Ãæ£¬ÔÊĞíÖ±½Ó·ÃÎÊ£¬²»Ö´ĞĞ°²È«¼ì²é
+            // å¦‚æœæ˜¯ç™»å½•é¡µé¢ï¼Œå…è®¸ç›´æ¥è®¿é—®ï¼Œä¸æ‰§è¡Œå®‰å…¨æ£€æŸ¥
             chain.doFilter(request, response);
         } else {
-            //¶ÔÓÚ·ÇµÇÂ¼Ò³ÃæµÄÇëÇó£¬ ¼ì²éÓÃ»§ÊÇ·ñµÇÂ¼
+            //å¯¹äºéç™»å½•é¡µé¢çš„è¯·æ±‚ï¼Œ æ£€æŸ¥ç”¨æˆ·æ˜¯å¦ç™»å½•
             if (session == null || session.getAttribute("myadmin") == null) {
+<<<<<<< HEAD
                 // ÓÃ»§Î´µÇÂ¼£¬ÖØ¶¨Ïòµ½µÇÂ¼Ò³Ãæ
                 httpRequest.setAttribute("message", "Äú»¹Ã»ÓĞµÇÂ¼£¬ÇëµÇÂ¼");
+=======
+                // ç”¨æˆ·æœªç™»å½•ï¼Œé‡å®šå‘åˆ°ç™»å½•é¡µé¢
+                httpRequest.setAttribute("message", "æ‚¨è¿˜æ²¡æœ‰ç™»å½•ï¼Œè¯·ç™»å½•");
+>>>>>>> 38c1787fb9b6a6b180eacb355c8b8ad8bd9098ae
                 httpResponse.sendRedirect( "/webproject/Manage/login.jsp");
             } else {
-                // ÓÃ»§ÒÑµÇÂ¼£¬¼ÌĞø´¦ÀíÇëÇó
+                // ç”¨æˆ·å·²ç™»å½•ï¼Œç»§ç»­å¤„ç†è¯·æ±‚
                 chain.doFilter(request, response);
             }
         }
     }
     @Override
     public void destroy() {
-        // ÇåÀí²Ù×÷£¨Èç¹ûĞèÒª£©
+        // æ¸…ç†æ“ä½œï¼ˆå¦‚æœéœ€è¦ï¼‰
     }
 }
 
