@@ -25,8 +25,7 @@
 <div class="title"><div class="dot"></div>公务预约记录统计</div>
     <form action="../../count-DRezvPub.do" method="post" style="margin-top:30px;margin-bottom:40px;">
         <span class="input_title" style="margin-left:110px;">按月度统计：</span>
-        <input class="input2 b" type="datetime-local" name="intime" value="null">
-        <input class="button2" type="submit" value="确定">
+        <input class="button2" type="submit" value="统计">
         <input class="button2" type="reset" value="重置">
     </form>
 <script>

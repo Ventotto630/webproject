@@ -319,109 +319,16 @@ public class RezvtionpublicDao implements Basedao{
             return null;
         }
     }
-    public int CountRezv(Reservation_public reservation) throws DaoException{
+    public int CountRezv(String intime,String visitunit) throws DaoException{
         String sql="select count (*) as total "
-                +"from rezvtionpub where  1=1";
+                +"from rezvtionpub where  intime like ? and visitunit like ?";
 
 
-        if(!reservation.getName().equals("null"))
-            sql+="and name like ?" ;
-        if(!reservation.getPerid().equals("null"))
-            sql+="and perid like ?" ;
-        if(!reservation.getPhoneNumber().equals("null"))
-            sql+="and phoneNumber like ?" ;
-        if(!reservation.getSerid().equals("null"))
-            sql+="and serid like ?" ;
-        if(!reservation.getApplytime().equals("null"))
-            sql+="and applytime like ?" ;
-        if(!reservation.getCampus().equals("null"))
-            sql+="and campus like ?" ;
-        if(!reservation.getIntime().equals("null"))
-            sql+="and intime like ?" ;
-        if(!reservation.getOuttime().equals("null"))
-            sql+="and outtime like ?" ;
-        if(!reservation.getUnit().equals("null"))
-            sql+="and unit like ?" ;
-        if(!reservation.getVehicle().equals("null"))
-            sql+="and vehicle like ?" ;
-        if(!reservation.getVname().equals("null"))
-            sql+="and vname like ?" ;
-
-        if(!reservation.getVisitunit().equals("null"))
-            sql+="and visitunit like ?" ;
-        if(!reservation.getReceptionist().equals("null"))
-            sql+="and receptionist like ?" ;
-        if(!reservation.getReason().equals("null"))
-            sql+="and reason like ?" ;
-        if(!reservation.getStatus().equals("null"))
-            sql+="and status like ?" ;
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
-            int t=0;
-            if(!reservation.getName().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getName()+"%");
-            }
-            if(!reservation.getPerid().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getPerid()+"%");
-            }
-            if(!reservation.getPhoneNumber().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getPhoneNumber()+"%");
-            }
-            if(!reservation.getSerid().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getSerid()+"%");
-            }
-            if(!reservation.getApplytime().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getApplytime()+"%");
-            }
-
-            if(!reservation.getCampus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getCampus()+"%");
-            }
-
-            if(!reservation.getIntime().equals("null")) {
-                t++;
-                pstmt.setString(t,"%"+reservation.getIntime()+"%");
-            }
-            if(!reservation.getOuttime().equals("null")) {
-                t++;
-                pstmt.setString(t,"%"+reservation.getOuttime()+"%");
-            }
-            if(!reservation.getUnit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getUnit()+"%");
-            }
-            if(!reservation.getVehicle().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVehicle()+"%");
-            }
-            if(!reservation.getVname().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVname()+"%");
-            }
-
-            if(!reservation.getVisitunit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVisitunit()+"%");
-            }
-            if(!reservation.getReceptionist().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReceptionist()+"%");
-            }
-            if(!reservation.getReason().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReason()+"%");
-            }
-            if(!reservation.getStatus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getStatus()+"%");
-            }
+            pstmt.setString(1,intime);
+            pstmt.setString(2,visitunit);
 
             int count =0;
 
@@ -598,110 +505,17 @@ public class RezvtionpublicDao implements Basedao{
             return null;
         }
     }
-    public int CountPeople(Reservation_public reservation) throws DaoException{
+    public int CountPeople(String intime,String visitunit) throws DaoException{
         String sql="select fri_number "
-                +"from rezvtionpub where  1=1  ";
+                +"from rezvtionpub where  intime like ? and visitunit like ?  ";
 
 
-        if(!reservation.getName().equals("null"))
-            sql+="and name like ?" ;
-        if(!reservation.getPerid().equals("null"))
-            sql+="and perid like ?" ;
-        if(!reservation.getPhoneNumber().equals("null"))
-            sql+="and phoneNumber like ?" ;
-        if(!reservation.getSerid().equals("null"))
-            sql+="and serid like ?" ;
-        if(!reservation.getApplytime().equals("null"))
-            sql+="and applytime like ?" ;
-        if(!reservation.getCampus().equals("null"))
-            sql+="and campus like ?" ;
-        if(!reservation.getIntime().equals("null"))
-            sql+="and intime like ?" ;
-        if(!reservation.getOuttime().equals("null"))
-            sql+="and outtime like ?" ;
-        if(!reservation.getUnit().equals("null"))
-            sql+="and unit like ?" ;
-        if(!reservation.getVehicle().equals("null"))
-            sql+="and vehicle like ?" ;
-        if(!reservation.getVname().equals("null"))
-            sql+="and vname like ?" ;
-
-
-        if(!reservation.getVisitunit().equals("null"))
-            sql+="and visitunit like ?" ;
-        if(!reservation.getReceptionist().equals("null"))
-            sql+="and receptionist like ?" ;
-        if(!reservation.getReason().equals("null"))
-            sql+="and reason like ?" ;
-        if(!reservation.getStatus().equals("null"))
-            sql+="and status like ?" ;
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
             int t=0;
-            if(!reservation.getName().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getName()+"%");
-            }
-            if(!reservation.getPerid().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getPerid()+"%");
-            }
-            if(!reservation.getPhoneNumber().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getPhoneNumber()+"%");
-            }
-            if(!reservation.getSerid().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getSerid()+"%");
-            }
-            if(!reservation.getApplytime().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getApplytime()+"%");
-            }
-
-            if(!reservation.getCampus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getCampus()+"%");
-            }
-
-            if(!reservation.getIntime().equals("null")) {
-                t++;
-                pstmt.setString(t,"%"+reservation.getIntime()+"%");
-            }
-            if(!reservation.getOuttime().equals("null")) {
-                t++;
-                pstmt.setString(t,"%"+reservation.getOuttime()+"%");
-            }
-            if(!reservation.getUnit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getUnit()+"%");
-            }
-            if(!reservation.getVehicle().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVehicle()+"%");
-            }
-            if(!reservation.getVname().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVname()+"%");
-            }
-
-            if(!reservation.getVisitunit().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getVisitunit()+"%");
-            }
-            if(!reservation.getReceptionist().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReceptionist()+"%");
-            }
-            if(!reservation.getReason().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getReason()+"%");
-            }
-            if(!reservation.getStatus().equals("null")){
-                t++;
-                pstmt.setString(t,"%"+reservation.getStatus()+"%");
-            }
+            pstmt.setString(1,intime);
+            pstmt.setString(2,visitunit);
 
             int count =0;
 
