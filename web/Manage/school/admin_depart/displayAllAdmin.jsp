@@ -1,11 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.net.URLEncoder" %>
 <%@ page import="com.model.Administrators" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: 23994
-  Date: 2024/5/25
-  Time: 22:13
+  Date: 2024/6/27
+  Time: 10:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -83,7 +82,7 @@
         <td><%=admin.getDepartmentID()%></td>
         <td><%=admin.getPhone()%></td>
         <td><a class="abtn" href="../../../Dmodify.do?id=<%=admin.getAdminID()%>">修改</a>
-          <a class="abtn"  style="background-color: #ff5c5c" href="../../../deleteDAdmin.do?id=<%=admin.getAdminID()%>">删除</a>
+            <a class="abtn"  style="background-color: #ff5c5c" href="../../../deleteDAdmin.do?id=<%=admin.getAdminID()%>">删除</a>
         </td>
     </tr>
     <%}%>
@@ -91,7 +90,7 @@
 
 <div class="bottom">
     <c:if test="${currentPage > 1}">
-        <a class="npaging" href="../../findDAdmin.do?currentPage=${currentPage-1}&pageSize=${pageSize}&name=${name}">上一页</a>
+        <a class="npaging" href="../../findDAllAdmin.do?currentPage=${currentPage-1}&pageSize=${pageSize}">上一页</a>
     </c:if>
     <c:if test="${currentPage <= 1}">
         <span class="npaging">上一页</span>
@@ -104,13 +103,13 @@
                 <span class="paging">${i}</span>
             </c:when>
             <c:otherwise>
-                <a class="npaging" href="../../findDAdmin.do?currentPage=${i}&pageSize=${pageSize}&name=${name}">${i}</a>
+                <a class="npaging" href="../../findDAllAdmin.do?currentPage=${i}&pageSize=${pageSize}">${i}</a>
             </c:otherwise>
         </c:choose>
     </c:forEach>
 
     <c:if test="${currentPage < totalPages}">
-        <a class="npaging" href="../../findDAdmin.do?currentPage=${currentPage+1}&pageSize=${pageSize}&name=${name}">下一页</a>
+        <a class="npaging" href="../../findDAllAdmin.do?currentPage=${currentPage+1}&pageSize=${pageSize}">下一页</a>
     </c:if>
     <c:if test="${currentPage >= totalPages}">
         <span class="npaging">下一页</span>
@@ -132,3 +131,4 @@
 </html>
 <%session.removeAttribute("message");%>
 <%session.removeAttribute("adminList");%>
+

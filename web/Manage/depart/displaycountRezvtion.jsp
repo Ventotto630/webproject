@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>统计结果</title>
-    <link rel="stylesheet" href="../../my.css">
 </head>
 <body>
 <div class="title"><div class="dot"></div>统计结果</div>

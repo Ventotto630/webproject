@@ -34,7 +34,6 @@ public class registerServlet extends HttpServlet {
         String password=request.getParameter("password");
         byte[] sm3 = CryptoSM3.hash(password.getBytes());
         String sm= CryptoSM3.bytesToHexString(sm3);
-        admin.setAdminID(request.getParameter("adminID"));
         admin.setName(request.getParameter("name"));
         admin.setUsername(request.getParameter("username"));
         admin.setPassword(sm);

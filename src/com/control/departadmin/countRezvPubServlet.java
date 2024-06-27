@@ -54,15 +54,12 @@ public class countRezvPubServlet extends HttpServlet {
                 e1.printStackTrace();
                 message="Í³¼ÆÊ§°Ü";
                 request.getSession().setAttribute("message",message);
-                response.sendRedirect("Manage/school/rezv_public/countRezvtionPub.jsp");
+                response.sendRedirect("Manage/depart/countRezvtionPub.jsp");
             }
         }
-        request.getSession().setAttribute("s",s);
+        request.getSession().setAttribute("month",s);
         request.getSession().setAttribute("cishu",cishu);
         request.getSession().setAttribute("people",people);
-        response.sendRedirect("Manage/school/rezv_public/displaycountRezvtionPub.jsp");
-
-
-
+        response.sendRedirect("Manage/school/rezvtion/displaycountRezvtion.jsp");
     }
 }

@@ -1,7 +1,7 @@
 package com.control.schooladmin;
 
-import com.dao.adminDao;
-import com.model.Administrators;
+import com.dao.DepartDao;
+import com.model.Department;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -9,15 +9,10 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/authAdminServlet")
-public class authAdminServlet extends HttpServlet {
+@WebServlet("/findAllDepart.do")
+public class findDepartAll extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int currentPage = 1; // 默认值
         int pageSize = 8; // 默认值
         int totalCount=0;
@@ -47,14 +42,13 @@ public class authAdminServlet extends HttpServlet {
                 pageSize = 8; // 使用默认值
             }
         }
-
         request.setCharacterEncoding("utf-8");
-        adminDao dao=new adminDao();
-        ArrayList<Administrators> adminList=new ArrayList<>();
+        DepartDao dao=new DepartDao();
+        ArrayList<Department> departList=new ArrayList<>();
         try {
-            adminList=dao.findAllDAdmin(currentPage, pageSize);
+            departList=dao.findAllDepart(currentPage, pageSize);
             // 计算总记录数和总页数...
-            totalCount=dao.findAllDAdminNumber();
+            totalCount=dao.findAllDepartNumber();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,7 +57,12 @@ public class authAdminServlet extends HttpServlet {
         request.getSession().setAttribute("pageSize", pageSize);
         request.getSession().setAttribute("totalCount", totalCount);
         request.getSession().setAttribute("totalPages", totalPages);
-        request.getSession().setAttribute("adminList",adminList);
-        response.sendRedirect("Manage/school/admin_depart/auth.jsp");
+        request.getSession().setAttribute("departList",departList);
+        response.sendRedirect("Manage/school/depart/displayAllDepart.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

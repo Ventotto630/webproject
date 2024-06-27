@@ -26,7 +26,6 @@
     <form action="../../count-DRezvPub.do" method="post" style="margin-top:30px;margin-bottom:40px;">
         <span class="input_title" style="margin-left:110px;">按月度统计：</span>
         <input class="button2" type="submit" value="统计">
-        <input class="button2" type="reset" value="重置">
     </form>
 <script>
     window.onload = function() {

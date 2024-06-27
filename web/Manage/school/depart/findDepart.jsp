@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="title" style="margin-bottom:30px;"><div class="dot"></div>查找部门</div>
-<a class="button2 a" href="../../../findDepart.do">查询所有部门</a>
+<a class="button2 a" href="../../../findAllDepart.do">查询所有部门</a>
 <form action="../../../findDepart.do" method="post" style="margin-top:30px;margin-bottom:40px;">
     <span class="input_title" style="margin-left:110px;">部门名称：</span>
     <input class="input2" type="text" name="name" size="15">

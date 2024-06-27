@@ -38,14 +38,17 @@
     <input type="checkbox" name="months" value="11"> 十一月
     <input type="checkbox" name="months" value="12"> 十二月<br>
     <span class="input_title" style="margin-left:110px;">按部门统计：</span>
-    <input type="checkbox" name="depart" value="finance"> 计财处
-    <input type="checkbox" name="depart" value="education"> 教务处
-    <input type="checkbox" name="depart" value="security"> 保卫处
-    <input type="checkbox" name="depart" value="committee"> 团委<br>
-    <input class="button2" type="submit" value="确定">
+    <input type="checkbox" name="depart" value="计财处"> 计财处
+    <input type="checkbox" name="depart" value="教务处"> 教务处
+    <input type="checkbox" name="depart" value="保卫处"> 保卫处
+    <input type="checkbox" name="depart" value="团委"> 团委<br>
+    <input class="button2" type="submit" value="确定" style="margin-left:110px;">
     <input class="button2" type="reset" value="重置">
 
 </form>
+<%if(session.getAttribute("cishu")!= null || session.getAttribute("people")!=null){%>
+<jsp:include page="displaycountRezvtionPub.jsp" flush="true" />
+<%}%>
 <script>
     window.onload = function() {
         var message = "${message}"; // 使用EL获取Servlet中设置的提示信息

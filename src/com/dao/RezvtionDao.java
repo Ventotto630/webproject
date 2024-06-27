@@ -460,7 +460,7 @@ public class RezvtionDao implements Basedao{
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
-           pstmt.setString(1,intime);
+           pstmt.setString(1,intime+"%");
 
             int count = 0;
 
@@ -481,7 +481,7 @@ public class RezvtionDao implements Basedao{
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
-            pstmt.setString(1,intime);
+            pstmt.setString(1,intime+"%");
             int count = 0;
 
             try(ResultSet rst = pstmt.executeQuery()){

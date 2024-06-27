@@ -31,10 +31,7 @@
 <body>
 <div class="title"><div class="dot"></div>管理员信息</div>
 <form action="../../modifyAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px">
-    <div class="input_box">
-        <span class="input_title">管理员编号：</span>
-                <input class="input" class="input" type="text" name="adminid" value=${admin.getAdminID()}>
-    </div>
+    <input class="input" class="input" type="text" name="adminid" value=${admin.getAdminID()} hidden>
     <div class="input_box">
         <span class="input_title">　　　姓名：</span>
         <input class="input" type="text" name="name"
@@ -61,6 +58,7 @@
                 <option value="学校管理员" ${admin.getRole() == '学校管理员' ? 'selected' : ''}>学校管理员</option>
                 <option value="部门管理员" ${admin.getRole() == '部门管理员' ? 'selected' : ''}>部门管理员</option>
                 <option value="审计管理员" ${admin.getRole() == '审计管理员' ? 'selected' : ''}>审计管理员</option>
+                <option value="系统管理员" ${admin.getRole() == '系统管理员' ? 'selected' : ''}>系统管理员</option>
             </select>
         <input class="button" style="margin-left: 10px" type="submit" value="确定">
         <input class="button" style="margin-left: 10px" type="reset" value="重置">

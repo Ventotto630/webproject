@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="title" style="margin-bottom:30px;"><div class="dot"></div>查询部门管理员</div>
-<p><a class="button2 a" href="../../../findDAdmin.do">查询所有部门管理员</a></p>
+<p><a class="button2 a" href="../../../findDAllAdmin.do">查询所有部门管理员</a></p>
 <form action="../../../findDAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px">
     <span class="input_title" style="margin-left:110px;">管理员姓名：</span>
     <input class="input2" type="text" name="name" size="15">

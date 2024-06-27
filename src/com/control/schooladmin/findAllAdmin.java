@@ -9,15 +9,10 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/authAdminServlet")
-public class authAdminServlet extends HttpServlet {
+@WebServlet("/findDAllAdmin.do")
+public class findAllAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int currentPage = 1; // 默认值
         int pageSize = 8; // 默认值
         int totalCount=0;
@@ -64,6 +59,11 @@ public class authAdminServlet extends HttpServlet {
         request.getSession().setAttribute("totalCount", totalCount);
         request.getSession().setAttribute("totalPages", totalPages);
         request.getSession().setAttribute("adminList",adminList);
-        response.sendRedirect("Manage/school/admin_depart/auth.jsp");
+        response.sendRedirect("Manage/school/admin_depart/displayAllAdmin.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

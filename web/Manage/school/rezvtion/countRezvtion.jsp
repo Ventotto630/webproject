@@ -26,8 +26,10 @@
 <form action="../../../count-Rezv.do" method="post" style="margin:10px;line-height:48px;">
     <span class="input_title" style="margin-left:110px;">按月度统计：</span>
     <input class="button2" type="submit" value="统计">
-    <input class="button2" type="reset" value="重置">
 </form>
+<%if(session.getAttribute("cishu")!= null || session.getAttribute("people")!=null){%>
+<jsp:include page="displaycountRezvtion.jsp" flush="true" />
+<%}%>
 <script>
     window.onload = function() {
         var message = "${message}"; // 使用EL获取Servlet中设置的提示信息

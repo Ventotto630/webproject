@@ -45,10 +45,6 @@
 <div>
     <form action="../../addAdmin.do" method="post" style="margin-top:30px;" onsubmit="return checkForm()">
         <div class="input_box">
-            <span class="input_title">管理员编号 <span style="color:red">*</span></span>
-            <input class="input" type="text" name="adminID" placeholder="请输入管理员编号" required>
-        </div>
-        <div class="input_box">
             <span class="input_title">　　　姓名 <span style="color:red">*</span></span>
             <input class="input" type="text" name="name" placeholder="请输入管理员姓名" required>
         </div>
@@ -82,7 +78,7 @@
             <input type="checkbox" name="social" value="1"><span class="ch">社会预约管理</span>　　
             <input type="checkbox" name="pub" value="1"><span class="ch">全校公务预约管理</span>
         </div>
-        <button class="button">注册</button><br>
+        <button class="button">添加</button><br>
     </form>
     <script>
         window.onload = function() {

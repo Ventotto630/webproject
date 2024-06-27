@@ -321,13 +321,13 @@ public class RezvtionpublicDao implements Basedao{
     }
     public int CountRezv(String intime,String visitunit) throws DaoException{
         String sql="select count (*) as total "
-                +"from rezvtionpub where  intime like ? and visitunit like ?";
+                +"from rezvtionpub where  intime like ? and visitunit = ?";
 
 
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
-            pstmt.setString(1,intime);
+            pstmt.setString(1,intime+"%");
             pstmt.setString(2,visitunit);
 
             int count =0;
@@ -507,14 +507,14 @@ public class RezvtionpublicDao implements Basedao{
     }
     public int CountPeople(String intime,String visitunit) throws DaoException{
         String sql="select fri_number "
-                +"from rezvtionpub where  intime like ? and visitunit like ?  ";
+                +"from rezvtionpub where  intime like ? and visitunit = ?  ";
 
 
 
         try( Connection dbconn =getConnection();
              PreparedStatement pstmt = dbconn.prepareStatement(sql)){
             int t=0;
-            pstmt.setString(1,intime);
+            pstmt.setString(1,intime+"%");
             pstmt.setString(2,visitunit);
 
             int count =0;

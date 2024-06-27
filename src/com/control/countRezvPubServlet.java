@@ -37,7 +37,7 @@ public class countRezvPubServlet extends HttpServlet {
             months=month;
         }
         if(request.getParameterValues("depart")==null){
-            String depart_linshi[]={"education","finance","security","committee"};
+            String depart_linshi[]={"教务处","计财处","保卫处","团委"};
             depart=depart_linshi;
         }
         else {String depart_linshi[]=request.getParameterValues("depart");
@@ -65,8 +65,7 @@ public class countRezvPubServlet extends HttpServlet {
         request.getSession().setAttribute("depart",depart);
         request.getSession().setAttribute("cishu",cishu);
         request.getSession().setAttribute("people",people);
-        response.sendRedirect("Manage/school/rezv_public/displaycountRezvtionPub.jsp");
-
+        response.sendRedirect("Manage/school/rezv_public/countRezvtionPub.jsp");
 
     }
 }

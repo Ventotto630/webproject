@@ -50,10 +50,10 @@
             <span class="input_title" style="margin-left:20px;">公务访问部门</span>
                     <select name="visitunit"  class="select s" style="width:12.5%">
                         <option value="null"> </option>
-                        <option value="education"> 教务处</option>
-                        <option value="security"> 保卫处</option>
-                        <option value="finance"> 计财处</option>
-                        <option value="committee"> 团委</option>
+                        <option value="教务处"> 教务处</option>
+                        <option value="保卫处"> 保卫处</option>
+                        <option value="计财处"> 计财处</option>
+                        <option value="团委"> 团委</option>
                     </select>
             <span class="input_title" style="margin-left:20px;">公务访问接待人</span>
             <input class="input2" style="width:13.5%" type="text" name="receptionist"  >

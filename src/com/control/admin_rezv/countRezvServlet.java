@@ -43,10 +43,10 @@ public class countRezvServlet extends HttpServlet {
                 response.sendRedirect("Manage/school/rezvtion/countRezvtion.jsp");
             }
         }
-        request.getSession().setAttribute("s",s);
+        request.getSession().setAttribute("month",s);
         request.getSession().setAttribute("cishu",cishu);
         request.getSession().setAttribute("people",people);
-        response.sendRedirect("Manage/school/rezvtion/displaycountRezvtion.jsp");
+        response.sendRedirect("Manage/school/rezvtion/countRezvtion.jsp");
 
     }
 }

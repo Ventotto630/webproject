@@ -1,4 +1,4 @@
-package com.control.schooladmin;
+package com.control.systemadmin;
 
 import com.dao.adminDao;
 import com.model.Administrators;
@@ -9,15 +9,11 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/authAdminServlet")
-public class authAdminServlet extends HttpServlet {
+@WebServlet("/findAllAdmin.do")
+public class findAllAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         int currentPage = 1; // 默认值
         int pageSize = 8; // 默认值
         int totalCount=0;
@@ -48,22 +44,32 @@ public class authAdminServlet extends HttpServlet {
             }
         }
 
-        request.setCharacterEncoding("utf-8");
+
         adminDao dao=new adminDao();
         ArrayList<Administrators> adminList=new ArrayList<>();
+        String message=null;
         try {
-            adminList=dao.findAllDAdmin(currentPage, pageSize);
+            adminList=dao.findAllAdmin(currentPage, pageSize);
             // 计算总记录数和总页数...
-            totalCount=dao.findAllDAdminNumber();
+            totalCount=dao.findAllNumber();
         } catch (Exception e) {
             e.printStackTrace();
+            message="查找失败";
+            response.sendRedirect("Manage/system/findAdmin.jsp");
         }
         int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+        request.getSession().setAttribute("name",request.getParameter("name"));
+        request.getSession().setAttribute("adminList",adminList);
         request.getSession().setAttribute("currentPage", currentPage);
         request.getSession().setAttribute("pageSize", pageSize);
         request.getSession().setAttribute("totalCount", totalCount);
         request.getSession().setAttribute("totalPages", totalPages);
-        request.getSession().setAttribute("adminList",adminList);
-        response.sendRedirect("Manage/school/admin_depart/auth.jsp");
+        request.getSession().setAttribute("message",message);
+        response.sendRedirect("Manage/system/displayAllAdmin.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

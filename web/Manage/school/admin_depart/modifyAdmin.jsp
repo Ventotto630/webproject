@@ -31,11 +31,7 @@
 <body>
 <div class="title"><div class="dot"></div>部门管理员信息</div>
 <form action="../../../modifyDAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px" onsubmit="return checkForm()">
-    <div class="input_box">
-        <span class="input_title">管理员编号：</span>
-        <input class="input" type="text" name="adminid"
-                                   value=${admin.getAdminID()}>
-    </div>
+    <input class="input" type="text" name="adminid" value=${admin.getAdminID()} hidden>
     <div class="input_box">
         <span class="input_title">姓名：</span>
         <input class="input" type="text" name="name"

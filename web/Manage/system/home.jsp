@@ -249,7 +249,7 @@
         window.location.href="../login.jsp";
         <%session.removeAttribute("myuser");%>
     }
-    var sessionTimeout = 3 * 60 * 1000; // 30分钟，以毫秒为单位
+    var sessionTimeout = 30 * 60 * 1000; // 30分钟，以毫秒为单位
     var timeout;
     function resetTimer() {
         // 重置超时计时器

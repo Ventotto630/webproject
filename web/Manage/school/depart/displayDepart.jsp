@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.model.Department" %>
 <%@ page import="java.util.ArrayList" %>
 <%--
@@ -25,6 +26,37 @@
         table tbody td:nth-child(4){
             width:300px;
         }
+        .paging{
+            float: left;
+            padding: 4px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            background-color: #469aff;
+            color: white;
+            border: 1px solid #469aff;
+        }
+        .npaging{
+            color:rgb(75,75,75);
+            float: left;
+            padding: 4px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+        }
+        .npaging:hover{
+            background-color: #ddd;
+        }
+        .bottom{
+            margin-top: 50px;
+            margin-right: 150px;
+            float: right;
+        }
+        .now{
+            color: rgb(75, 75, 75);
+            margin-left: 18px;
+            margin-top: 4px;
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +79,36 @@
 </tr>
 <%}%>
 </table>
+<div class="bottom">
+    <c:if test="${currentPage > 1}">
+        <a class="npaging" href="../../findDepart.do?currentPage=${currentPage-1}&pageSize=${pageSize}&name=${name}">上一页</a>
+    </c:if>
+    <c:if test="${currentPage <= 1}">
+        <span class="npaging">上一页</span>
+    </c:if>
+
+    <!-- 显示页码链接 -->
+    <c:forEach var="i" begin="1" end="${totalPages}" step="1">
+        <c:choose>
+            <c:when test="${i == currentPage}">
+                <span class="paging">${i}</span>
+            </c:when>
+            <c:otherwise>
+                <a class="npaging" href="../../findDepart.do?currentPage=${i}&pageSize=${pageSize}&name=${name}">${i}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+
+    <c:if test="${currentPage < totalPages}">
+        <a class="npaging" href="../../findDepart.do?currentPage=${currentPage+1}&pageSize=${pageSize}&name=${name}">下一页</a>
+    </c:if>
+    <c:if test="${currentPage >= totalPages}">
+        <span class="npaging">下一页</span>
+    </c:if>
+
+    <!-- 显示总页数信息（可选） -->
+    <p class="now">共${totalPages}页</p>
+</div>
 <script>
     function jump(){
         window.location.href="addDepart.jsp";

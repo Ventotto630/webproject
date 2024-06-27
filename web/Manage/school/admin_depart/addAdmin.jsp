@@ -41,28 +41,24 @@
     <div class="title"><div class="dot"></div>添加部门管理员</div>
     <form action="../../../addDAdmin.do" method="post" onsubmit="return checkForm()" style="margin-top:40px;">
         <div class="input_box">
-            <span class="input_title">管理员编号 </span>
-            <input class="input" type="text" name="adminID" placeholder="请输入部门管理员编号" required>
-        </div>
-        <div class="input_box">
-            <span class="input_title">　　　姓名 </span>
+            <span class="input_title">　　　姓名 <span style="color:red">*</span></span>
             <input class="input" type="text" name="name" placeholder="请输入部门管理员姓名" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　用户名 </span>
+            <span class="input_title">　　用户名 <span style="color:red">*</span></span>
             <input class="input" type="text" name="username" placeholder="请输入部门管理员用户名" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　　密码 </span>
+            <span class="input_title">　　　密码 <span style="color:red">*</span></span>
             <input class="input" type="password" name="password" id="password"
                    placeholder="请输入部门管理员密码（至少8位，包含数字、大小字母、特殊字符等混合组合）" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　部门编号 </span>
+            <span class="input_title">　部门编号 <span style="color:red">*</span></span>
             <input class="input" type="text" name="depart" placeholder="请输入所属部门编号" required>
         </div>
         <div class="input_box">
-            <span class="input_title">　　手机号 </span>
+            <span class="input_title">　　手机号 <span style="color:red">*</span></span>
             <input class="input" type="text" name="phone" id="phone" placeholder="请输入手机号" required>
         </div>
 <%--        默认是部门管理员，学校管理员只能管理部门管理员--%>
@@ -72,7 +68,7 @@
             <input type="checkbox" name="social" value="1"><span class="ch">社会预约管理</span>　　
             <input type="checkbox" name="pub" value="1"><span class="ch">全校公务预约管理</span>
         </div>
-        <button class="button">注册</button><br>
+        <button class="button">添加</button><br>
     </form>
 </div>
 <script>

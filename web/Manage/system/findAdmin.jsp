@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="title"><div class="dot"></div>查询管理员</div>
-<p><a class="button2 a" href="../../findAdmin.do">查询所有管理员</a></p>
+<p><a class="button2 a" href="../../findAllAdmin.do">查询所有管理员</a></p>
 <form action="../../findAdmin.do" method="post" style="margin-top:25px;margin-bottom:10px">
         <span class="input_title" style="margin-left:110px;">管理员姓名：</span>
         <input class="input2" type="text" name="name" size="15">

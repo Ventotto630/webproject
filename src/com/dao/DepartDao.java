@@ -40,34 +40,56 @@ public class DepartDao implements Basedao{
             return false;
         }
     }
-    public ArrayList<Department> findAllDepart()throws Exception{
-        ArrayList<Department>departList= new ArrayList<>();
-        String sql="SELECT * FROM department ORDER BY id";
-        try(
-                Connection conn=getConnection();
-                PreparedStatement pstmt=conn.prepareStatement(sql);
-                ResultSet rst=pstmt.executeQuery()
-        ){
-            while(rst.next()) {
-                Department depart=new Department();
-                depart.setName(rst.getString("name"));
-                depart.setId(rst.getString("id"));
-                depart.setType(rst.getString("type"));
-                departList.add(depart);
+    public ArrayList<Department> findAllDepart(int currentPage, int pageSize)throws Exception {
+        ArrayList<Department> departList = new ArrayList<>();
+        String sql = "SELECT * FROM department ORDER BY id LIMIT ? OFFSET ?";
+        try (
+                Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, pageSize);
+            pstmt.setInt(2, (currentPage - 1) * pageSize);
+            try (ResultSet rst = pstmt.executeQuery()
+            ) {
+                while (rst.next()) {
+                    Department depart = new Department();
+                    depart.setName(rst.getString("name"));
+                    depart.setId(rst.getString("id"));
+                    depart.setType(rst.getString("type"));
+                    departList.add(depart);
+                }
+                return departList;
+            } catch (SQLException se) {
+                return null;
             }
-            return departList;
-        }catch(SQLException se){
-            return null;
         }
     }
-    public ArrayList<Department> findByFuzzyName(String name)throws Exception{
-        String sql="SELECT * FROM department WHERE name LIKE ? ORDER BY id";
+    public Integer findAllDepartNumber()throws Exception {
+        Integer num = 0;
+        String sql = "SELECT * FROM department";
+        try (
+                Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            try (ResultSet rst = pstmt.executeQuery()
+            ) {
+                while (rst.next()) {
+                    num++;
+                }
+                return num;
+            } catch (SQLException se) {
+                return null;
+            }
+        }
+    }
+    public ArrayList<Department> findByFuzzyName(String name,int currentPage, int pageSize)throws Exception{
+        String sql="SELECT * FROM department WHERE name LIKE ? ORDER BY id LIMIT ? OFFSET ?";
         ArrayList<Department>departList=new ArrayList<>();
         try(
                 Connection conn=getConnection();
                 PreparedStatement pstmt=conn.prepareStatement(sql)
         ){
             pstmt.setString(1,"%"+name+"%");
+            pstmt.setInt(2, pageSize);
+            pstmt.setInt(3, (currentPage - 1) * pageSize);
             try(ResultSet rst=pstmt.executeQuery()){
                 while(rst.next()){
                     Department depart=new Department();
@@ -81,6 +103,24 @@ public class DepartDao implements Basedao{
             return null;
         }
         return departList;
+    }
+    public Integer findByFuzzyNameNumber(String name)throws Exception{
+        String sql="SELECT * FROM department WHERE name LIKE ?";
+        Integer num=0;
+        try(
+                Connection conn=getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql)
+        ){
+            pstmt.setString(1,"%"+name+"%");
+            try(ResultSet rst=pstmt.executeQuery()){
+                while(rst.next()){
+                   num++;
+                }
+            }
+        }catch(SQLException se){
+            return null;
+        }
+        return num;
     }
     public boolean modifyDepart(Department depart){
         String sql="UPDATE department SET type=?,name=? " +
